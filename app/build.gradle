@@ -46,12 +46,14 @@ dependencies {
     def roomVersion = "2.4.2"
     def retrofitVersion = "2.9.0"
     def glideVersion = "4.13.1"
+    def lifecycle_version = "2.5.0-alpha06"
+    def fragment_version = "1.4.1"
+
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     //---------Navigation
-    // Kotlin
     implementation "androidx.navigation:navigation-fragment-ktx:$navVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navVersion"
     //---------Room
@@ -68,8 +70,16 @@ dependencies {
     //---------Material3
     implementation "androidx.compose.material3:material3:1.0.0-alpha07"
     //---------Corutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
+    //---------Fragment
+    implementation "androidx.fragment:fragment-ktx:$fragment_version"
     //---------MVVM
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
     //---------Shimmer
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+    //---------Backward Compatibility
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
