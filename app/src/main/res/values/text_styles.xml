@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Display-->
+    <style name="display_1">
+        <item name="android:textSize">64sp</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="display_2">
+        <item name="android:textSize">57sp</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="display_3">
+        <item name="android:textSize">45sp</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="display_large">
+        <item name="android:textSize">57sp</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="display_medium">
+        <item name="android:textSize">45sp</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+    </style>
+
+    <style name="display_small">
+        <item name="android:textSize">36sp</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+    </style>
+    <!--Headline-->
+    <style name="headline_1">
+        <item name="android:textSize">36sp</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="headline_2">
+        <item name="android:textSize">32sp</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="headline_3">
+        <item name="android:textSize">28sp</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="headline_4">
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="headline_5">
+        <item name="android:textSize">22sp</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="headline_5_b">
+        <item name="android:textSize">22sp</item>
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+    </style>
+    <style name="headline_6">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+    <style name="headline_large">
+        <item name="android:textSize">32sp</item>
+        <item name="android:fontFamily">@font/raleway_semibold</item>
+    </style>
+    <style name="headline_medium">
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/raleway_semibold</item>
+    </style>
+    <style name="headline_small">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/raleway_semibold</item>
+    </style>
+    <!--Subhead-->
+    <style name="subhead_1">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+    </style>
+
+    <style name="subhead_2">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+    </style>
+    <!--Button-->
+    <style name="button">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+    </style>
+    <!--Overline-->
+    <style name="overline">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+    </style>
+    <!--Label small-->
+    <style name="label_large">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+    </style>
+    <style name="label_medium">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+    </style>
+    <style name="label_small">
+        <item name="android:textSize">11sp</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+    </style>
+    <!--Title-->
+    <style name="title_large">
+        <item name="android:textSize">22sp</item>
+        <item name="android:fontFamily">@font/raleway_bold</item>
+    </style>
+    <style name="title_medium">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/raleway_bold</item>
+    </style>
+    <style name="title_small">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/raleway_bold</item>
+    </style>
+    <!--Body-->
+    <style name="body_large">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+    <style name="body_medium">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+    <style name="body_medium_b">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+    </style>
+    <style name="body_small">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+</resources>
