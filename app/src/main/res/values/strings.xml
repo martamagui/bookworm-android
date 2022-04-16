@@ -2,4 +2,8 @@
     <string name="app_name">BookWorm</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome">Hi! Welcome back.</string>
+    <string name="email">Email</string>
+    <string name="at_sign">\@</string>
+    <string name="password">Password</string>
 </resources>
