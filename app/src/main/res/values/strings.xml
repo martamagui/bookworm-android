@@ -13,4 +13,11 @@
     <string name="create_account">Create account</string>
     <string name="full_name">Full name</string>
     <string name="user_name">UserName</string>
+    <string name="continue_btn">Continue</string>
+    <string name="dob">Date of birth</string>
+    <string name="day">Day</string>
+    <string name="month">Month</string>
+    <string name="year">Year</string>
+    <string name="repeat_password">Repeat password</string>
+    <string name="almost_done">We are almost done!</string>
 </resources>

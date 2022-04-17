@@ -49,6 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
         android:text="@string/create_account"
+        android:textColor="@color/primary"
         app:layout_constraintEnd_toEndOf="@+id/tv_login_title"
         app:layout_constraintStart_toStartOf="@+id/tv_login_title"
         app:layout_constraintTop_toBottomOf="@+id/tv_login_title" />
@@ -60,7 +61,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginBottom="16dp"
         android:text="@string/full_name"
-        android:textAppearance="@style/title_large"
+        android:textAppearance="@style/title_medium"
         android:textColor="@color/primaryContainer"
         app:layout_constraintBottom_toTopOf="@+id/cardview_fullname_su"
         app:layout_constraintStart_toStartOf="@+id/cardview_fullname_su" />
@@ -109,7 +110,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginBottom="16dp"
         android:text="@string/user_name"
-        android:textAppearance="@style/title_large"
+        android:textAppearance="@style/title_medium"
         android:textColor="@color/primaryContainer"
         app:layout_constraintBottom_toTopOf="@+id/cardview_username_su"
         app:layout_constraintStart_toStartOf="@+id/cardview_username_su" />
@@ -158,7 +159,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginBottom="16dp"
         android:text="@string/email"
-        android:textAppearance="@style/title_large"
+        android:textAppearance="@style/title_medium"
         android:textColor="@color/primaryContainer"
         app:layout_constraintBottom_toTopOf="@+id/cardview_email_su"
         app:layout_constraintStart_toStartOf="@+id/cardview_email_su" />
@@ -201,20 +202,19 @@
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_continue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="62dp"
         android:layout_marginEnd="32dp"
         android:backgroundTint="@color/primaryContainer"
-        android:text="@string/login"
+        android:text="@string/continue_btn"
         android:textAppearance="@style/body_large_b"
         android:textColor="@color/onPrimaryContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_min="60dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardview_email_su" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
