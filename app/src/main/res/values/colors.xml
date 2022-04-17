@@ -23,7 +23,7 @@
     <color name="surfaceVariant">#F4DED4</color>
     <color name="onSurfaceVariant">#52443D</color>
     <color name="outline">#85746C</color>
-    <color name="inverseOnSurface">#FBEEE9</color>
+    <color name="inverseOnSurface">#FBEEEA</color>
     <color name="inverseSurface">#362F2C</color>
     <color name="inversePrimary">#FFB68C</color>
     <color name="shadow">#000000</color>
