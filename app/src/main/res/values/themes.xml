@@ -27,4 +27,7 @@
         <item name="colorSurfaceInverse">@color/inverseSurface</item>
         <item name="colorPrimaryInverse">@color/primaryInverse</item>
     </style>
+    <style name="Widget.App.CheckBox" parent="Widget.MaterialComponents.CompoundButton.CheckBox">
+        <item name="buttonTint">@color/primaryContainer</item>
+    </style>
 </resources>

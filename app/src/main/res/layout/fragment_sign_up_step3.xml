@@ -1,11 +1,260 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/primary_grad"
     tools:context=".ui.signup.step3.SignUpStep3Fragment">
 
+    <ImageView
+        android:id="@+id/iv_white_card3"
+        android:layout_width="0dp"
+        android:layout_height="160dp"
+        android:src="@drawable/sigup_card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_su3_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/sign_up"
+        android:textAppearance="@style/display_medium"
+        android:textColor="@color/primary"
+        android:translationZ="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/ib_back_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:background="@null"
+        android:src="@drawable/ic_baseline_arrow_back_ios_36"
+        android:translationZ="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_su3_title"
+        app:layout_constraintEnd_toStartOf="@+id/tv_su3_title"
+        app:layout_constraintTop_toTopOf="@+id/tv_su3_title"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/tv_su3_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:text="@string/create_account"
+        android:textColor="@color/primary"
+        app:layout_constraintEnd_toEndOf="@+id/tv_su3_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_su3_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_su3_title" />
+
+    <TextView
+        android:id="@+id/tv_country_su"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/country"
+        android:textAppearance="@style/title_medium"
+        android:textColor="@color/primaryContainer"
+        app:layout_constraintBottom_toTopOf="@+id/cardview_country_su"
+        app:layout_constraintStart_toStartOf="@+id/cardview_country_su" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview_country_su"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_white_card3">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
+
+            <EditText
+                android:id="@+id/et_country_su"
+                style="@style/Widget.AppCompat.AutoCompleteTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="@string/country"
+                android:inputType="textAutoComplete|textEmailSubject"
+                android:minHeight="48dp"
+                android:singleLine="true"
+                android:textAppearance="@style/body_large"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_city_su"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/city"
+        android:textAppearance="@style/title_medium"
+        android:textColor="@color/primaryContainer"
+        app:layout_constraintBottom_toTopOf="@+id/cardview_city_su"
+        app:layout_constraintStart_toStartOf="@+id/cardview_city_su" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview_city_su"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="32dp"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardview_country_su">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
+
+            <EditText
+                android:id="@+id/et_city_su"
+                style="@style/Widget.AppCompat.AutoCompleteTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="@string/city"
+                android:inputType="textAutoComplete|textEmailSubject"
+                android:minHeight="48dp"
+                android:singleLine="true"
+                android:textAppearance="@style/body_large"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_address_su"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/address"
+        android:textAppearance="@style/title_medium"
+        android:textColor="@color/primaryContainer"
+        app:layout_constraintBottom_toTopOf="@+id/cardview_address_su"
+        app:layout_constraintStart_toStartOf="@+id/cardview_address_su" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview_address_su"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="32dp"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardview_city_su">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
+
+            <EditText
+                android:id="@+id/et_address_su"
+                style="@style/Widget.AppCompat.AutoCompleteTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="@string/address"
+                android:inputType="textAutoComplete|textEmailSubject"
+                android:minHeight="48dp"
+                android:singleLine="true"
+                android:textAppearance="@style/body_large"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/btn_continue3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        android:backgroundTint="@color/primaryContainer"
+        android:text="@string/finish"
+        android:textAppearance="@style/body_large_b"
+        android:textColor="@color/onPrimaryContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_min="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardview_address_su" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardview_address_su">
+
+        <TextView
+            android:id="@+id/tv_i_agree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/i_agree_with"
+            android:textColor="@color/primaryContainer" />
+
+        <TextView
+            android:id="@+id/tv_terms_conditions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:text="@string/terms_conditions"
+            android:textAppearance="@style/title_small"
+            android:textColor="@color/primaryContainer" />
+
+        <CheckBox
+            android:id="@+id/cb_terms_conditions"
+            style="@style/Widget.App.CheckBox"
+            android:layout_width="36dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:buttonTint="@color/primaryContainer"
+            android:textColor="@color/primaryContainer"
+            tools:ignore="TouchTargetSizeCheck"></CheckBox>
+
+    </LinearLayout>
 
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
