@@ -19,7 +19,10 @@ interface NetworkService {
     suspend fun getUserById(@Path("userId") userId: String): UserResponse
 
     @GET("user/myProfile/{userId}")
-    suspend fun getMyProfile(@Path("userId") userId: String): UserResponse
+    suspend fun getMyProfile(
+        @Header("Authorization") token: String,
+        @Path("userId") userId: String
+    ): UserResponse
 
     @GET("user/list-ids")
     suspend fun getListByIdsList(@Query("userIds") tag: List<String>): List<UserResponse>
@@ -43,64 +46,80 @@ interface NetworkService {
     //--- PUT
     @PUT("user/update-password/{userId}")
     suspend fun updatePassword(
+        @Header("Authorization") token: String,
         @Path("userId") userId: String,
         @Body user: UserBody
     ): StandarResponse
 
     @PUT("user/update-email/{userId}")
-    suspend fun updateEmail(@Path("userId") userId: String, @Body user: UserBody): StandarResponse
+    suspend fun updateEmail(
+        @Header("Authorization") token: String,
+        @Path("userId") userId: String,
+        @Body user: UserBody
+    ): StandarResponse
 
     @PUT("user/update-username/{userId}")
     suspend fun updateUserName(
+        @Header("Authorization") token: String,
         @Path("userId") userId: String,
         @Body user: UserBody
     ): StandarResponse
 
     @PUT("user/update-newsletter/{userId}")
     suspend fun updateNewsletter(
+        @Header("Authorization") token: String,
         @Path("userId") userId: String,
         @Body user: UserBody
     ): StandarResponse
 
     @PUT("user/update-banner/{userId}")
     suspend fun updateBanner(
+        @Header("Authorization") token: String,
         @Path("userId") userId: String,
         @Body user: ProfileBody
     ): StandarResponse
 
     @PUT("user/update-avatar/{userId}")
     suspend fun updateAvatar(
+        @Header("Authorization") token: String,
         @Path("userId") userId: String,
         @Body user: ProfileBody
     ): StandarResponse
 
     @PUT("user/unfollow/{userId}")
     suspend fun unfollowUser(
+        @Header("Authorization") token: String,
         @Path("userId") userId: String,
         @Body followingBody: FollowBody
     ): StandarResponse
 
     @PUT("user/follow/{userId}")
     suspend fun followUser(
+        @Header("Authorization") token: String,
         @Path("userId") userId: String,
         @Body followingBody: FollowBody
     ): StandarResponse
 
     @PUT("user/remove-saved-review/{userId}")
     suspend fun removeSavedReview(
+        @Header("Authorization") token: String,
         @Path("userId") userId: String,
         @Body savedReview: SavedReviewBody
     ): StandarResponse
 
     @PUT("user/save-review/{userId}")
     suspend fun savedReview(
+        @Header("Authorization") token: String,
         @Path("userId") userId: String,
         @Body savedReview: SavedReviewBody
     ): StandarResponse
 
     //--- DELETE
     @DELETE("user/{userId}")
-    suspend fun deleteUser(@Path("userId") userId: String): StandarResponse
+    suspend fun deleteUser(
+        @Header("Authorization") token: String,
+        @Path("userId") userId: String
+    ): StandarResponse
 
 
 }
