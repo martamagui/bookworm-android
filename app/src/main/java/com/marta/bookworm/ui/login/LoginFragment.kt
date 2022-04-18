@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.marta.bookworm.R
 import com.marta.bookworm.databinding.FragmentLoginBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding
