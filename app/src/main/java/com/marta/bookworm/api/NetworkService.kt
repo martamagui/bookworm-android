@@ -1,9 +1,9 @@
 package com.marta.bookworm.api
 
-import com.marta.bookworm.model.body.FollowBody
-import com.marta.bookworm.model.body.ProfileBody
-import com.marta.bookworm.model.body.SavedReviewBody
-import com.marta.bookworm.model.body.UserBody
+import com.marta.bookworm.model.body.user.FollowBody
+import com.marta.bookworm.model.body.user.ProfileBody
+import com.marta.bookworm.model.body.user.SavedReviewBody
+import com.marta.bookworm.model.body.user.UserBody
 import com.marta.bookworm.model.response.StandarResponse
 import com.marta.bookworm.model.response.TokenResponse
 import com.marta.bookworm.model.response.UserResponse

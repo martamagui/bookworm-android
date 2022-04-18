@@ -1,4 +1,4 @@
-package com.marta.bookworm.model.body
+package com.marta.bookworm.model.body.user
 
 class Credentials(
     val email: String,
