@@ -1,9 +1,6 @@
 package com.marta.bookworm.api
 
-import com.marta.bookworm.model.body.user.FollowBody
-import com.marta.bookworm.model.body.user.ProfileBody
-import com.marta.bookworm.model.body.user.SavedReviewBody
-import com.marta.bookworm.model.body.user.UserBody
+import com.marta.bookworm.model.body.user.*
 import com.marta.bookworm.model.response.StandarResponse
 import com.marta.bookworm.model.response.TokenResponse
 import com.marta.bookworm.model.response.UserResponse
@@ -41,7 +38,7 @@ interface NetworkService {
     suspend fun createNewUser(@Body user: UserBody): StandarResponse
 
     @POST("user/login")
-    suspend fun login(@Body email: String, password: String): TokenResponse
+    suspend fun login(@Body credentials: Credentials): TokenResponse
 
     //--- PUT
     @PUT("user/update-password/{userId}")
