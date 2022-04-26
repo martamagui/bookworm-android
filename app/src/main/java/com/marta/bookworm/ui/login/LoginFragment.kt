@@ -6,8 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.marta.bookworm.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 import com.marta.bookworm.model.body.user.Credentials
@@ -17,7 +18,7 @@ class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding
         get() = _binding!!
-    private val viewModel: LoginFragmentViewModel by viewModels()
+    private val viewModel: LoginFragmentViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,7 +70,8 @@ class LoginFragment : Fragment() {
     }
 
     private fun navigateToSignUp() {
-        TODO("Not yet implemented")
+        val action = LoginFragmentDirections.actionLoginFragmentToSignUpStep1Fragment()
+        findNavController().navigate(action)
     }
 
 }

@@ -11,6 +11,7 @@ import com.marta.bookworm.R
 import com.marta.bookworm.databinding.FragmentLoginBinding
 import com.marta.bookworm.databinding.FragmentSignUpStep1Binding
 import com.marta.bookworm.ui.login.LoginUIState
+import com.marta.bookworm.ui.signup.SignUpViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,7 +19,7 @@ class SignUpStep1Fragment : Fragment() {
     private var _binding: FragmentSignUpStep1Binding? = null
     private val binding
         get() = _binding!!
-    private val viewModel: SignUpStep1ViewModel by viewModels()
+    private val viewModel: SignUpViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,13 +31,28 @@ class SignUpStep1Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        changeStatusBarColor()
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.signUpStep1UIState.collect { state ->
+            viewModel.signUpStep1FUIState.collect { state ->
                 renderUIState(state)
             }
         }
     }
 
     private fun renderUIState(state: SignUpStep1UIState) {
+        if (state.isError) {
+            //TODO
+        }
+        if (state.isSuccess) {
+            //TODO (cambiar de fragment)
+        }
+    }
+
+    private fun changeStatusBarColor() {
+        //TODO find a better way to do this
+        getActivity()?.let {
+            getActivity()?.getWindow()?.setStatusBarColor(it.getColor(R.color.inverseOnSurface))
+        };
+
     }
 }
