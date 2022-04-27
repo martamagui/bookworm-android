@@ -45,4 +45,5 @@ class LoginFragmentViewModel @Inject constructor(private val networkService: Net
     fun saveToken(token: String) {
         //TODO guardar el token en la DB con Room
     }
+
 }

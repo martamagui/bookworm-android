@@ -25,13 +25,13 @@ interface NetworkService {
     suspend fun getListByIdsList(@Query("userIds") tag: List<String>): List<UserResponse>
 
     @GET("user/list-names/{userName}")
-    suspend fun searchUserByName(@Path("userName") tag: List<String>): List<UserResponse>
+    suspend fun searchUserByName(@Path("userName") userName: String): List<UserResponse>
 
     @GET("user/is-username-taken/{userName}")
-    suspend fun isUserNameTaken(@Path("userName") tag: List<String>): StandarResponse
+    suspend fun isUserNameTaken(@Path("userName") userName: String): StandarResponse
 
     @GET("user/is-email-taken/{email}")
-    suspend fun isEmailTaken(@Path("email") tag: List<String>): StandarResponse
+    suspend fun isEmailTaken(@Path("email") email: String): StandarResponse
 
     //--- POST
     @POST("user")
