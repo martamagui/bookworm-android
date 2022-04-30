@@ -11,6 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.marta.bookworm.R
 import com.marta.bookworm.databinding.FragmentLoginBinding
 import com.marta.bookworm.databinding.FragmentSignUpStep1Binding
@@ -47,23 +48,22 @@ class SignUpStep1Fragment : Fragment() {
     private fun renderUIState(state: SignUpStep1UIState) {
         if (state.isError) {
             showError(state.errorMssg)
-        }else{
+        } else {
             hideError()
         }
         if (state.isSuccess) {
-            //TODO llamar al general, actualizar el usar
+            viewModelActivity.setStepOneData(
+                binding.etEmailSu.text.toString(),
+                binding.etUsernameSu.text.toString(),
+                binding.etFullNameSu.text.toString()
+            )
+            navigateToNextStep()
         }
     }
 
     private fun setUI() {
         changeStatusBarColor()
-        binding.btnContinue.setOnClickListener {
-            viewModel.validateAll(
-                binding.etEmailSu.text.toString(),
-                binding.etUsernameSu.text.toString(),
-                binding.etFullNameSu.text.toString()
-            )
-        }
+        setBtn()
         setEditText()
     }
 
@@ -84,6 +84,17 @@ class SignUpStep1Fragment : Fragment() {
         }
     }
 
+    private fun setBtn(){
+        binding.btnContinue.setOnClickListener {
+            viewModel.validateAll(
+                binding.etEmailSu.text.toString(),
+                binding.etUsernameSu.text.toString(),
+                binding.etFullNameSu.text.toString()
+            )
+        }
+        binding.ibBack1.setOnClickListener { findNavController().popBackStack() }
+    }
+
     private fun changeStatusBarColor() {
         //TODO find a better way to do this
         getActivity()?.let {
@@ -91,26 +102,26 @@ class SignUpStep1Fragment : Fragment() {
         };
     }
 
-    private fun showError(text: String){
+    private fun showError(text: String) {
         binding.tvError.visibility = View.VISIBLE
         binding.tvError.text = text
         highligthError(text)
     }
 
-    private fun highligthError(text: String){
-        if(text == "Please introduce a valid userName") {
+    private fun highligthError(text: String) {
+        if (text == "Please introduce a valid userName") {
             binding.etUsernameSu.setTextColor(resources.getColor(R.color.error))
             binding.etUsernameSu.setTypeface(null, Typeface.BOLD)
-        }else if (text =="Plase introduce a valid email"){
+        } else if (text == "Plase introduce a valid email") {
             binding.etEmailSu.setTextColor(resources.getColor(R.color.error))
             binding.etEmailSu.setTypeface(null, Typeface.BOLD)
-        }else{
+        } else {
             binding.etFullNameSu.setTextColor(resources.getColor(R.color.error))
             binding.etFullNameSu.setTypeface(null, Typeface.BOLD)
         }
     }
 
-    private fun  unhighligthError(){
+    private fun unhighligthError() {
         binding.etUsernameSu.setTextColor(resources.getColor(R.color.shadow))
         binding.etUsernameSu.setTypeface(null, Typeface.NORMAL)
         binding.etEmailSu.setTextColor(resources.getColor(R.color.shadow))
@@ -119,9 +130,14 @@ class SignUpStep1Fragment : Fragment() {
         binding.etFullNameSu.setTypeface(null, Typeface.NORMAL)
     }
 
-    private fun hideError(){
+    private fun hideError() {
         binding.tvError.visibility = View.GONE
         binding.tvError.text = ""
         unhighligthError()
+    }
+
+    private fun navigateToNextStep() {
+        val action = SignUpStep1FragmentDirections.actionSignUpStep1FragmentToSignUpStep2Fragment();
+        findNavController().navigate(action)
     }
 }

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.marta.bookworm.R
 import com.marta.bookworm.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 import com.marta.bookworm.model.body.user.Credentials
@@ -46,11 +47,19 @@ class LoginFragment : Fragment() {
         }
     }
     private fun setUI(){
+        changeStatusBarColor()
         setBtnsListeners()
     }
     private fun setBtnsListeners(){
         binding.btnLogin.setOnClickListener { loginAction() }
         binding.btnAccountLogin.setOnClickListener { navigateToSignUp() }
+    }
+
+    private fun changeStatusBarColor() {
+        //TODO find a better way to do this
+        getActivity()?.let {
+            getActivity()?.getWindow()?.setStatusBarColor(it.getColor(R.color.primary))
+        };
     }
 
     private fun loginAction() {
@@ -73,5 +82,6 @@ class LoginFragment : Fragment() {
         val action = LoginFragmentDirections.actionLoginFragmentToSignUpStep1Fragment()
         findNavController().navigate(action)
     }
+
 
 }

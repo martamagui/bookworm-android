@@ -31,7 +31,7 @@ object NetworkManagerAPI {
     @Singleton
     fun getRetrofitService(client: OkHttpClient): NetworkService {
         val retrofit = Retrofit.Builder()
-            .baseUrl("Your Api URL")
+            .baseUrl("https://bookworm-app-api.herokuapp.com/api/v1/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

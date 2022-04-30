@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_signUpStep1Fragment"
-            app:destination="@id/signUpStep1Fragment" />
+            app:destination="@id/signUpStep1Fragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/signUpStep1Fragment"
@@ -21,11 +25,28 @@
         tools:layout="@layout/fragment_sign_up_step1" >
         <action
             android:id="@+id/action_signUpStep1Fragment_to_signUpStep2Fragment"
-            app:destination="@id/signUpStep2Fragment" />
+            app:destination="@id/signUpStep2Fragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/signUpStep2Fragment"
         android:name="com.marta.bookworm.ui.signup.step2.SignUpStep2Fragment"
         android:label="fragment_sign_up_step2"
-        tools:layout="@layout/fragment_sign_up_step2" />
+        tools:layout="@layout/fragment_sign_up_step2" >
+        <action
+            android:id="@+id/action_signUpStep2Fragment_to_signUpStep3Fragment"
+            app:destination="@id/signUpStep3Fragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpStep3Fragment"
+        android:name="com.marta.bookworm.ui.signup.step3.SignUpStep3Fragment"
+        android:label="fragment_sign_up_step3"
+        tools:layout="@layout/fragment_sign_up_step3" />
 </navigation>

@@ -31,6 +31,10 @@ class SignUpViewModel @Inject constructor(private val networkService: NetworkSer
     val signUpStep3FUIState: StateFlow<SignUpStep3UIState> get() = _signUpStep3FUIState
     val user: StateFlow<UserBody> get() = _user
 
+    fun setStepOneData(email:String, userName: String, fullName: String){
+        _user.update { UserBody(email = email, userName = userName, fullName = fullName ) }
+    }
+
     fun resetError2(){
         _signUpStep2FUIState.update { SignUpStep2UIState(isError = false)}
     }

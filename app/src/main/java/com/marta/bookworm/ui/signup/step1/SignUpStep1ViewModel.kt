@@ -1,5 +1,6 @@
 package com.marta.bookworm.ui.signup.step1
 
+import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -21,33 +22,32 @@ class SignUpStep1ViewModel @Inject constructor(private val networkService: Netwo
     val signUpStep1FUIState: StateFlow<SignUpStep1UIState> get() = _signUpStep1FUIState
 
     fun validateEmail(email: String): Boolean {
-        var availableMail = false
+        var availableMail = true
         viewModelScope.launch(Dispatchers.IO) {
             if (Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 val isTaken = networkService.isEmailTaken(email)
                 if (isTaken.message == "available") {
                     availableMail = true
+                }else{
+                    setErrorMsg("Plase introduce a valid email")
+                    availableMail = false
                 }
             }
-        }
-        if (availableMail == false) {
-            setErrorMsg("Plase introduce a valid email")
         }
         return availableMail
     }
 
     fun validateUserName(userName: String): Boolean {
-        var availableeUserName = false
+        var availableUserName = false
         viewModelScope.launch(Dispatchers.IO) {
             val isTaken = networkService.isUserNameTaken(userName)
             if (isTaken.message == "available") {
-                availableeUserName = true
+                availableUserName = true
+            }else {
+                setErrorMsg("Please introduce a valid userName")
             }
         }
-        if (availableeUserName == false) {
-            setErrorMsg("Please introduce a valid userName")
-        }
-        return availableeUserName
+        return availableUserName
     }
 
     private fun setErrorMsg(msg: String) {
@@ -57,6 +57,7 @@ class SignUpStep1ViewModel @Inject constructor(private val networkService: Netwo
     fun resetError() {
         _signUpStep1FUIState.update { SignUpStep1UIState(isError = false) }
     }
+
     private fun validateTextFields(text: String): Boolean {
         if (text != null && text.length > 2) {
             return true
@@ -65,8 +66,11 @@ class SignUpStep1ViewModel @Inject constructor(private val networkService: Netwo
     }
 
     fun validateAll(email: String, userName: String, fullName: String) {
-        if (((validateEmail(email)) && validateTextFields(userName)) &&
-            (validateTextFields(fullName) && validateUserName(userName))) {
+        Log.d("Aaa", "$email $userName $fullName")
+        val emailValidation = validateEmail(email)
+        val userNameValidation = validateTextFields(userName)
+        val validateFullName = validateTextFields(fullName)
+        if ( (emailValidation && userNameValidation) && (validateFullName && !signUpStep1FUIState.value.isError) ) {
             _signUpStep1FUIState.update { SignUpStep1UIState(isSuccess = true) }
         } else {
             setErrorMsg("Invalid data, please")
