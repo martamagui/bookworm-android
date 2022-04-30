@@ -5,6 +5,9 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import java.sql.Date
+import java.text.SimpleDateFormat
+import java.util.*
 
 class SignUpStep2ViewModel : ViewModel() {
     private val _signUpStep2FUIState: MutableStateFlow<SignUpStep2UIState> =
@@ -41,5 +44,12 @@ class SignUpStep2ViewModel : ViewModel() {
 
     fun resetError2() {
         _signUpStep2FUIState.update { SignUpStep2UIState(isError = false) }
+    }
+
+    fun setDob(date: Long) {
+        val pattern = "yyyy-MM-dd"
+        val simpleDateFormat = SimpleDateFormat(pattern)
+        val formattedDate = simpleDateFormat.format(Date(date))
+        _signUpStep2FUIState.update { SignUpStep2UIState(dob = formattedDate) }
     }
 }

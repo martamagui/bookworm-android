@@ -1,19 +1,22 @@
 package com.marta.bookworm.ui.signup.step2
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.DateValidatorPointBackward
+import com.google.android.material.datepicker.DateValidatorPointForward
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.marta.bookworm.R
 import com.marta.bookworm.databinding.FragmentSignUpStep2Binding
 import com.marta.bookworm.ui.signup.SignUpViewModel
-import com.marta.bookworm.ui.signup.step1.SignUpStep1ViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.format.DateTimeFormatter
 
 @AndroidEntryPoint
 class SignUpStep2Fragment : Fragment() {
@@ -43,17 +46,45 @@ class SignUpStep2Fragment : Fragment() {
     }
 
     private fun renderUIState(state: SignUpStep2UIState) {
-        if (state.isError) {
-            //TODO
-        }
+        if (state.isError) showError(state.errorMssg)
+
         if (state.isSuccess) {
             //TODO (cambiar de fragment)
         }
+        if(state.dob != "") setDobText(state.dob)
     }
+
+    private fun setDobText(date:String) {
+        binding.etDobSu2.setText(date)    }
+
+    private fun showError(text: String) {
+        //TODO show error function
+    }
+
     private fun setUI(){
         binding.btnContinue2.setOnClickListener {
-            viewModel.validateAll(binding.etDaySu2.text.toString(),binding.etPassword1.text.toString(), binding.etPassword2.text.toString())
+            viewModel.validateAll(binding.etDobSu2.text.toString(),binding.etPassword1.text.toString(), binding.etPassword2.text.toString())
         }
+        binding.etDobSu2.setOnClickListener {
+            openDatePicker()
+        }
+    }
+    private fun openDatePicker() {
+        val constraintsBuilder =
+            CalendarConstraints.Builder()
+                .setValidator(DateValidatorPointBackward.now())
+                .build()
+        val datePicker =
+            MaterialDatePicker.Builder.datePicker()
+                .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                .setCalendarConstraints(constraintsBuilder)
+                .setTitleText(R.string.dob)
+                .build()
+        datePicker.show(parentFragmentManager,"Dob")
+        datePicker.addOnPositiveButtonClickListener {
+            viewModel.setDob(it)
+        }
+
     }
 
     private fun changeStatusBarColor() {
