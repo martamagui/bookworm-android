@@ -20,14 +20,12 @@ import javax.inject.Inject
 class SignUpViewModel @Inject constructor(private val networkService: NetworkService) :
     ViewModel() {
 
-    private val _signUpStep2FUIState: MutableStateFlow<SignUpStep2UIState> =
-        MutableStateFlow(SignUpStep2UIState())
+
     private val _signUpStep3FUIState: MutableStateFlow<SignUpStep3UIState> = MutableStateFlow(
         SignUpStep3UIState()
     )
     private val _user: MutableStateFlow<UserBody> = MutableStateFlow(UserBody())
 
-    val signUpStep2FUIState: StateFlow<SignUpStep2UIState> get() = _signUpStep2FUIState
     val signUpStep3FUIState: StateFlow<SignUpStep3UIState> get() = _signUpStep3FUIState
     val user: StateFlow<UserBody> get() = _user
 
@@ -35,11 +33,8 @@ class SignUpViewModel @Inject constructor(private val networkService: NetworkSer
         _user.update { UserBody(email = email, userName = userName, fullName = fullName ) }
     }
 
-    fun resetError2(){
-        _signUpStep2FUIState.update { SignUpStep2UIState(isError = false)}
-    }
-    fun resetError3(){
-        _signUpStep2FUIState.update { SignUpStep2UIState(isError = false)}
+    fun setStepTwoData(dob:String, password: String){
+        _user.update { UserBody(birthDate = dob, password = password ) }
     }
 
 }
