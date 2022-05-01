@@ -45,30 +45,45 @@ class SignUpStep2Fragment : Fragment() {
         setUI()
     }
 
+    private fun setUI() {
+        binding.btnContinue2.setOnClickListener {
+            viewModel.validateAll(
+                binding.etDobSu2.text.toString(),
+                binding.etPassword1.text.toString(),
+                binding.etPassword2.text.toString()
+            )
+        }
+        binding.etDobSu2.setOnClickListener {
+            openDatePicker()
+        }
+        changeStatusBarColor()
+    }
+
+    private fun changeStatusBarColor() {
+        //TODO find a better way to do this
+        getActivity()?.let {
+            getActivity()?.getWindow()?.setStatusBarColor(it.getColor(R.color.inverseOnSurface))
+        };
+
+    }
+
     private fun renderUIState(state: SignUpStep2UIState) {
         if (state.isError) showError(state.errorMssg)
 
         if (state.isSuccess) {
             //TODO (cambiar de fragment)
         }
-        if(state.dob != "") setDobText(state.dob)
+        if (state.dob != "") setDobText(state.dob)
     }
 
-    private fun setDobText(date:String) {
-        binding.etDobSu2.setText(date)    }
+    private fun setDobText(date: String) {
+        binding.etDobSu2.setText(date)
+    }
 
     private fun showError(text: String) {
         //TODO show error function
     }
 
-    private fun setUI(){
-        binding.btnContinue2.setOnClickListener {
-            viewModel.validateAll(binding.etDobSu2.text.toString(),binding.etPassword1.text.toString(), binding.etPassword2.text.toString())
-        }
-        binding.etDobSu2.setOnClickListener {
-            openDatePicker()
-        }
-    }
     private fun openDatePicker() {
         val constraintsBuilder =
             CalendarConstraints.Builder()
@@ -80,18 +95,10 @@ class SignUpStep2Fragment : Fragment() {
                 .setCalendarConstraints(constraintsBuilder)
                 .setTitleText(R.string.dob)
                 .build()
-        datePicker.show(parentFragmentManager,"Dob")
+        datePicker.show(parentFragmentManager, "Dob")
         datePicker.addOnPositiveButtonClickListener {
             viewModel.setDob(it)
         }
-
     }
 
-    private fun changeStatusBarColor() {
-        //TODO find a better way to do this
-        getActivity()?.let {
-            getActivity()?.getWindow()?.setStatusBarColor(it.getColor(R.color.inverseOnSurface))
-        };
-
-    }
 }
