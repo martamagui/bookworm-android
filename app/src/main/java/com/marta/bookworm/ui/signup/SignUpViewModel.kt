@@ -1,5 +1,6 @@
 package com.marta.bookworm.ui.signup
 
+import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -20,13 +21,13 @@ import javax.inject.Inject
 class SignUpViewModel @Inject constructor(private val networkService: NetworkService) :
     ViewModel() {
 
-
     private val _signUpStep3FUIState: MutableStateFlow<SignUpStep3UIState> = MutableStateFlow(
         SignUpStep3UIState()
     )
     private val _user: MutableStateFlow<UserBody> = MutableStateFlow(UserBody())
 
     val signUpStep3FUIState: StateFlow<SignUpStep3UIState> get() = _signUpStep3FUIState
+
     val user: StateFlow<UserBody> get() = _user
 
     fun setStepOneData(email:String, userName: String, fullName: String){
@@ -35,6 +36,7 @@ class SignUpViewModel @Inject constructor(private val networkService: NetworkSer
 
     fun setStepTwoData(dob:String, password: String){
         _user.update { UserBody(birthDate = dob, password = password ) }
+        Log.d("Datos", "$user")
     }
 
 }

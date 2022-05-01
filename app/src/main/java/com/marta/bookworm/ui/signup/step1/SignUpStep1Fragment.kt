@@ -18,6 +18,7 @@ import com.marta.bookworm.databinding.FragmentSignUpStep1Binding
 import com.marta.bookworm.ui.login.LoginUIState
 import com.marta.bookworm.ui.signup.SignUpViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class SignUpStep1Fragment : Fragment() {
@@ -84,7 +85,7 @@ class SignUpStep1Fragment : Fragment() {
         }
     }
 
-    private fun setBtn(){
+    private fun setBtn() {
         binding.btnContinue.setOnClickListener {
             viewModel.validateAll(
                 binding.etEmailSu.text.toString(),
