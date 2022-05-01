@@ -48,7 +48,7 @@ class SignUpStep1Fragment : Fragment() {
 
     private fun renderUIState(state: SignUpStep1UIState) {
         if (state.isError) {
-            showError(state.errorMssg)
+            showError(state.errorMsg)
         } else {
             hideError()
         }

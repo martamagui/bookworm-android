@@ -48,5 +48,9 @@
         android:id="@+id/signUpStep3Fragment"
         android:name="com.marta.bookworm.ui.signup.step3.SignUpStep3Fragment"
         android:label="fragment_sign_up_step3"
-        tools:layout="@layout/fragment_sign_up_step3" />
+        tools:layout="@layout/fragment_sign_up_step3" >
+        <action
+            android:id="@+id/action_signUpStep3Fragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 </navigation>

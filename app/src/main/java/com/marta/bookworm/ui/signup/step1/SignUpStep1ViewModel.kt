@@ -51,7 +51,7 @@ class SignUpStep1ViewModel @Inject constructor(private val networkService: Netwo
     }
 
     private fun setErrorMsg(msg: String) {
-        _signUpStep1FUIState.update { SignUpStep1UIState(isError = true, errorMssg = msg) }
+        _signUpStep1FUIState.update { SignUpStep1UIState(isError = true, errorMsg = msg) }
     }
 
     fun resetError() {

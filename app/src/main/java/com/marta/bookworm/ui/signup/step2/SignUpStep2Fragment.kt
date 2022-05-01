@@ -47,6 +47,12 @@ class SignUpStep2Fragment : Fragment() {
     }
 
     private fun setUI() {
+        setBtn()
+        setEditText()
+        changeStatusBarColor()
+    }
+
+    private fun setBtn() {
         binding.btnContinue2.setOnClickListener {
             viewModel.validateAll(
                 binding.etDobSu2.text.toString(),
@@ -54,8 +60,7 @@ class SignUpStep2Fragment : Fragment() {
                 binding.etPassword2.text.toString()
             )
         }
-        setEditText()
-        changeStatusBarColor()
+        binding.ibBack2.setOnClickListener { findNavController().popBackStack() }
     }
 
     private fun setEditText() {

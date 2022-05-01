@@ -5,6 +5,7 @@ data class UserBody (
         val address: String="",
         val birthDate: String="",
         val city: String ="",
+        val country: String ="",
         val email: String ="",
         val fullName: String ="",
         val password: String ="",
