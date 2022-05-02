@@ -36,6 +36,7 @@ class LoginFragment : Fragment() {
                 renderUIState(loginUIState)
             }
         }
+        checkToken()
         setUI()
     }
 
@@ -77,7 +78,9 @@ class LoginFragment : Fragment() {
     private fun showErrorMsg(message: String) {
        Log.e("e", "message")
     }
-
+    private fun checkToken(){
+        viewModel.thereIsAnyToken()
+    }
     private fun navigateToSignUp() {
         val action = LoginFragmentDirections.actionLoginFragmentToSignUpStep1Fragment()
         findNavController().navigate(action)
