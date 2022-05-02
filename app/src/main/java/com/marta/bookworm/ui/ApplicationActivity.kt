@@ -21,6 +21,10 @@ class ApplicationActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_main) as NavHostFragment
         val navigationController = navigationMenu.navController
         binding.bottomNavigationView.setupWithNavController(navigationController)
+        changeStatusBarColor()
+    }
 
+    private fun changeStatusBarColor() {
+        getWindow()?.setStatusBarColor(getColor(R.color.outline))
     }
 }

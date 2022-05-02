@@ -32,12 +32,11 @@
                 android:layout_weight="1"
                 android:text="@string/app_name"
                 android:textAppearance="@style/title_large"
-                android:textColor="@color/onSecondaryContainer"
                 android:translationY="-2dp" />
 
             <androidx.cardview.widget.CardView
-                android:layout_width="44dp"
-                android:layout_height="44dp"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
                 app:cardBackgroundColor="@color/tertiary"

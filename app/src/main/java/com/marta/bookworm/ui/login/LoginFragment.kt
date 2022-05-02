@@ -41,17 +41,34 @@ class LoginFragment : Fragment() {
     }
 
     private fun renderUIState(loginUIState: LoginUIState) {
-        if(loginUIState.isError){
+        if (loginUIState.isError) {
             showErrorMsg(loginUIState.errorMessage)
         }
-        if(loginUIState.isSuccess){
+        if (loginUIState.isLoading) {
+            showLoadingAnimation()
+        }else{
+            hideLoadingAnimation()
+        }
+
+        if (loginUIState.isSuccess) {
         }
     }
-    private fun setUI(){
+
+    private fun showLoadingAnimation() {
+        binding.cardLoading.visibility = View.VISIBLE
+    }
+
+    private fun hideLoadingAnimation() {
+        binding.cardLoading.visibility = View.GONE
+    }
+
+    private fun setUI() {
         changeStatusBarColor()
         setBtnsListeners()
+        setEditTExt()
     }
-    private fun setBtnsListeners(){
+
+    private fun setBtnsListeners() {
         binding.btnLogin.setOnClickListener { loginAction() }
         binding.btnAccountLogin.setOnClickListener { navigateToSignUp() }
     }
@@ -64,23 +81,39 @@ class LoginFragment : Fragment() {
     }
 
     private fun loginAction() {
-        val email =  binding.etEmailLogin.text.toString()
+        val email = binding.etEmailLogin.text.toString()
         val password = binding.etPasswordLogin.text.toString()
         Log.e("Email ", "$password")
-        if(email!=null && password!=null){
+        if (email != null && password != null) {
             val credentials = Credentials(email, password)
             viewModel.loginAction(credentials)
-        }else{
+        } else {
             showErrorMsg("There is missing information")
         }
     }
 
     private fun showErrorMsg(message: String) {
-       Log.e("e", "message")
+        binding.tvLoginError.setText(message)
+        binding.tvLoginError.visibility = View.VISIBLE
     }
-    private fun checkToken(){
+
+    private fun hideError() {
+        binding.tvLoginError.visibility = View.GONE
+    }
+
+    private fun setEditTExt(){
+        binding.etEmailLogin.onFocusChangeListener = View.OnFocusChangeListener { view, b ->
+            if (b) hideError()
+        }
+        binding.etPasswordLogin.onFocusChangeListener = View.OnFocusChangeListener { view, b ->
+            if (b) hideError()
+        }
+    }
+
+    private fun checkToken() {
         viewModel.thereIsAnyToken()
     }
+
     private fun navigateToSignUp() {
         val action = LoginFragmentDirections.actionLoginFragmentToSignUpStep1Fragment()
         findNavController().navigate(action)

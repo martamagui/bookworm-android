@@ -27,4 +27,5 @@
     <string name="i_agree_with">I agree with</string>
     <string name="terms_conditions"><![CDATA[Terms & Conditions]]></string>
     <string name="navigate_to_new_review">Navigate to create review</string>
+    <string name="invalid_data">Please introduce valid data</string>
 </resources>

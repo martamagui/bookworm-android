@@ -3,6 +3,7 @@ package com.marta.bookworm.ui.login
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.marta.bookworm.R
 import com.marta.bookworm.api.NetworkService
 import com.marta.bookworm.db.BookWorm_Database
 import com.marta.bookworm.db.entities.Token
@@ -39,7 +40,7 @@ class LoginFragmentViewModel @Inject constructor(
                 _loginUIState.update {
                     LoginUIState(
                         isLoading = false,
-                        errorMessage = "$e",
+                        errorMessage = "${R.string.invalid_data}",
                         isError = true
                     )
                 }
@@ -61,6 +62,7 @@ class LoginFragmentViewModel @Inject constructor(
                 //Todo validate the actual token. Need to update the API
                 _loginUIState.update { LoginUIState(savedToken = true, isLoading = false,isSuccess = true) }
             }
+            _loginUIState.update { LoginUIState(isLoading = false) }
         }
     }
 
