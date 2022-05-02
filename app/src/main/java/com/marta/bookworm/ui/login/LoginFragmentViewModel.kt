@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.marta.bookworm.api.NetworkService
+import com.marta.bookworm.db.BookWorm_Database
+import com.marta.bookworm.db.entities.Token
 import com.marta.bookworm.model.body.user.Credentials
 import com.marta.bookworm.model.response.TokenResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,7 +18,10 @@ import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginFragmentViewModel @Inject constructor(private val networkService: NetworkService) :
+class LoginFragmentViewModel @Inject constructor(
+    private val networkService: NetworkService,
+    private val db: BookWorm_Database
+) :
     ViewModel() {
     private val _loginUIState: MutableStateFlow<LoginUIState> = MutableStateFlow(LoginUIState())
     val loginUIState: StateFlow<LoginUIState>
@@ -27,8 +32,8 @@ class LoginFragmentViewModel @Inject constructor(private val networkService: Net
             try {
                 _loginUIState.update { LoginUIState(isLoading = true) }
                 val token: TokenResponse = networkService.login(credentials);
-                Log.d("Token", "$token")
-                _loginUIState.update { LoginUIState(isLoading = false, isSuccess = true) }
+                saveToken(credentials.email, token.token)
+
             } catch (e: Exception) {
                 Log.e("Exception", "${e}")
                 _loginUIState.update {
@@ -42,8 +47,11 @@ class LoginFragmentViewModel @Inject constructor(private val networkService: Net
         }
     }
 
-    fun saveToken(token: String) {
-        //TODO guardar el token en la DB con Room
+    fun saveToken(email: String, token: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            db.dao().saveToken(Token(email, token))
+            _loginUIState.update { LoginUIState(isLoading = false, isSuccess = true) }
+        }
     }
 
 }

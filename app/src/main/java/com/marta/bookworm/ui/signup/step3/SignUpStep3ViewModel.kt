@@ -23,7 +23,7 @@ class SignUpStep3ViewModel:  ViewModel() {
                 setErrorMsg("Please fill all fields")
             }
         }else{
-            setErrorMsg("Please acept terms and conditions")
+            setErrorMsg("Please accept terms and conditions")
         }
     }
 

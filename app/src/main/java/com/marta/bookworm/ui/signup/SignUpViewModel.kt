@@ -49,7 +49,10 @@ class SignUpViewModel @Inject constructor(private val networkService: NetworkSer
                 country = country,
                 city = city,
                 address = address,
-                subscribedToNewsLetter = true
+                subscribedToNewsLetter = true,
+                avatar = "https://i.kym-cdn.com/photos/images/facebook/000/959/794/310.jpg",
+                banner = "https://www.meme-arsenal.com/memes/089f4c766373a00975d7a2e25ab2d524.jpg",
+                description = "Hi! just joined Bookworm! :D"
             )
         }
         register()
