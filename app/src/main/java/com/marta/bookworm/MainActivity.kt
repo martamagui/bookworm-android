@@ -35,6 +35,8 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("token", loginUIState.savedToken)
             startActivity(intent)
         }
+        val intent = Intent(this, ApplicationActivity::class.java)
+        startActivity(intent)
     }
 
 }

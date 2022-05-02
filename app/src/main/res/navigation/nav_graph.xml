@@ -53,4 +53,19 @@
             android:id="@+id/action_signUpStep3Fragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/feedFragment"
+        android:name="com.marta.bookworm.ui.feed.FeedFragment"
+        android:label="fragment_feed"
+        tools:layout="@layout/fragment_feed" />
+    <fragment
+        android:id="@+id/topFragment"
+        android:name="com.marta.bookworm.ui.top.TopFragment"
+        android:label="fragment_top"
+        tools:layout="@layout/fragment_top" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.marta.bookworm.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
