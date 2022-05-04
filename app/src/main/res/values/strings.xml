@@ -28,4 +28,6 @@
     <string name="terms_conditions"><![CDATA[Terms & Conditions]]></string>
     <string name="navigate_to_new_review">Navigate to create review</string>
     <string name="invalid_data">Please introduce valid data</string>
+    <string name="default_username">\@UserName</string>
+    <string name="default_score">5.5</string>
 </resources>

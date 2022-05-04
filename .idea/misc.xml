@@ -14,8 +14,12 @@
         <entry key="..\:/Users/marta/Documents/GitHub/03-TFG/bookworm-android/app/src/main/res/drawable/grad_login.xml" value="0.2435" />
         <entry key="..\:/Users/marta/Documents/GitHub/03-TFG/bookworm-android/app/src/main/res/drawable/ic_baseline_arrow_back_ios_36.xml" value="0.2605" />
         <entry key="..\:/Users/marta/Documents/GitHub/03-TFG/bookworm-android/app/src/main/res/drawable/ic_baseline_arrow_back_ios_48.xml" value="0.2605" />
+        <entry key="..\:/Users/marta/Documents/GitHub/03-TFG/bookworm-android/app/src/main/res/drawable/ic_baseline_bookmark_border_24.xml" value="0.1" />
         <entry key="..\:/Users/marta/Documents/GitHub/03-TFG/bookworm-android/app/src/main/res/drawable/ic_baseline_check_box_outline_blank_24.xml" value="0.3675" />
+        <entry key="..\:/Users/marta/Documents/GitHub/03-TFG/bookworm-android/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.1" />
         <entry key="..\:/Users/marta/Documents/GitHub/03-TFG/bookworm-android/app/src/main/res/drawable/ic_baseline_mail_outline_24.xml" value="0.3675" />
+        <entry key="..\:/Users/marta/Documents/GitHub/03-TFG/bookworm-android/app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.1" />
+        <entry key="..\:/Users/marta/Documents/GitHub/03-TFG/bookworm-android/app/src/main/res/drawable/ic_outline_shopping_bag_24.xml" value="0.1" />
         <entry key="..\:/Users/marta/Documents/GitHub/03-TFG/bookworm-android/app/src/main/res/drawable/primary_grad.xml" value="0.1935" />
         <entry key="..\:/Users/marta/Documents/GitHub/03-TFG/bookworm-android/app/src/main/res/drawable/sigup_card.xml" value="0.2605" />
         <entry key="..\:/Users/marta/Documents/GitHub/03-TFG/bookworm-android/app/src/main/res/font/poppins.xml" value="0.67" />
@@ -32,6 +36,7 @@
         <entry key="..\:/Users/marta/Documents/GitHub/03-TFG/bookworm-android/app/src/main/res/layout/fragment_sign_up_step2.xml" value="0.25" />
         <entry key="..\:/Users/marta/Documents/GitHub/03-TFG/bookworm-android/app/src/main/res/layout/fragment_sign_up_step3.xml" value="0.25" />
         <entry key="..\:/Users/marta/Documents/GitHub/03-TFG/bookworm-android/app/src/main/res/layout/fragment_top.xml" value="0.33" />
+        <entry key="..\:/Users/marta/Documents/GitHub/03-TFG/bookworm-android/app/src/main/res/layout/item_feed.xml" value="0.5" />
         <entry key="..\:/Users/marta/Documents/GitHub/03-TFG/bookworm-android/app/src/main/res/menu/bottom_navigation.xml" value="0.1" />
       </map>
     </option>
