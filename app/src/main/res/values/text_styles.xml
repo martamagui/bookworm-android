@@ -143,4 +143,9 @@
         <item name="android:textSize">12sp</item>
         <item name="android:fontFamily">@font/roboto</item>
     </style>
+    <!--Item-->
+    <style name="like_amount_style">
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+    </style>
 </resources>
