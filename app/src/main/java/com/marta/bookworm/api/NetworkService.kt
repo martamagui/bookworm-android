@@ -1,6 +1,7 @@
 package com.marta.bookworm.api
 
 import com.marta.bookworm.model.body.user.*
+import com.marta.bookworm.model.response.ReviewResponse
 import com.marta.bookworm.model.response.StandarResponse
 import com.marta.bookworm.model.response.TokenResponse
 import com.marta.bookworm.model.response.UserResponse
@@ -117,6 +118,9 @@ interface NetworkService {
         @Header("Authorization") token: String,
         @Path("userId") userId: String
     ): StandarResponse
-
+    //-------------------------------------- Review
+    //--- GET
+    @GET("review")
+    suspend fun  getAllPosts():List<ReviewResponse>
 
 }
