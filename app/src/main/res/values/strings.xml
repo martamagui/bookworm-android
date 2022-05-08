@@ -30,9 +30,9 @@
     <string name="invalid_data">Please introduce valid data</string>
     <string name="default_username">\@UserName</string>
     <string name="default_score">5.5</string>
-    <string name="default_amount" >0</string>
+    <string name="default_amount">0</string>
     <string name="dufaut_text">string/title</string>
     <string name="loading">Loading...</string>
     <string name="todo">TODO</string>
-
+    <string name="delete" />
 </resources>

@@ -123,4 +123,8 @@ interface NetworkService {
     @GET("review")
     suspend fun  getAllPosts():List<ReviewResponse>
 
+    //TODO Detail Call
+    @GET("review")
+    suspend fun getPostDetail(): ReviewResponse
+
 }

@@ -105,4 +105,8 @@ class FeedFragment : Fragment() {
         findNavController().navigate(action)
     }
 
+    private fun navigateToDetail(postId: String){
+
+    }
+
 }
