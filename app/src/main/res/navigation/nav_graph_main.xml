@@ -9,7 +9,14 @@
         android:id="@+id/feedFragment2"
         android:name="com.marta.bookworm.ui.feed.FeedFragment"
         android:label="fragment_feed"
-        tools:layout="@layout/fragment_feed" />
+        tools:layout="@layout/fragment_feed" >
+        <action
+            android:id="@+id/action_feedFragment2_to_createReviewStep1Fragment"
+            app:destination="@id/createReviewStep1Fragment" />
+        <action
+            android:id="@+id/action_feedFragment2_to_chatListFragment"
+            app:destination="@id/chatListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/topFragment2"
         android:name="com.marta.bookworm.ui.top.TopFragment"
@@ -20,4 +27,14 @@
         android:name="com.marta.bookworm.ui.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/createReviewStep1Fragment"
+        android:name="com.marta.bookworm.ui.createReview.CreateReviewStep1Fragment"
+        android:label="fragment_create_review_step1"
+        tools:layout="@layout/fragment_create_review_step1" />
+    <fragment
+        android:id="@+id/chatListFragment"
+        android:name="com.marta.bookworm.ui.chat.ChatListFragment"
+        android:label="fragment_chat_list"
+        tools:layout="@layout/fragment_chat_list" />
 </navigation>

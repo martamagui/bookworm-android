@@ -25,7 +25,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="280dp"
+                android:layout_marginTop="265dp"
                 android:layout_marginEnd="8dp"
                 android:gravity="end"
                 android:orientation="vertical"
@@ -36,13 +36,14 @@
                 <TextView
                     android:id="@+id/tv_likes_amount_item"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_weight="1"
                     android:minWidth="34dp"
                     android:text="@string/default_amount"
                     android:textAlignment="center"
                     android:textAppearance="@style/like_amount_style"
-                    android:textColor="@color/onSecondary" />
+                    android:textColor="@color/onSecondary"
+                    tools:ignore="TextContrastCheck" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -65,6 +66,7 @@
                                 android:id="@+id/iv_shop"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:contentDescription="@string/todo"
                                 app:srcCompat="@drawable/ic_outline_shopping_bag_24" />
                         </LinearLayout>
 
@@ -89,6 +91,7 @@
                                 android:id="@+id/iv_save"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:contentDescription="@string/todo"
                                 app:srcCompat="@drawable/ic_baseline_bookmark_border_24" />
                         </LinearLayout>
 
@@ -111,6 +114,7 @@
                                 android:id="@+id/iv_like"
                                 android:layout_width="24dp"
                                 android:layout_height="wrap_content"
+                                android:contentDescription="@string/todo"
                                 app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
                         </LinearLayout>
 
@@ -131,50 +135,20 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <!-- Media -->
-                <LinearLayout
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="42dp"
-                            android:layout_height="42dp"
-                            android:layout_margin="12dp"
-                            app:cardCornerRadius="24dp">
-
-                            <ImageView
-                                android:id="@+id/ib_avatar_item"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                app:srcCompat="@drawable/img_1" />
-                        </androidx.cardview.widget.CardView>
-
-                        <TextView
-                            android:id="@+id/tv_username_item"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:padding="6dp"
-                            android:text="@string/default_username"
-                            android:textAppearance="@style/subhead_1"
-                            android:textColor="@color/onPrimaryContainer" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
                         android:gravity="center_vertical|end"
                         android:orientation="horizontal"
-                        android:paddingEnd="12dp">
+                        android:paddingEnd="12dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
                             android:id="@+id/tv_score_item"
@@ -189,18 +163,59 @@
                             android:id="@+id/imageView2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:contentDescription="@string/todo"
                             app:srcCompat="@drawable/ic_baseline_star_24" />
                     </LinearLayout>
 
-                </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:id="@+id/iv_review_image"
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:layout_margin="12dp"
+                            app:cardCornerRadius="24dp">
+
+                            <ImageView
+                                android:id="@+id/ib_avatar_item"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:contentDescription="TODO"
+                                app:srcCompat="@drawable/img_1" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/tv_username_item"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="6dp"
+                            android:text="@string/default_username"
+                            android:textAppearance="@style/subhead_1"
+                            android:textColor="@color/onPrimaryContainer" />
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="253dp"
-                    android:contentDescription="string/content_description_media"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/img" />
+                    android:layout_height="235dp"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:id="@+id/iv_review_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="235dp"
+                        android:contentDescription="string/content_description_media"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/img" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -214,7 +229,7 @@
                         android:id="@+id/tv_title_item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="string/title"
+                        android:text="@string/dufaut_text"
                         android:textAppearance="@style/subhead_1"
                         android:textColor="@color/onBackground" />
 
@@ -223,7 +238,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="string/secondary_text"
+                        android:text="@string/loading"
                         android:textAppearance="@style/subhead_2"
                         android:textColor="?android:attr/textColorSecondary" />
 
@@ -241,12 +256,12 @@
 
                     <TextView
                         android:id="@+id/tv_description_item"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:layout_weight="1"
                         android:maxLines="3"
-                        android:text="string/secondary_text"
+                        android:text="@string/loading"
                         android:textAppearance="@style/subhead_2"
                         android:textColor="?android:attr/textColorSecondary" />
 
@@ -263,15 +278,17 @@
         android:id="@+id/ib_to_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:background="@android:color/transparent"
         android:backgroundTint="@android:color/transparent"
+        android:contentDescription="@string/todo"
         android:rotation="180"
         android:translationZ="2dp"
         app:layout_constraintBottom_toBottomOf="@+id/card"
         app:layout_constraintEnd_toEndOf="@+id/card"
-        app:srcCompat="@drawable/ic_baseline_arrow_back_ios_36" />
+        app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
+        tools:ignore="DuplicateSpeakableTextCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
