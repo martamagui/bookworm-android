@@ -33,7 +33,31 @@ class DetailViewModel @Inject constructor(
             }
         }
     }
+    private suspend fun getMyToken(): String{
+        return db.dao().findMyToken("a").token
+    }
 
+    fun likePost(postId: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val myToken = "Bearer " + getMyToken()
+                networkService.likeDislike(myToken, postId)
+            }catch (error: Error){
+                updateError("Couldn't update like for this post.")
+            }
+        }
+    }
+
+    fun saveUnsavePost(postId: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val myToken = "Bearer " + getMyToken()
+                networkService.saveUnsavePost(myToken, postId)
+            }catch (error: Error){
+                updateError("Couldn't update like for this post.")
+            }
+        }
+    }
 
     fun updateError(msg: String) {
         _detailUIState.update { DetailUIState(isLoading = false, isError = true, errorMsg = msg) }

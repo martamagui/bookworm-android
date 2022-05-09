@@ -133,4 +133,6 @@ class FeedFragment : Fragment() {
         val action = FeedFragmentDirections.actionFeedFragment2ToProfileFragment2(userId)
         findNavController().navigate(action)
     }
+    // TODO Create a navigate Amazon funtion
+
 }
