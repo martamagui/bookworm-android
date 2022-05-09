@@ -15,7 +15,7 @@ data class ReviewResponse(
     @SerializedName("score")
     val score: Double,
     @SerializedName("image")
-    val image: String,
+    val image: String?,
     @SerializedName("amazonLink")
     val amazonLink: String,
     @SerializedName("reviewDescription")
@@ -23,8 +23,10 @@ data class ReviewResponse(
     @SerializedName("date")
     val date: String,
     @SerializedName("likes")
-    val likes: Int,
+    val likes:  List<String?>,
+    @SerializedName("liked")
+    val liked: Boolean?,
     @SerializedName("hastags")
     val hastags: List<String>,
-    val user: UserResponse
+    val user: UserResponse?
 )

@@ -10,7 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.marta.bookworm.R
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.marta.bookworm.databinding.FragmentFeedBinding
 import com.marta.bookworm.model.response.ReviewResponse
 import com.marta.bookworm.ui.common.FeedAdapter
@@ -19,7 +19,13 @@ class FeedFragment : Fragment() {
     private var _binding: FragmentFeedBinding? = null
     private val binding get() = _binding!!
     private val viewModel: FeedViewModel by activityViewModels()
-    private val adapter: FeedAdapter = FeedAdapter()
+    private val adapter: FeedAdapter = FeedAdapter(
+        { navigateToDetail(it) },
+        { navigateToUserProfile(it) },
+        { likePost(it) },
+        { saveUnsavePost(it) }
+    )
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -80,21 +86,34 @@ class FeedFragment : Fragment() {
     }
 
     private fun showEmptyBlock() {
-       Log.e("Empty", "Empty list")
+        Log.e("Empty", "Empty list")
         //TODO create an image or quote for empty lists
     }
 
     private fun showError(msg: String) {
         Log.d("Empty", "Error")
-        //TODO
-
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Error Loading content")
+            .setMessage("Connection error.")
+            .setPositiveButton("Okay") { dialog, which -> }
+            .show()
     }
 
     private fun showLoadingAnimation() {
         Log.d("Empty", "Animation")
-      //TODO
+        //TODO
     }
 
+    //Network
+    private fun likePost(postId: String) {
+        viewModel.likePost(postId)
+    }
+
+    private fun saveUnsavePost(postId: String) {
+        viewModel.saveUnsavePost(postId)
+    }
+
+    //Navigation
     private fun navigateToNewReview() {
         val action = FeedFragmentDirections.actionFeedFragment2ToCreateReviewStep1Fragment()
         findNavController().navigate(action)
@@ -105,8 +124,13 @@ class FeedFragment : Fragment() {
         findNavController().navigate(action)
     }
 
-    private fun navigateToDetail(postId: String){
-
+    private fun navigateToDetail(postId: String) {
+        val action = FeedFragmentDirections.actionFeedFragment2ToDetailFragment(postId)
+        findNavController().navigate(action)
     }
 
+    private fun navigateToUserProfile(userId: String) {
+        val action = FeedFragmentDirections.actionFeedFragment2ToProfileFragment2(userId)
+        findNavController().navigate(action)
+    }
 }

@@ -12,7 +12,7 @@ import com.marta.bookworm.R
 import com.marta.bookworm.databinding.FragmentDetailBinding
 
 class DetailFragment : Fragment() {
-    private var _binding = FragmentDetailBinding.inflate(layoutInflater)
+    private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
     private val viewModel: DetailViewModel by activityViewModels()
 

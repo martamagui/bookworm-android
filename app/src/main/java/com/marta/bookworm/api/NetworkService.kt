@@ -126,5 +126,17 @@ interface NetworkService {
     //TODO Detail Call
     @GET("review")
     suspend fun getPostDetail(): ReviewResponse
+    //TODO on API Like Call
+    @PUT("review/like/{postId}")
+    suspend fun likeDislike(
+        @Header("Authorization") token: String,
+        @Path("postId") userId: String,
+    ): StandarResponse
+    @PUT("user/save-review/{postId}")
+    suspend fun saveUnsavePost(
+        @Header("Authorization") token: String,
+        @Path("postId") userId: String,
+    ): StandarResponse
+
 
 }

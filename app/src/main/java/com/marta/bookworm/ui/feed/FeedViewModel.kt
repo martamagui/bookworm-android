@@ -36,4 +36,30 @@ class FeedViewModel @Inject constructor(
         _feedUIState.update { FeedUIState(isLoading = false, isError = true, errorMsg = msg) }
     }
 
+    private suspend fun getMyToken(): String{
+        return db.dao().findMyToken("a").token
+    }
+
+    fun likePost(postId: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val myToken = "Bearer " + getMyToken()
+                networkService.likeDislike(myToken, postId)
+            }catch (error: Error){
+                updateError("Couldn't update like for this post.")
+            }
+        }
+    }
+
+    fun saveUnsavePost(postId: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val myToken = "Bearer " + getMyToken()
+                networkService.saveUnsavePost(myToken, postId)
+            }catch (error: Error){
+                updateError("Couldn't update like for this post.")
+            }
+        }
+    }
+
 }

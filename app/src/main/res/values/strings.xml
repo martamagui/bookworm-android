@@ -35,4 +35,5 @@
     <string name="loading">Loading...</string>
     <string name="todo">TODO</string>
     <string name="delete" />
+    <string name="avatar_description">User profile picture</string>
 </resources>
