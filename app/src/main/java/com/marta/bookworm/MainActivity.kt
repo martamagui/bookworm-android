@@ -16,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel: LoginFragmentViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_BookWorm)
         super.onCreate(savedInstanceState)
@@ -29,13 +30,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun renderUIState(loginUIState: LoginUIState) {
-        if (loginUIState.isSuccess) {
+        if (loginUIState.isSuccess && loginUIState.savedToken) {
             Log.e("MAIN", "$loginUIState.savedToken")
             val intent = Intent(this, ApplicationActivity::class.java)
             intent.putExtra("token", loginUIState.savedToken)
             startActivity(intent)
         }
-        val intent = Intent(this, ApplicationActivity::class.java)
+        intent.putExtra("token", loginUIState.savedToken)
         startActivity(intent)
     }
 

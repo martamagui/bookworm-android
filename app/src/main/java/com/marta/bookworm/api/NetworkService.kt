@@ -118,15 +118,16 @@ interface NetworkService {
         @Header("Authorization") token: String,
         @Path("userId") userId: String
     ): StandarResponse
+
     //-------------------------------------- Review
     //--- GET
     @GET("review")
     suspend fun  getAllPosts():List<ReviewResponse>
 
     //TODO Detail Call
-    @GET("review")
-    suspend fun getPostDetail(): ReviewResponse
-    //TODO on API Like Call
+    @GET("review/{id}")
+    suspend fun getPostDetail(@Path("id") userId: String, @Header("Authorization") token: String): ReviewResponse
+
     @PUT("review/like/{postId}")
     suspend fun likeDislike(
         @Header("Authorization") token: String,

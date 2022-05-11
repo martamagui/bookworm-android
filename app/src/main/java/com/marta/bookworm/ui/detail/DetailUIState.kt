@@ -7,5 +7,5 @@ data class DetailUIState(
     val isError: Boolean = false,
     val isSuccess: Boolean = false,
     val errorMsg: String = "",
-    val feedList: ReviewResponse? = null
+    val review: ReviewResponse? = null
 )

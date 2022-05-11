@@ -1,13 +1,12 @@
 package com.marta.bookworm.model.response
 
-
 import com.google.gson.annotations.SerializedName
 
 data class ReviewResponse(
     @SerializedName("_id")
     val id: String,
     @SerializedName("userId")
-    val userId: String,
+    val userId: UserResponse,
     @SerializedName("bookTitle")
     val bookTitle: String,
     @SerializedName("bookAuthor")
@@ -23,12 +22,9 @@ data class ReviewResponse(
     @SerializedName("date")
     val date: String,
     @SerializedName("likes")
-    val likes: Int,
-    /*@SerializedName("likes")
-    val likes:  List<String?>,*/
+    val likes:  List<String?>,
     @SerializedName("liked")
     val liked: Boolean?,
     @SerializedName("hastags")
     val hastags: List<String>,
-    val user: UserResponse?
 )

@@ -34,14 +34,15 @@ class FeedAdapter(
             tvScoreItem.text = review.score.toString()
             tvAuthorItem.text = review.bookAuthor
             //UserInfo
-            tvUsernameItem.text = "@queen"
+            tvUsernameItem.text =review.userId.userName
+            ibAvatarItem.loadImage(review.userId.avatar)
             //OnclickListeners
         }
     }
 
     private fun setActions(item: ReviewResponse, holder: ReviewViewHolder) {
         with(holder.binding) {
-            //TODO
+            //TODO shop, like and save
             var user = "Cambiar"
             layoutUser.setOnClickListener {
                 navigateToUserProfile(user)

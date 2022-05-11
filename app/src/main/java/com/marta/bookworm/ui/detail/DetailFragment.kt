@@ -9,8 +9,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.marta.bookworm.R
 import com.marta.bookworm.databinding.FragmentDetailBinding
+import com.marta.bookworm.model.response.ReviewResponse
 import com.marta.bookworm.ui.common.loadImage
 import com.marta.bookworm.ui.feed.FeedFragmentDirections
 
@@ -18,6 +20,8 @@ class DetailFragment : Fragment() {
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
     private val viewModel: DetailViewModel by activityViewModels()
+    private val args: DetailFragmentArgs by navArgs()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +38,7 @@ class DetailFragment : Fragment() {
                 renderUIState(detailUIState)
             }
         }
+        viewModel.getPost(args.postId)
         setUI()
     }
 
@@ -43,15 +48,15 @@ class DetailFragment : Fragment() {
         setBtns()
     }
 
-    private fun setUserInfo(){
-        //TODO complete with userInfo
+    private fun setUserInfo(review: ReviewResponse){
         with(binding){
-            tvUsernameDetail.text = ""
-            ibAvatarDetail.loadImage("urlimg")
-            tvScoreDetail.text = (8.3).toString()
-            tvAuthorDetail.text = "author"
-            tvTitleDetail.text = "title"
-            tvDescriptionDetail.text = "description"
+            tvUsernameDetail.text = review.userId.userName
+            ivReviewImageDetail.loadImage(review.image)
+            ibAvatarDetail.loadImage(review.userId.avatar)
+            tvScoreDetail.text = (review.score).toString()
+            tvAuthorDetail.text = review.bookAuthor
+            tvTitleDetail.text = review.bookTitle
+            tvDescriptionDetail.text = review.reviewDescription
         }
 
     }
@@ -65,6 +70,7 @@ class DetailFragment : Fragment() {
         //TODO complete with userInfo
         Log.d("detail", "TODObtns")
         with(binding){
+            ibDetailGoBack.setOnClickListener { findNavController().popBackStack() }
             layoutUserDetail.setOnClickListener { navigateToUserProfile("TODO UserId") }
             cvLikeDetail.setOnClickListener { likePost("userid") }
             cvSaveDetail.setOnClickListener { saveUnsavePost("postId") }
@@ -74,6 +80,13 @@ class DetailFragment : Fragment() {
     private fun renderUIState(uiState: DetailUIState) {
         if (uiState.isError) {
             showError(uiState.errorMsg)
+        }
+        if(uiState.isLoading){
+            //TODO
+            Log.d("detail", "cargando")
+        }
+        if(uiState.isSuccess && uiState.review!=null){
+            setUserInfo(uiState.review)
         }
     }
 

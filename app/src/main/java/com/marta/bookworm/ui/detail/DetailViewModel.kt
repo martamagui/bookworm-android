@@ -1,5 +1,6 @@
 package com.marta.bookworm.ui.detail
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.marta.bookworm.api.NetworkService
@@ -22,19 +23,22 @@ class DetailViewModel @Inject constructor(
     private val _detailUIState: MutableStateFlow<DetailUIState> = MutableStateFlow(DetailUIState())
     val detailUIState: StateFlow<DetailUIState> get() = _detailUIState
 
-    fun getPost(){
+    fun getPost(id: String){
         viewModelScope.launch(Dispatchers.IO){
             _detailUIState.update { DetailUIState(isLoading = true) }
             try {
-                _detailUIState.update { DetailUIState(isLoading = false, isSuccess = true) }
-                val post = networkService.getPostDetail()
+                val token = "Bearer "+getMyToken()
+                val post = networkService.getPostDetail(id,token)
+                _detailUIState.update { DetailUIState(isLoading = false, isSuccess = true, review = post) }
             }catch (error: Error){
                 updateError("Loading post failed")
             }
         }
     }
     private suspend fun getMyToken(): String{
-        return db.dao().findMyToken("a").token
+        val token = db.dao().findAllToken()
+        Log.e("Detail", token.toString())
+        return token[0].token
     }
 
     fun likePost(postId: String) {

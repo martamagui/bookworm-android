@@ -41,7 +41,7 @@ class LoginFragmentViewModel @Inject constructor(
                     LoginUIState(
                         isLoading = false,
                         errorMessage = "${R.string.invalid_data}",
-                        isError = true
+                        isError = true,
                     )
                 }
             }
@@ -51,7 +51,7 @@ class LoginFragmentViewModel @Inject constructor(
     fun saveToken(email: String, token: String) {
         viewModelScope.launch(Dispatchers.IO) {
             db.dao().saveToken(Token(email, token))
-            _loginUIState.update { LoginUIState(isLoading = false, isSuccess = true) }
+            _loginUIState.update { LoginUIState(isLoading = false, isSuccess = true, savedToken = true) }
         }
     }
 
@@ -59,10 +59,12 @@ class LoginFragmentViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             val token: List<Token> = db.dao().findAllToken()
             if (token.size > 0) {
+                Log.e("TOKEN", "$token")
                 //Todo validate the actual token. Need to update the API
-                _loginUIState.update { LoginUIState(savedToken = true, isLoading = false,isSuccess = true) }
+                _loginUIState.update { LoginUIState(savedToken = true, isLoading = false) }
+            }else{
+                _loginUIState.update { LoginUIState(isLoading = false, savedToken = false) }
             }
-            _loginUIState.update { LoginUIState(isLoading = false) }
         }
     }
 
