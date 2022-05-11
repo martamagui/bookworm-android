@@ -85,5 +85,23 @@
         <argument
             android:name="postId"
             app:argType="string" />
+        <action
+            android:id="@+id/action_detailFragment_to_searchResultFragment"
+            app:destination="@id/searchResultFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchResultFragment"
+        android:name="com.marta.bookworm.ui.search.searchResult.SearchResultFragment"
+        android:label="fragment_search_result"
+        tools:layout="@layout/fragment_search_result" >
+        <argument
+            android:name="searchValue"
+            app:argType="string" />
+        <argument android:name="searchType"
+            app:argType="string" />
     </fragment>
 </navigation>

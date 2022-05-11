@@ -1,15 +1,18 @@
 package com.marta.bookworm.ui.detail
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.chip.Chip
 import com.marta.bookworm.R
 import com.marta.bookworm.databinding.FragmentDetailBinding
 import com.marta.bookworm.model.response.ReviewResponse
@@ -34,7 +37,7 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.detailUIState.collect{ detailUIState ->
+            viewModel.detailUIState.collect { detailUIState ->
                 renderUIState(detailUIState)
             }
         }
@@ -44,12 +47,11 @@ class DetailFragment : Fragment() {
 
     private fun setUI() {
         //TODO complete with userInfo
-       Log.d("detail", "TODO")
-        setBtns()
+        Log.d("detail", "TODO")
     }
 
-    private fun setUserInfo(review: ReviewResponse){
-        with(binding){
+    private fun setUserInfo(review: ReviewResponse) {
+        with(binding) {
             tvUsernameDetail.text = review.userId.userName
             ivReviewImageDetail.loadImage(review.image)
             ibAvatarDetail.loadImage(review.userId.avatar)
@@ -58,22 +60,38 @@ class DetailFragment : Fragment() {
             tvTitleDetail.text = review.bookTitle
             tvDescriptionDetail.text = review.reviewDescription
         }
-
+        setBtns(review)
+        setTags(review.hastags)
     }
 
-    private fun setTags(){
-        //TODO complete with userInfo
-        Log.d("detail", "TODO tags")
+    private fun setTags(tags: List<String>) {
+        tags.forEach { item ->
+            createChip(item)
+        }
     }
 
-    private fun setBtns(){
-        //TODO complete with userInfo
+    private fun createChip(tag: String) {
+        val chip = Chip(requireContext())
+        chip.text = "#$tag"
+        chip.isClickable = true
+        chip.setOnClickListener {
+            navigateToSearchResult(tag)
+        }
+        chip.chipBackgroundColor =
+            ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.secondaryContainer))
+        chip.chipStrokeColor =
+            ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.secondaryContainer))
+        binding.chipGroupDetail.addView(chip as View)
+    }
+
+    private fun setBtns(review: ReviewResponse) {
+        //TODO make hidden delete button if is not our post
         Log.d("detail", "TODObtns")
-        with(binding){
+        with(binding) {
             ibDetailGoBack.setOnClickListener { findNavController().popBackStack() }
-            layoutUserDetail.setOnClickListener { navigateToUserProfile("TODO UserId") }
-            cvLikeDetail.setOnClickListener { likePost("userid") }
-            cvSaveDetail.setOnClickListener { saveUnsavePost("postId") }
+            layoutUserDetail.setOnClickListener { navigateToUserProfile(review.userId._id) }
+            cvLikeDetail.setOnClickListener { likePost(review.id) }
+            cvSaveDetail.setOnClickListener { saveUnsavePost(review.id) }
         }
     }
 
@@ -81,11 +99,11 @@ class DetailFragment : Fragment() {
         if (uiState.isError) {
             showError(uiState.errorMsg)
         }
-        if(uiState.isLoading){
+        if (uiState.isLoading) {
             //TODO
             Log.d("detail", "cargando")
         }
-        if(uiState.isSuccess && uiState.review!=null){
+        if (uiState.isSuccess && uiState.review != null) {
             setUserInfo(uiState.review)
         }
     }
@@ -108,7 +126,10 @@ class DetailFragment : Fragment() {
         val action = DetailFragmentDirections.actionDetailFragmentToProfileFragment2(userId)
         findNavController().navigate(action)
     }
+    private fun navigateToSearchResult(search: String ){
+        val action = DetailFragmentDirections.actionDetailFragmentToSearchResultFragment(search,"tag")
+        findNavController().navigate(action)
+    }
 
-    // TODO Create a navigate to Tag Function
-    // TODO Create a navigate Amazon funtion
+    // TODO Create a navigate Amazon function
 }
