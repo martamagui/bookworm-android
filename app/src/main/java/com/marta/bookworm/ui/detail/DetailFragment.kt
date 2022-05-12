@@ -92,6 +92,7 @@ class DetailFragment : Fragment() {
             layoutUserDetail.setOnClickListener { navigateToUserProfile(review.userId._id) }
             cvLikeDetail.setOnClickListener { likePost(review.id) }
             cvSaveDetail.setOnClickListener { saveUnsavePost(review.id) }
+            cvShopDetail.setOnClickListener { openAmazon("$review.bookTitle $review.bookAuthor") }
         }
     }
 
@@ -130,6 +131,8 @@ class DetailFragment : Fragment() {
         val action = DetailFragmentDirections.actionDetailFragmentToSearchResultFragment(search,"tag")
         findNavController().navigate(action)
     }
-
-    // TODO Create a navigate Amazon function
+    private fun openAmazon(link: String) {
+        val action = DetailFragmentDirections.actionDetailFragmentToAmazonFragment(link)
+        findNavController().navigate(action)
+    }
 }

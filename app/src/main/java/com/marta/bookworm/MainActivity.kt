@@ -39,7 +39,6 @@ class MainActivity : AppCompatActivity() {
         }
         intent.putExtra("token", loginUIState.savedToken)
         startActivity(intent)
-
     }
 
 }
