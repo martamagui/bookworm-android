@@ -23,7 +23,8 @@ class FeedFragment : Fragment() {
         { navigateToDetail(it) },
         { navigateToUserProfile(it) },
         { likePost(it) },
-        { saveUnsavePost(it) }
+        { saveUnsavePost(it) },
+        { openAmazon(it) }
     )
 
     override fun onCreateView(
@@ -131,6 +132,11 @@ class FeedFragment : Fragment() {
 
     private fun navigateToUserProfile(userId: String) {
         val action = FeedFragmentDirections.actionFeedFragment2ToProfileFragment2(userId)
+        findNavController().navigate(action)
+    }
+
+    private fun openAmazon(link: String) {
+        val action = FeedFragmentDirections.actionFeedFragment2ToAmazonFragment(link)
         findNavController().navigate(action)
     }
     // TODO Create a navigate Amazon funtion

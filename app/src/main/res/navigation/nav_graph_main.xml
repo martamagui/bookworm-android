@@ -38,6 +38,9 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:destination="@id/profileFragment2" />
+        <action
+            android:id="@+id/action_feedFragment2_to_amazonFragment"
+            app:destination="@id/amazonFragment" />
     </fragment>
     <fragment
         android:id="@+id/topFragment2"
@@ -92,6 +95,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_detailFragment_to_amazonFragment"
+            app:destination="@id/amazonFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchResultFragment"
@@ -103,5 +109,12 @@
             app:argType="string" />
         <argument android:name="searchType"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/amazonFragment"
+        android:name="com.marta.bookworm.ui.common.amazonView.AmazonFragment"
+        android:label="fragment_amazon"
+        tools:layout="@layout/fragment_amazon" >
+        <argument android:name="link" />
     </fragment>
 </navigation>

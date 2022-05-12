@@ -36,4 +36,5 @@
     <string name="todo">TODO</string>
     <string name="delete" />
     <string name="avatar_description">User profile picture</string>
+    <string name="redirection">Redirecting to Amazon :)</string>
 </resources>

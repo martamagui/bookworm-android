@@ -9,8 +9,8 @@ interface DatabaseDAO {
     @Query("SELECT * FROM Token")
     suspend fun findAllToken(): List<Token>
 
-    @Query("SELECT * FROM Token WHERE token.email = :token")
-    suspend fun findMyToken(token: String): Token
+    @Query("SELECT * FROM Token LIMIT 1")
+    suspend fun findMyToken(): Token
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveToken(token: Token)

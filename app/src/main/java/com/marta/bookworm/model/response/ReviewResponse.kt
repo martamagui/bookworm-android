@@ -24,7 +24,9 @@ data class ReviewResponse(
     @SerializedName("likes")
     val likes:  List<String?>,
     @SerializedName("liked")
-    val liked: Boolean?,
+    var liked: Boolean?,
+    @SerializedName("saved")
+    var saved: Boolean?,
     @SerializedName("hastags")
     val hastags: List<String>,
 )

@@ -6,14 +6,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.marta.bookworm.R
 import com.marta.bookworm.databinding.ItemFeedBinding
 import com.marta.bookworm.model.response.ReviewResponse
+
 
 class FeedAdapter(
     private val navigateToDetail: (String) -> Unit,
     private val navigateToUserProfile: (String) -> Unit,
     private val likeDislikeCall: (String) -> Unit,
-    private val saveUnsavePost: (String) -> Unit
+    private val saveUnsavePost: (String) -> Unit,
+    private val goToAmazon: (String) -> Unit,
 ) :
     ListAdapter<ReviewResponse, FeedAdapter.ReviewViewHolder>(ReviewItemCallBack) {
 
@@ -27,35 +30,75 @@ class FeedAdapter(
     override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {
         val review = getItem(position)
         setActions(review, holder)
+        setButtonsImages(review, holder)
         with(holder.binding) {
             ivReviewImage.loadImage(review.image)
             tvTitleItem.text = review.bookTitle
             tvDescriptionItem.text = review.reviewDescription
             tvScoreItem.text = review.score.toString()
             tvAuthorItem.text = review.bookAuthor
-            //UserInfo
-            tvUsernameItem.text =review.userId.userName
+            tvLikesAmountItem.text = review.likes.size.toString()
+            tvUsernameItem.text = review.userId.userName
             ibAvatarItem.loadImage(review.userId.avatar)
-            //OnclickListeners
+        }
+    }
+
+    private fun setButtonsImages(item: ReviewResponse, holder: ReviewViewHolder) {
+        with(holder.binding) {
+            ivLike.setImageResource(
+                if (item.liked == true) {
+                    R.drawable.ic_baseline_favorite_24
+                } else {
+                    R.drawable.ic_baseline_favorite_border_24
+                }
+            )
+            ivSave.setImageResource(
+                if (item.saved == true) {
+                    R.drawable.ic_baseline_bookmark_24
+                } else {
+                    R.drawable.ic_baseline_bookmark_border_24
+                }
+            )
         }
     }
 
     private fun setActions(item: ReviewResponse, holder: ReviewViewHolder) {
         with(holder.binding) {
             //TODO shop, like and save
-            var user = "Cambiar"
+
             layoutUser.setOnClickListener {
-                navigateToUserProfile(user)
+                navigateToUserProfile(item.userId._id)
             }
             ibToDetail.setOnClickListener {
                 Log.d("Detail", item.id)
                 navigateToDetail(item.id)
             }
+
+            tvDescriptionItem.setOnClickListener {
+                navigateToDetail(item.id)
+            }
+            cvShopItem.setOnClickListener { goToAmazon("${item.bookTitle} ${item.bookAuthor}") }
             cvLikeItem.setOnClickListener {
                 likeDislikeCall(item.id)
+                item.liked = item.liked == null || item.liked == false
+                ivLike.setImageResource(
+                    if (item.liked == true) {
+                        R.drawable.ic_baseline_favorite_24
+                    } else {
+                        R.drawable.ic_baseline_favorite_border_24
+                    }
+                )
             }
             cvSaveItem.setOnClickListener {
                 saveUnsavePost(item.id)
+                item.saved = item.saved == null || item.saved == false
+                ivSave.setImageResource(
+                    if (item.saved == true) {
+                        R.drawable.ic_baseline_bookmark_24
+                    } else {
+                        R.drawable.ic_baseline_bookmark_border_24
+                    }
+                )
             }
         }
     }

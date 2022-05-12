@@ -44,8 +44,10 @@ class DetailViewModel @Inject constructor(
     fun likePost(postId: String) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val myToken = "Bearer " + getMyToken()
-                networkService.likeDislike(myToken, postId)
+                val myToken = getMyToken()
+                if(myToken!=null){
+                    networkService.likeDislike( "Bearer ${myToken}", postId)
+                }
             }catch (error: Error){
                 updateError("Couldn't update like for this post.")
             }
@@ -55,8 +57,10 @@ class DetailViewModel @Inject constructor(
     fun saveUnsavePost(postId: String) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val myToken = "Bearer " + getMyToken()
-                networkService.saveUnsavePost(myToken, postId)
+                val myToken =  getMyToken()
+                if(myToken!=null){
+                    networkService.saveUnsavePost("Bearer  $myToken", postId)
+                }
             }catch (error: Error){
                 updateError("Couldn't update like for this post.")
             }
