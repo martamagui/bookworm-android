@@ -37,4 +37,7 @@
     <string name="delete" />
     <string name="avatar_description">User profile picture</string>
     <string name="redirection">Redirecting to Amazon :)</string>
+    <string name="reviews">Reviews</string>
+    <string name="followers">Followers</string>
+    <string name="Following">Following</string>
 </resources>
