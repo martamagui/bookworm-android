@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.marta.bookworm.api.NetworkService
 import com.marta.bookworm.db.BookWorm_Database
-import com.marta.bookworm.ui.feed.FeedUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -26,9 +25,10 @@ class ProfileViewModel @Inject constructor(
     fun getProfileInfo(id:String){
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                networkService.getUserById(id)
+                val userInfo = networkService.getUserById(id)
+                _profileUIState.update { ProfileUIState(isLoading = false, isSuccess = true, user = userInfo ) }
             }catch (error: Error){
-
+                updateError("Error retrieveing information")
             }
         }
     }
@@ -45,7 +45,7 @@ class ProfileViewModel @Inject constructor(
                     networkService.likeDislike("Bearer ${myToken}", userToFollow)
                 }
             } catch (error: Error) {
-                updateError("Couldn't update like for this post.")
+                updateError("Couldn't update follow.")
             }
         }
     }

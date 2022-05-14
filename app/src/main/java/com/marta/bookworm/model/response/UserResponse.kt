@@ -11,6 +11,7 @@ data class UserResponse(
     val description: String?,
     val email: String?,
     val following: List<String>?,
+    val followers: Int?,
     val fullName: String?,
     val password: String?,
     val reviews: List<String>?,
