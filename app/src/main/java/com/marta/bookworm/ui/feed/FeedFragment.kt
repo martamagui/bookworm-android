@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,7 +18,7 @@ import com.marta.bookworm.ui.common.FeedAdapter
 class FeedFragment : Fragment() {
     private var _binding: FragmentFeedBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: FeedViewModel by activityViewModels()
+    private val viewModel: FeedViewModel by viewModels()
     private val adapter: FeedAdapter = FeedAdapter(
         { navigateToDetail(it) },
         { navigateToUserProfile(it) },

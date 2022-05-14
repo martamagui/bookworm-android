@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/primary_grad"
-    tools:context=".ui.login.LoginFragment">
+    tools:context=".ui.loginAndSignUp.login.LoginFragment">
 
     <TextView
         android:id="@+id/tv_title_login"

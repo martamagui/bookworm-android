@@ -25,7 +25,13 @@ class FeedViewModel @Inject constructor(
             try {
                 _feedUIState.update { FeedUIState(isLoading = true) }
                 val posts = networkService.getAllPosts();
-                _feedUIState.update { FeedUIState(isLoading = false, isSuccess = true ,feedList = posts) }
+                _feedUIState.update {
+                    FeedUIState(
+                        isLoading = false,
+                        isSuccess = true,
+                        feedList = posts
+                    )
+                }
             } catch (error: Error) {
                 updateError("Loading post failed")
             }
@@ -36,7 +42,7 @@ class FeedViewModel @Inject constructor(
         _feedUIState.update { FeedUIState(isLoading = false, isError = true, errorMsg = msg) }
     }
 
-    private suspend fun getMyToken(): String{
+    private suspend fun getMyToken(): String {
         return db.dao().findMyToken().token
     }
 
@@ -44,10 +50,10 @@ class FeedViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val myToken = getMyToken()
-                if(myToken!=null){
-                    networkService.likeDislike( "Bearer ${myToken}", postId)
+                if (myToken != null) {
+                    networkService.likeDislike("Bearer ${myToken}", postId)
                 }
-            }catch (error: Error){
+            } catch (error: Error) {
                 updateError("Couldn't update like for this post.")
             }
         }
@@ -56,11 +62,11 @@ class FeedViewModel @Inject constructor(
     fun saveUnsavePost(postId: String) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                    val myToken =  getMyToken()
-                    if(myToken!=null){
-                        networkService.saveUnsavePost("Bearer  $myToken", postId)
-                    }
-            }catch (error: Error){
+                val myToken = getMyToken()
+                if (myToken != null) {
+                    networkService.saveUnsavePost("Bearer  $myToken", postId)
+                }
+            } catch (error: Error) {
                 updateError("Couldn't update like for this post.")
             }
         }

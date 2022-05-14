@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.marta.bookworm.ui.login.LoginFragment"
+        android:name="com.marta.bookworm.ui.loginAndSignUp.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpStep1Fragment"
-        android:name="com.marta.bookworm.ui.signup.step1.SignUpStep1Fragment"
+        android:name="com.marta.bookworm.ui.loginAndSignUp.signup.step1.SignUpStep1Fragment"
         android:label="fragment_sign_up_step1"
         tools:layout="@layout/fragment_sign_up_step1" >
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpStep2Fragment"
-        android:name="com.marta.bookworm.ui.signup.step2.SignUpStep2Fragment"
+        android:name="com.marta.bookworm.ui.loginAndSignUp.signup.step2.SignUpStep2Fragment"
         android:label="fragment_sign_up_step2"
         tools:layout="@layout/fragment_sign_up_step2" >
         <action
@@ -46,7 +46,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpStep3Fragment"
-        android:name="com.marta.bookworm.ui.signup.step3.SignUpStep3Fragment"
+        android:name="com.marta.bookworm.ui.loginAndSignUp.signup.step3.SignUpStep3Fragment"
         android:label="fragment_sign_up_step3"
         tools:layout="@layout/fragment_sign_up_step3" >
         <action

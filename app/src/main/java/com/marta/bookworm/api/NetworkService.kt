@@ -42,67 +42,47 @@ interface NetworkService {
     suspend fun login(@Body credentials: Credentials): TokenResponse
 
     //--- PUT
-    @PUT("user/update-password/{userId}")
+    @PUT("user/update-password")
     suspend fun updatePassword(
         @Header("Authorization") token: String,
-        @Path("userId") userId: String,
         @Body user: UserBody
     ): StandarResponse
 
-    @PUT("user/update-email/{userId}")
+    @PUT("user/update-email")
     suspend fun updateEmail(
         @Header("Authorization") token: String,
-        @Path("userId") userId: String,
         @Body user: UserBody
     ): StandarResponse
 
-    @PUT("user/update-username/{userId}")
+    @PUT("user/update-username")
     suspend fun updateUserName(
         @Header("Authorization") token: String,
-        @Path("userId") userId: String,
         @Body user: UserBody
     ): StandarResponse
 
-    @PUT("user/update-newsletter/{userId}")
+    @PUT("user/update-newsletter")
     suspend fun updateNewsletter(
         @Header("Authorization") token: String,
-        @Path("userId") userId: String,
         @Body user: UserBody
     ): StandarResponse
 
-    @PUT("user/update-banner/{userId}")
+    @PUT("user/update-banner")
     suspend fun updateBanner(
         @Header("Authorization") token: String,
-        @Path("userId") userId: String,
         @Body user: ProfileBody
     ): StandarResponse
 
-    @PUT("user/update-avatar/{userId}")
+    @PUT("user/update-avatar")
     suspend fun updateAvatar(
         @Header("Authorization") token: String,
-        @Path("userId") userId: String,
         @Body user: ProfileBody
-    ): StandarResponse
-
-    @PUT("user/unfollow/{userId}")
-    suspend fun unfollowUser(
-        @Header("Authorization") token: String,
-        @Path("userId") userId: String,
-        @Body followingBody: FollowBody
     ): StandarResponse
 
     @PUT("user/follow/{userId}")
-    suspend fun followUser(
+    suspend fun followUnfollowUser(
         @Header("Authorization") token: String,
+        //User To follow
         @Path("userId") userId: String,
-        @Body followingBody: FollowBody
-    ): StandarResponse
-
-    @PUT("user/remove-saved-review/{userId}")
-    suspend fun removeSavedReview(
-        @Header("Authorization") token: String,
-        @Path("userId") userId: String,
-        @Body savedReview: SavedReviewBody
     ): StandarResponse
 
     @PUT("user/save-review/{userId}")
@@ -133,6 +113,7 @@ interface NetworkService {
         @Header("Authorization") token: String,
         @Path("postId") userId: String,
     ): StandarResponse
+
     @PUT("user/save-review/{postId}")
     suspend fun saveUnsavePost(
         @Header("Authorization") token: String,

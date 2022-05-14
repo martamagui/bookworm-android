@@ -1,4 +1,4 @@
-package com.marta.bookworm.ui.detail
+package com.marta.bookworm.ui.feed.detail
 
 import com.marta.bookworm.model.response.ReviewResponse
 

@@ -1,4 +1,4 @@
-package com.marta.bookworm.ui.signup.step2
+package com.marta.bookworm.ui.loginAndSignUp.signup.step2
 
 data class SignUpStep2UIState(
     val isError: Boolean = false,

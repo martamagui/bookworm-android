@@ -1,4 +1,4 @@
-package com.marta.bookworm.ui.signup
+package com.marta.bookworm.ui.loginAndSignUp.signup
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

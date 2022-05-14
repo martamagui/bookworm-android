@@ -1,4 +1,4 @@
-package com.marta.bookworm.ui.amazonView
+package com.marta.bookworm.ui.feed.amazonView
 
 import android.os.Bundle
 import android.util.Log

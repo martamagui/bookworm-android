@@ -8,8 +8,8 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.marta.bookworm.databinding.ActivityMainBinding
 import com.marta.bookworm.ui.ApplicationActivity
-import com.marta.bookworm.ui.login.LoginFragmentViewModel
-import com.marta.bookworm.ui.login.LoginUIState
+import com.marta.bookworm.ui.loginAndSignUp.login.LoginFragmentViewModel
+import com.marta.bookworm.ui.loginAndSignUp.login.LoginUIState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

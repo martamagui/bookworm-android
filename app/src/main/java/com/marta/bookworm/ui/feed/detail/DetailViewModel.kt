@@ -1,11 +1,10 @@
-package com.marta.bookworm.ui.detail
+package com.marta.bookworm.ui.feed.detail
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.marta.bookworm.api.NetworkService
 import com.marta.bookworm.db.BookWorm_Database
-import com.marta.bookworm.ui.feed.FeedUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

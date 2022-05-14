@@ -1,4 +1,4 @@
-package com.marta.bookworm.ui.signup.step2
+package com.marta.bookworm.ui.loginAndSignUp.signup.step2
 
 import android.graphics.Typeface
 import android.os.Bundle
@@ -15,9 +15,8 @@ import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.marta.bookworm.R
 import com.marta.bookworm.databinding.FragmentSignUpStep2Binding
-import com.marta.bookworm.ui.signup.SignUpViewModel
+import com.marta.bookworm.ui.loginAndSignUp.signup.SignUpViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class SignUpStep2Fragment : Fragment() {

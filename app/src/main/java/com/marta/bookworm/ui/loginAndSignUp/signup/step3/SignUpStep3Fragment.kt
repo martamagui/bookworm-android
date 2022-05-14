@@ -1,4 +1,4 @@
-package com.marta.bookworm.ui.signup.step3
+package com.marta.bookworm.ui.loginAndSignUp.signup.step3
 
 import android.graphics.Typeface
 import android.os.Bundle
@@ -13,9 +13,8 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.marta.bookworm.R
 import com.marta.bookworm.databinding.FragmentSignUpStep3Binding
-import com.marta.bookworm.ui.signup.SignUpViewModel
+import com.marta.bookworm.ui.loginAndSignUp.signup.SignUpViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class SignUpStep3Fragment : Fragment() {

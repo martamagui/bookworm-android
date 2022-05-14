@@ -1,4 +1,4 @@
-package com.marta.bookworm.ui.detail
+package com.marta.bookworm.ui.feed.detail
 
 import android.content.res.ColorStateList
 import android.os.Bundle
@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -17,12 +17,11 @@ import com.marta.bookworm.R
 import com.marta.bookworm.databinding.FragmentDetailBinding
 import com.marta.bookworm.model.response.ReviewResponse
 import com.marta.bookworm.ui.common.loadImage
-import com.marta.bookworm.ui.feed.FeedFragmentDirections
 
 class DetailFragment : Fragment() {
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: DetailViewModel by activityViewModels()
+    private val viewModel: DetailViewModel by viewModels()
     private val args: DetailFragmentArgs by navArgs()
 
 

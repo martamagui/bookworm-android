@@ -1,4 +1,4 @@
-package com.marta.bookworm.ui.signup.step2
+package com.marta.bookworm.ui.loginAndSignUp.signup.step2
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import java.sql.Date
 import java.text.SimpleDateFormat
-import java.util.*
 
 class SignUpStep2ViewModel : ViewModel() {
     private val _signUpStep2FUIState: MutableStateFlow<SignUpStep2UIState> =

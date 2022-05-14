@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/primary_grad"
-    tools:context=".ui.signup.step3.SignUpStep3Fragment">
+    tools:context=".ui.loginAndSignUp.signup.step3.SignUpStep3Fragment">
 
     <ImageView
         android:id="@+id/iv_white_card3"

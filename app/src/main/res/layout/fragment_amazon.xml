@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/primary_grad"
-    tools:context=".ui.amazonView.AmazonFragment">
+    tools:context=".ui.feed.amazonView.AmazonFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_banner_amazon"

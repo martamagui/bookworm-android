@@ -1,11 +1,10 @@
-package com.marta.bookworm.ui.signup.step1
+package com.marta.bookworm.ui.loginAndSignUp.signup.step1
 
 import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.marta.bookworm.api.NetworkService
-import com.marta.bookworm.model.body.user.UserBody
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

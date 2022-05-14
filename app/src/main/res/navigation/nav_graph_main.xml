@@ -62,6 +62,9 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_profileFragment2_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/createReviewStep1Fragment"
@@ -75,7 +78,7 @@
         tools:layout="@layout/fragment_chat_list" />
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.marta.bookworm.ui.detail.DetailFragment"
+        android:name="com.marta.bookworm.ui.feed.detail.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
         <action
@@ -112,9 +115,14 @@
     </fragment>
     <fragment
         android:id="@+id/amazonFragment"
-        android:name="com.marta.bookworm.ui.amazonView.AmazonFragment"
+        android:name="com.marta.bookworm.ui.feed.amazonView.AmazonFragment"
         android:label="fragment_amazon"
         tools:layout="@layout/fragment_amazon" >
         <argument android:name="link" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.marta.bookworm.ui.profile.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

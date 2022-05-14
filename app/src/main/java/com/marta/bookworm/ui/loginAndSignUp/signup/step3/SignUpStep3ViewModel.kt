@@ -1,4 +1,4 @@
-package com.marta.bookworm.ui.signup.step3
+package com.marta.bookworm.ui.loginAndSignUp.signup.step3
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
