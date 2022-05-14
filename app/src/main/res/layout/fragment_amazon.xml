@@ -5,32 +5,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/primary_grad"
-    tools:context=".ui.common.amazonView.AmazonFragment">
+    tools:context=".ui.amazonView.AmazonFragment">
 
-    <TextView
-        android:id="@+id/textView2"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_banner_amazon"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        android:text="@string/redirection"
-        android:textAppearance="@style/subhead_2"
-        android:textColor="@color/inversePrimary"
-        app:layout_constraintBottom_toTopOf="@+id/wb_amazon"
+        android:layout_height="58dp"
+        app:cardBackgroundColor="@color/inverseOnSurface"
+        app:cardElevation="6dp"
+        app:cardMaxElevation="6dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="start|center_vertical"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:paddingStart="22dp">
+
+            <ImageButton
+                android:id="@+id/ib_amazon_go_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:backgroundTint="@android:color/transparent"
+                android:contentDescription="@string/todo"
+                android:translationZ="2dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card"
+                app:layout_constraintEnd_toEndOf="@+id/card"
+                app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
+                tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <WebView
         android:id="@+id/wb_amazon"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/cv_banner_detail">
 
     </WebView>
 </androidx.constraintlayout.widget.ConstraintLayout>

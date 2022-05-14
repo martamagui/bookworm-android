@@ -1,4 +1,4 @@
-package com.marta.bookworm.ui.common.amazonView
+package com.marta.bookworm.ui.amazonView
 
 import android.os.Bundle
 import android.util.Log
@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.marta.bookworm.R
 import com.marta.bookworm.databinding.FragmentAmazonBinding
 
 
@@ -28,7 +28,12 @@ class AmazonFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val search = args.link.lowercase().replace(" ", "%20")
         Log.d("Link", "$urlBase$search")
-        binding.wbAmazon.loadUrl(urlBase+search)
+        setUI(search)
+    }
+
+    private fun setUI(search: String) {
+        binding.wbAmazon.loadUrl(urlBase + search)
+        binding.ibAmazonGoBack.setOnClickListener { findNavController().popBackStack() }
     }
 
 }

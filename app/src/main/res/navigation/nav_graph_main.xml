@@ -112,7 +112,7 @@
     </fragment>
     <fragment
         android:id="@+id/amazonFragment"
-        android:name="com.marta.bookworm.ui.common.amazonView.AmazonFragment"
+        android:name="com.marta.bookworm.ui.amazonView.AmazonFragment"
         android:label="fragment_amazon"
         tools:layout="@layout/fragment_amazon" >
         <argument android:name="link" />
