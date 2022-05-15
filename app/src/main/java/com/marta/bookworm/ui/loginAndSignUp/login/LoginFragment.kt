@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.marta.bookworm.R
 import com.marta.bookworm.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
-import com.marta.bookworm.model.body.user.Credentials
+import com.marta.bookworm.api.model.body.user.Credentials
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {

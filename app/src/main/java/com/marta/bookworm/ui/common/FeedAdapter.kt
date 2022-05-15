@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.marta.bookworm.R
 import com.marta.bookworm.databinding.ItemFeedBinding
-import com.marta.bookworm.model.response.ReviewResponse
+import com.marta.bookworm.api.model.response.ReviewResponse
 
 
 class FeedAdapter(
@@ -37,7 +37,7 @@ class FeedAdapter(
             tvDescriptionItem.text = review.reviewDescription
             tvScoreItem.text = review.score.toString()
             tvAuthorItem.text = review.bookAuthor
-            tvLikesAmountItem.text = review.likes.size.toString()
+            tvLikesAmountItem.text = review.likesAmount.toString()
             tvUsernameItem.text = review.userId.userName
             ibAvatarItem.loadImage(review.userId.avatar)
         }
@@ -67,7 +67,7 @@ class FeedAdapter(
             //TODO shop, like and save
 
             layoutUser.setOnClickListener {
-                navigateToUserProfile(item.userId._id)
+                navigateToUserProfile(item.userId.id)
             }
             ibToDetail.setOnClickListener {
                 Log.d("Detail", item.id)

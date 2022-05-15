@@ -7,8 +7,8 @@ import com.marta.bookworm.R
 import com.marta.bookworm.api.NetworkService
 import com.marta.bookworm.db.BookWorm_Database
 import com.marta.bookworm.db.entities.Token
-import com.marta.bookworm.model.body.user.Credentials
-import com.marta.bookworm.model.response.TokenResponse
+import com.marta.bookworm.api.model.body.user.Credentials
+import com.marta.bookworm.api.model.response.TokenResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

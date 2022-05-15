@@ -9,8 +9,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
 import com.marta.bookworm.databinding.FragmentProfileBinding
-import com.marta.bookworm.model.response.UserResponse
+import com.marta.bookworm.api.model.response.ReviewResponse
+import com.marta.bookworm.api.model.response.UserResponse
+import com.marta.bookworm.ui.common.ResultAdapter
 import com.marta.bookworm.ui.common.loadImage
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,6 +23,7 @@ class ProfileFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: ProfileViewModel by viewModels()
     private val args: ProfileFragmentArgs by navArgs()
+    private val adapter: ResultAdapter = ResultAdapter()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,6 +39,7 @@ class ProfileFragment : Fragment() {
                 renderUIState(profileUIState)
             }
         }
+        setUI()
         viewModel.getProfileInfo(args.userId)
     }
 
@@ -49,17 +54,26 @@ class ProfileFragment : Fragment() {
             tvProfileUsername.text = "@${user.userName}"
             tvProfileDescription.text = user.description
             tvProfileReviewsAmount.text = if(user.reviews==null) {"0"} else{user.reviews.size.toString()}
-            //TODO add in the API call the amount of followers and following
-            tvProfileFollowingAmount.text = if(user.following == null){"0"}else{user.following.size.toString()}
-            tvProfileFollowersAmount.text = if(user.followers!=null) ({user.followers}).toString() else{"0"}
-
+            tvProfileFollowingAmount.text = user.followingAmount.toString()
+            tvProfileFollowersAmount.text = (user.followers).toString()
             ivProfileAvatar.loadImage(user.avatar)
             ivBanner.loadImage(user.banner)
+            displayReviews(user.reviews)
+        }
+    }
+    private fun displayReviews(list: List<ReviewResponse>?){
+        if(list!=null && list.size>0){
+            adapter.submitList(list)
+        }else{
+            //TODO show emptyLisBlock
         }
     }
 
     private fun setUI() {
-
+        with(binding){
+            rvProfile.adapter = adapter
+            rvProfile.layoutManager = GridLayoutManager(context, 3)
+        }
     }
 
     private fun navigateToSettings() {

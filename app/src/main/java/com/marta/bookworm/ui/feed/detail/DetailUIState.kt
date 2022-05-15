@@ -1,6 +1,6 @@
 package com.marta.bookworm.ui.feed.detail
 
-import com.marta.bookworm.model.response.ReviewResponse
+import com.marta.bookworm.api.model.response.ReviewResponse
 
 data class DetailUIState(
     val isLoading: Boolean = true,

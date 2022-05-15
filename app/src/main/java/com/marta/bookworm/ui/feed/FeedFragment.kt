@@ -7,13 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.marta.bookworm.databinding.FragmentFeedBinding
-import com.marta.bookworm.model.response.ReviewResponse
+import com.marta.bookworm.api.model.response.ReviewResponse
 import com.marta.bookworm.ui.common.FeedAdapter
 
 class FeedFragment : Fragment() {

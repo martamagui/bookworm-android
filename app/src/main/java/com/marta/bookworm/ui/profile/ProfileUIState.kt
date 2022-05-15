@@ -1,6 +1,6 @@
 package com.marta.bookworm.ui.profile
 
-import com.marta.bookworm.model.response.UserResponse
+import com.marta.bookworm.api.model.response.UserResponse
 
 data class ProfileUIState(
     val isLoading: Boolean = true,

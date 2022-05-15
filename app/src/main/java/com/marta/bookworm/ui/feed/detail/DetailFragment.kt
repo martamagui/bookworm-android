@@ -15,7 +15,7 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.chip.Chip
 import com.marta.bookworm.R
 import com.marta.bookworm.databinding.FragmentDetailBinding
-import com.marta.bookworm.model.response.ReviewResponse
+import com.marta.bookworm.api.model.response.ReviewResponse
 import com.marta.bookworm.ui.common.loadImage
 
 class DetailFragment : Fragment() {
@@ -88,7 +88,7 @@ class DetailFragment : Fragment() {
         Log.d("detail", "TODObtns")
         with(binding) {
             ibDetailGoBack.setOnClickListener { findNavController().popBackStack() }
-            layoutUserDetail.setOnClickListener { navigateToUserProfile(review.userId._id) }
+            layoutUserDetail.setOnClickListener { navigateToUserProfile(review.userId.id) }
             cvLikeDetail.setOnClickListener { likePost(review.id) }
             cvSaveDetail.setOnClickListener { saveUnsavePost(review.id) }
             cvShopDetail.setOnClickListener { openAmazon("$review.bookTitle $review.bookAuthor") }

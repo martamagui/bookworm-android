@@ -23,14 +23,17 @@ class FeedViewModel @Inject constructor(
     fun getAllFeedPosts() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                _feedUIState.update { FeedUIState(isLoading = true) }
-                val posts = networkService.getAllPosts();
-                _feedUIState.update {
-                    FeedUIState(
-                        isLoading = false,
-                        isSuccess = true,
-                        feedList = posts
-                    )
+                val myToken = getMyToken()
+                if (myToken != null) {
+                    _feedUIState.update { FeedUIState(isLoading = true) }
+                    val posts = networkService.getAllPosts("Bearer $myToken");
+                    _feedUIState.update {
+                        FeedUIState(
+                            isLoading = false,
+                            isSuccess = true,
+                            feedList = posts
+                        )
+                    }
                 }
             } catch (error: Error) {
                 updateError("Loading post failed")
@@ -40,10 +43,6 @@ class FeedViewModel @Inject constructor(
 
     fun updateError(msg: String) {
         _feedUIState.update { FeedUIState(isLoading = false, isError = true, errorMsg = msg) }
-    }
-
-    private suspend fun getMyToken(): String {
-        return db.dao().findMyToken().token
     }
 
     fun likePost(postId: String) {
@@ -70,6 +69,11 @@ class FeedViewModel @Inject constructor(
                 updateError("Couldn't update like for this post.")
             }
         }
+    }
+
+    //--BD
+    private suspend fun getMyToken(): String {
+        return db.dao().findMyToken().token
     }
 
 }

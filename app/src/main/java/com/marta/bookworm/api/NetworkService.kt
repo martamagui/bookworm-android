@@ -1,10 +1,10 @@
 package com.marta.bookworm.api
 
-import com.marta.bookworm.model.body.user.*
-import com.marta.bookworm.model.response.ReviewResponse
-import com.marta.bookworm.model.response.StandarResponse
-import com.marta.bookworm.model.response.TokenResponse
-import com.marta.bookworm.model.response.UserResponse
+import com.marta.bookworm.api.model.body.user.*
+import com.marta.bookworm.api.model.response.ReviewResponse
+import com.marta.bookworm.api.model.response.StandarResponse
+import com.marta.bookworm.api.model.response.TokenResponse
+import com.marta.bookworm.api.model.response.UserResponse
 import retrofit2.http.*
 
 interface NetworkService {
@@ -102,7 +102,7 @@ interface NetworkService {
     //-------------------------------------- Review
     //--- GET
     @GET("review")
-    suspend fun  getAllPosts():List<ReviewResponse>
+    suspend fun  getAllPosts(@Header("Authorization") token: String):List<ReviewResponse>
 
     //TODO Detail Call
     @GET("review/{id}")

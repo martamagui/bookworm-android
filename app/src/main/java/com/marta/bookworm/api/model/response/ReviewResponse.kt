@@ -1,4 +1,4 @@
-package com.marta.bookworm.model.response
+package com.marta.bookworm.api.model.response
 
 import com.google.gson.annotations.SerializedName
 
@@ -25,6 +25,8 @@ data class ReviewResponse(
     val likes:  List<String?>,
     @SerializedName("liked")
     var liked: Boolean?,
+    @SerializedName("likesAmount")
+    var likesAmount: Int?,
     @SerializedName("saved")
     var saved: Boolean?,
     @SerializedName("hastags")

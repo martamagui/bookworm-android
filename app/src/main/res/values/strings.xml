@@ -40,4 +40,5 @@
     <string name="reviews">Reviews</string>
     <string name="followers">Followers</string>
     <string name="Following">Following</string>
+    <string name="image_description">Review Picture</string>
 </resources>
