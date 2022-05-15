@@ -65,6 +65,9 @@
         <action
             android:id="@+id/action_profileFragment2_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_profileFragment2_to_savedPostsFragment"
+            app:destination="@id/savedPostsFragment" />
     </fragment>
     <fragment
         android:id="@+id/createReviewStep1Fragment"
@@ -125,4 +128,13 @@
         android:name="com.marta.bookworm.ui.profile.settings.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/savedPostsFragment"
+        android:name="com.marta.bookworm.ui.profile.savedPost.SavedPostsFragment"
+        android:label="fragment_saved_posts"
+        tools:layout="@layout/fragment_saved_posts" >
+        <action
+            android:id="@+id/action_savedPostsFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
 </navigation>

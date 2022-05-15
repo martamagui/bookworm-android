@@ -14,7 +14,10 @@ interface NetworkService {
     suspend fun getUnfilteredUsers(): List<UserResponse>
 
     @GET("user/{userId}")
-    suspend fun getUserById(@Path("userId") userId: String, @Header("Authorization") token: String): UserResponse
+    suspend fun getUserById(
+        @Path("userId") userId: String,
+        @Header("Authorization") token: String
+    ): UserResponse
 
     @GET("user/myProfile")
     suspend fun getMyProfile(
@@ -33,6 +36,9 @@ interface NetworkService {
 
     @GET("user/is-email-taken/{email}")
     suspend fun isEmailTaken(@Path("email") email: String): StandarResponse
+
+    @GET("profile/saved/posts")
+    suspend fun getSavedPost(@Header("Authorization") token: String): List<ReviewResponse>?
 
     //--- POST
     @POST("user")
@@ -102,11 +108,14 @@ interface NetworkService {
     //-------------------------------------- Review
     //--- GET
     @GET("review")
-    suspend fun  getAllPosts(@Header("Authorization") token: String):List<ReviewResponse>
+    suspend fun getAllPosts(@Header("Authorization") token: String): List<ReviewResponse>
 
     //TODO Detail Call
     @GET("review/{id}")
-    suspend fun getPostDetail(@Path("id") userId: String, @Header("Authorization") token: String): ReviewResponse
+    suspend fun getPostDetail(
+        @Path("id") userId: String,
+        @Header("Authorization") token: String
+    ): ReviewResponse
 
     @PUT("review/like/{postId}")
     suspend fun likeDislike(

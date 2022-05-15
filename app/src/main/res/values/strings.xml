@@ -41,4 +41,5 @@
     <string name="followers">Followers</string>
     <string name="Following">Following</string>
     <string name="image_description">Review Picture</string>
+    <string name="saved_post">Saved Post</string>
 </resources>

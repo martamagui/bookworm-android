@@ -59,6 +59,15 @@ class ProfileFragment : Fragment() {
             ivBanner.loadImage(user.banner)
             displayReviews(user.reviews)
             user.isMe?.let { setProfileMode(it) }
+            seBtns(user)
+        }
+    }
+
+    private fun seBtns(user: UserResponse) {
+        with(binding){
+            cvSettings.setOnClickListener { navigateToSettings() }
+            cvSavedPosts.setOnClickListener { navigateToSavedPost() }
+            cvFollowUnfollow.setOnClickListener { viewModel.followUnfollow(user.id) }
         }
     }
 
@@ -98,6 +107,10 @@ class ProfileFragment : Fragment() {
         findNavController().navigate(action)
     }
 
+    private fun navigateToSavedPost(){
+        val action =  ProfileFragmentDirections.actionProfileFragment2ToSavedPostsFragment()
+        findNavController().navigate(action)
+    }
     private fun navigateToChat(userId: String) {
         //TODO
     }
