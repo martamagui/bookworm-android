@@ -14,9 +14,9 @@ interface NetworkService {
     suspend fun getUnfilteredUsers(): List<UserResponse>
 
     @GET("user/{userId}")
-    suspend fun getUserById(@Path("userId") userId: String): UserResponse
+    suspend fun getUserById(@Path("userId") userId: String, @Header("Authorization") token: String): UserResponse
 
-    @GET("user/myProfile/{userId}")
+    @GET("user/myProfile")
     suspend fun getMyProfile(
         @Header("Authorization") token: String,
         @Path("userId") userId: String

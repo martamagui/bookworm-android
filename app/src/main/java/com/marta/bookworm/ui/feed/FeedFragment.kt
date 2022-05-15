@@ -14,7 +14,9 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.marta.bookworm.databinding.FragmentFeedBinding
 import com.marta.bookworm.api.model.response.ReviewResponse
 import com.marta.bookworm.ui.common.FeedAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FeedFragment : Fragment() {
     private var _binding: FragmentFeedBinding? = null
     private val binding get() = _binding!!

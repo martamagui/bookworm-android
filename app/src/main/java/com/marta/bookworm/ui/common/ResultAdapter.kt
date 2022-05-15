@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.marta.bookworm.databinding.ItemPhotoBinding
 import com.marta.bookworm.api.model.response.ReviewResponse
 
-class ResultAdapter() :
+class ResultAdapter(private val navigateToDetail: (String) -> Unit) :
     ListAdapter<ReviewResponse, ResultAdapter.ResultViewHolder>(ResultItemCallBack) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResultViewHolder {
@@ -21,9 +21,9 @@ class ResultAdapter() :
         val review = getItem(position)
         with(holder.binding){
             ivPhotoItem.loadImage(review.image)
-            cvPhotoItem. = cvPhotoItem.height
+            cvPhotoItem.layoutParams.height = cvPhotoItem.getWidth();
             ivPhotoItem.setOnClickListener {
-                //Navigate to ...
+                navigateToDetail(review.id)
             }
         }
 

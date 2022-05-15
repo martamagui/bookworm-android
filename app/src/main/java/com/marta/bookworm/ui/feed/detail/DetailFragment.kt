@@ -17,7 +17,9 @@ import com.marta.bookworm.R
 import com.marta.bookworm.databinding.FragmentDetailBinding
 import com.marta.bookworm.api.model.response.ReviewResponse
 import com.marta.bookworm.ui.common.loadImage
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailFragment : Fragment() {
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!

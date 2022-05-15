@@ -25,8 +25,17 @@ class ProfileViewModel @Inject constructor(
     fun getProfileInfo(id:String){
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val userInfo = networkService.getUserById(id)
-                _profileUIState.update { ProfileUIState(isLoading = false, isSuccess = true, user = userInfo ) }
+                val myToken = getMyToken()
+                if (myToken != null) {
+                    val userInfo = networkService.getUserById(id, "Bearer $myToken")
+                    _profileUIState.update {
+                        ProfileUIState(
+                            isLoading = false,
+                            isSuccess = true,
+                            user = userInfo
+                        )
+                    }
+                }
             }catch (error: Error){
                 updateError("Error retrieveing information")
             }

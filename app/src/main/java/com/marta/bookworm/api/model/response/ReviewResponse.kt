@@ -3,7 +3,7 @@ package com.marta.bookworm.api.model.response
 import com.google.gson.annotations.SerializedName
 
 data class ReviewResponse(
-    @SerializedName("_id")
+    @SerializedName(value="id", alternate=["_id"])
     val id: String,
     @SerializedName("userId")
     val userId: UserResponse,

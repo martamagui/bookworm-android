@@ -23,7 +23,7 @@ class ProfileFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: ProfileViewModel by viewModels()
     private val args: ProfileFragmentArgs by navArgs()
-    private val adapter: ResultAdapter = ResultAdapter()
+    private val adapter: ResultAdapter = ResultAdapter{ navigateToDetail(it) }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,7 +31,6 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
@@ -59,8 +58,21 @@ class ProfileFragment : Fragment() {
             ivProfileAvatar.loadImage(user.avatar)
             ivBanner.loadImage(user.banner)
             displayReviews(user.reviews)
+            user.isMe?.let { setProfileMode(it) }
         }
     }
+
+    private fun setProfileMode(isMe: Boolean) {
+        if(isMe){
+            binding.cvSavedPosts.visibility = View.VISIBLE
+            binding.cvSettings.visibility = View.VISIBLE
+        }else{
+            binding.cvFollowUnfollow.visibility = View.VISIBLE
+            //TODO if there's time to create the chat view, uncomment.
+            //binding.cvSendMessage.visibility = View.VISIBLE
+        }
+    }
+
     private fun displayReviews(list: List<ReviewResponse>?){
         if(list!=null && list.size>0){
             adapter.submitList(list)
@@ -89,4 +101,5 @@ class ProfileFragment : Fragment() {
     private fun navigateToChat(userId: String) {
         //TODO
     }
+
 }

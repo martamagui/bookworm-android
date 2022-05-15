@@ -7,5 +7,6 @@ data class ProfileUIState(
     val isError: Boolean = false,
     val isSuccess: Boolean = false,
     val errorMsg: String? = null,
-    val user: UserResponse? = null
+    val user: UserResponse? = null,
+    val myToken: String? = null
 )
