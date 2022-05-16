@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="@color/tertiary"
     tools:context=".ui.top.TopFragment">
 
     <ScrollView
@@ -11,8 +12,7 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView4">
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -58,6 +58,7 @@
                                 android:layout_height="wrap_content"
                                 android:contentDescription="@string/book_image"
                                 android:src="@drawable/ic_baseline_search_24"
+                                tools:ignore="ImageContrastCheck"
                                 tools:layout_conversion_absoluteHeight="24dp"
                                 tools:layout_conversion_absoluteWidth="24dp"
                                 tools:layout_editor_absoluteX="20dp"
@@ -112,17 +113,21 @@
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="8dp"
                     android:padding="6dp"
                     android:text="@string/most_readed_books"
                     android:textAppearance="@style/title_large"
                     android:textColor="@color/tertiary" />
 
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cv_top_1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp">
+                    app:cardElevation="4dp"
+                    style="?attr/materialCardViewElevatedStyle"
+                    app:cardBackgroundColor="@color/background">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -197,15 +202,17 @@
                                 app:shapeAppearanceOverlay="@style/RoundedBorders" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cv_top_3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="12dp"
                     app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp">
+                    app:cardElevation="4dp"
+                    style="?attr/materialCardViewElevatedStyle"
+                    app:cardBackgroundColor="@color/background">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -280,9 +287,9 @@
                                 app:shapeAppearanceOverlay="@style/RoundedBorders" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cv_top_2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -290,7 +297,10 @@
                     android:layout_marginBottom="16dp"
                     android:paddingBottom="12dp"
                     app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp">
+                    app:cardElevation="4dp"
+                    style="?attr/materialCardViewElevatedStyle"
+                    app:cardBackgroundColor="@color/background"
+                    >
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -365,7 +375,7 @@
                                 app:shapeAppearanceOverlay="@style/RoundedBorders" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
 
         </LinearLayout>
