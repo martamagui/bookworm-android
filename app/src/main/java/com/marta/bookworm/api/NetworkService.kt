@@ -1,10 +1,7 @@
 package com.marta.bookworm.api
 
 import com.marta.bookworm.api.model.body.user.*
-import com.marta.bookworm.api.model.response.ReviewResponse
-import com.marta.bookworm.api.model.response.StandarResponse
-import com.marta.bookworm.api.model.response.TokenResponse
-import com.marta.bookworm.api.model.response.UserResponse
+import com.marta.bookworm.api.model.response.*
 import retrofit2.http.*
 
 interface NetworkService {
@@ -38,6 +35,9 @@ interface NetworkService {
 
     @GET("profile/saved/posts")
     suspend fun getSavedPost(@Header("Authorization") token: String): List<ReviewResponse>?
+
+    @GET("top-books")
+    suspend fun getTopBooks(@Header("Authorization") token: String): List<TopResponse>?
 
     //--- POST
     @POST("user")

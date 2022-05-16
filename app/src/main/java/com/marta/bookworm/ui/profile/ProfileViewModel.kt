@@ -20,8 +20,6 @@ class ProfileViewModel @Inject constructor(
     private val _profileUIState: MutableStateFlow<ProfileUIState> = MutableStateFlow(ProfileUIState())
     val profileUIState: StateFlow<ProfileUIState> get() = _profileUIState
 
-
-
     fun getProfileInfo(id:String){
         viewModelScope.launch(Dispatchers.IO) {
             try {

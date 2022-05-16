@@ -15,8 +15,6 @@ data class ReviewResponse(
     val score: Double,
     @SerializedName("image")
     val image: String?,
-    @SerializedName("amazonLink")
-    val amazonLink: String,
     @SerializedName("reviewDescription")
     val reviewDescription: String,
     @SerializedName("date")

@@ -7,5 +7,5 @@ data class TopUIState(
     val isError: Boolean = false,
     val isSuccess: Boolean = false,
     val errorMsg: String? = null,
-    val topResponse: TopResponse? = null,
+    val topResponse: List<TopResponse>? = null,
 )

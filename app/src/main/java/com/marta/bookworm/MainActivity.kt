@@ -27,9 +27,7 @@ class MainActivity : AppCompatActivity() {
                 renderUIState(loginUIState)
             }
         }
-        val intent = Intent(this, ApplicationActivity::class.java)
-        startActivity(intent)
-        finish()
+
     }
 
     private fun renderUIState(loginUIState: LoginUIState) {
@@ -40,8 +38,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-        intent.putExtra("token", loginUIState.savedToken)
-        startActivity(intent)
+
     }
 
 }
