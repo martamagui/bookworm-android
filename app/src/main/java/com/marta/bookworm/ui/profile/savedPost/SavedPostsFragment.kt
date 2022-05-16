@@ -60,6 +60,7 @@ class SavedPostsFragment : Fragment() {
             rvSavedPosts.adapter = adapter
             rvSavedPosts.layoutManager = GridLayoutManager(context, 3)
         }
+        binding.ibSavedPostBack.setOnClickListener { findNavController().popBackStack() }
     }
 
     private fun displaySavedPosts(reviews: List<ReviewResponse>?) {

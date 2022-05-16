@@ -63,6 +63,8 @@ class DetailFragment : Fragment() {
         }
         setBtns(review)
         setTags(review.hastags)
+        setLikeUI(review)
+        setSavedUI(review)
     }
 
     private fun setTags(tags: List<String>) {
@@ -79,9 +81,19 @@ class DetailFragment : Fragment() {
             navigateToSearchResult(tag)
         }
         chip.chipBackgroundColor =
-            ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.secondaryContainer))
+            ColorStateList.valueOf(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.secondaryContainer
+                )
+            )
         chip.chipStrokeColor =
-            ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.secondaryContainer))
+            ColorStateList.valueOf(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.secondaryContainer
+                )
+            )
         binding.chipGroupDetail.addView(chip as View)
     }
 
@@ -91,8 +103,8 @@ class DetailFragment : Fragment() {
         with(binding) {
             ibDetailGoBack.setOnClickListener { findNavController().popBackStack() }
             layoutUserDetail.setOnClickListener { navigateToUserProfile(review.userId.id) }
-            cvLikeDetail.setOnClickListener { likePost(review.id) }
-            cvSaveDetail.setOnClickListener { saveUnsavePost(review.id) }
+            cvLikeDetail.setOnClickListener { likePost(review) }
+            cvSaveDetail.setOnClickListener { saveUnsavePost(review) }
             cvShopDetail.setOnClickListener { openAmazon("$review.bookTitle $review.bookAuthor") }
         }
     }
@@ -114,24 +126,68 @@ class DetailFragment : Fragment() {
         Log.e("Error", "Connection error")
     }
 
-    //Network
-    private fun likePost(postId: String) {
-        viewModel.likePost(postId)
+    private fun updateLike(post: ReviewResponse) {
+        if (post.liked == true) {
+            post.likesAmount = post.likesAmount?.minus(1)
+        } else {
+            post.likesAmount = post.likesAmount?.plus(1)
+        }
+        post.liked = post.liked == null || post.liked == false
     }
 
-    private fun saveUnsavePost(postId: String) {
-        viewModel.saveUnsavePost(postId)
+    private fun setLikeUI(post: ReviewResponse) {
+        binding.ivLikeDetail.setImageResource(
+            if (post.liked == true) {
+                R.drawable.ic_baseline_favorite_24
+            } else {
+                R.drawable.ic_baseline_favorite_border_24
+            }
+        )
+        binding.tvLikesAmountDetail.text = post.likesAmount.toString()
     }
+
+    private fun updateSaved(post: ReviewResponse) {
+        post.saved = post.saved == null || post.saved == false
+    }
+
+    private fun setSavedUI(post: ReviewResponse) {
+        binding.ivSaveDetail.setImageResource(
+            if (post.saved == true) {
+                R.drawable.ic_baseline_bookmark_24
+            } else {
+                R.drawable.ic_baseline_bookmark_border_24
+            }
+        )
+    }
+
+
+    //Network
+    private fun likePost(post: ReviewResponse) {
+        updateLike(post)
+        setLikeUI(post)
+        viewModel.likePost(post.id)
+    }
+
+    private fun saveUnsavePost(post: ReviewResponse) {
+        updateSaved(post)
+        setSavedUI(post)
+        viewModel.saveUnsavePost(post.id)
+    }
+
+
 
     //Navigation
     private fun navigateToUserProfile(userId: String) {
         val action = DetailFragmentDirections.actionDetailFragmentToProfileFragment2(userId)
         findNavController().navigate(action)
     }
-    private fun navigateToSearchResult(search: String ){
-        val action = DetailFragmentDirections.actionDetailFragmentToSearchResultFragment(search,"tag")
+
+    private fun navigateToSearchResult(search: String) {
+        val action =
+            DetailFragmentDirections.actionDetailFragmentToSearchResultFragment(search, "tag")
         findNavController().navigate(action)
     }
+
     private fun openAmazon(link: String) {
         val action = DetailFragmentDirections.actionDetailFragmentToAmazonFragment(link)
         findNavController().navigate(action)

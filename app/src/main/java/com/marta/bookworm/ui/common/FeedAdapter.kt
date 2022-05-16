@@ -80,6 +80,11 @@ class FeedAdapter(
             cvShopItem.setOnClickListener { goToAmazon("${item.bookTitle} ${item.bookAuthor}") }
             cvLikeItem.setOnClickListener {
                 likeDislikeCall(item.id)
+                if (item.liked == true) {
+                    item.likesAmount = item.likesAmount?.minus(1)
+                } else {
+                    item.likesAmount = item.likesAmount?.plus(1)
+                }
                 item.liked = item.liked == null || item.liked == false
                 ivLike.setImageResource(
                     if (item.liked == true) {
@@ -88,6 +93,7 @@ class FeedAdapter(
                         R.drawable.ic_baseline_favorite_border_24
                     }
                 )
+                tvLikesAmountItem.text = item.likesAmount.toString()
             }
             cvSaveItem.setOnClickListener {
                 saveUnsavePost(item.id)
