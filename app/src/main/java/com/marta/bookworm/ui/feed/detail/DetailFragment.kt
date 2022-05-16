@@ -160,7 +160,6 @@ class DetailFragment : Fragment() {
         )
     }
 
-
     //Network
     private fun likePost(post: ReviewResponse) {
         updateLike(post)
@@ -173,8 +172,6 @@ class DetailFragment : Fragment() {
         setSavedUI(post)
         viewModel.saveUnsavePost(post.id)
     }
-
-
 
     //Navigation
     private fun navigateToUserProfile(userId: String) {

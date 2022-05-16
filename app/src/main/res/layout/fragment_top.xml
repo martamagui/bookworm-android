@@ -1,14 +1,373 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.top.TopFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="TopFragment" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView4"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        app:cardBackgroundColor="@color/inverseOnSurface"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_conversion_absoluteHeight="64dp"
+        tools:layout_conversion_absoluteWidth="480dp">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="6dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="32dp"
+                app:layout_collapseMode="parallax"
+                tools:layout_conversion_absoluteHeight="48dp"
+                tools:layout_conversion_absoluteWidth="464dp"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="6dp">
+
+                    <ImageView
+                        android:id="@+id/imageView15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/book_image"
+                        android:src="@drawable/ic_baseline_search_24"
+                        tools:layout_conversion_absoluteHeight="24dp"
+                        tools:layout_conversion_absoluteWidth="24dp"
+                        tools:layout_editor_absoluteX="20dp"
+                        tools:layout_editor_absoluteY="20dp" />
+
+                    <TextView
+                        android:id="@+id/tv_search"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:layout_weight="1"
+                        android:hint="@string/search"
+                        android:textAppearance="@style/search"
+                        android:translationZ="2dp"
+                        tools:layout_conversion_absoluteHeight="40dp"
+                        tools:layout_conversion_absoluteWidth="415dp"
+                        tools:layout_editor_absoluteX="44dp"
+                        tools:layout_editor_absoluteY="12dp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:padding="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView4">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="140dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView12"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/book_image"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/frame6" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:text="@string/most_readed_books"
+                android:textAppearance="@style/title_large"
+                android:textColor="@color/tertiary" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_top_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingStart="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="6dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_top1_title"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="@string/loading"
+                            android:textAppearance="@style/title_medium"
+                            android:textColor="@color/secondary" />
+
+                        <ImageView
+                            android:id="@+id/iv_go_next_top1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_navigate_next_24" />
+                    </LinearLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/linearLayout7"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:paddingEnd="16dp">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/iv_top1_img_1"
+                            android:layout_width="115dp"
+                            android:layout_height="115dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:shapeAppearanceOverlay="@style/RoundedBorders" />
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/iv_top1_img"
+                            android:layout_width="115dp"
+                            android:layout_height="115dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/iv_top1_img_2"
+                            app:layout_constraintStart_toEndOf="@+id/iv_top1_img_1"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:shapeAppearanceOverlay="@style/RoundedBorders" />
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/iv_top1_img_2"
+                            android:layout_width="115dp"
+                            android:layout_height="115dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:shapeAppearanceOverlay="@style/RoundedBorders" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_top_3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingStart="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="6dp"
+                        android:orientation="horizontal"
+                        android:paddingEnd="8dp">
+
+                        <TextView
+                            android:id="@+id/tv_top2_title"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="@string/loading"
+                            android:textAppearance="@style/title_medium"
+                            android:textColor="@color/secondary" />
+
+                        <ImageView
+                            android:id="@+id/iv_go_next_top2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_navigate_next_24" />
+                    </LinearLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:paddingEnd="16dp">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/iv_top2_img_1"
+                            android:layout_width="115dp"
+                            android:layout_height="115dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:shapeAppearanceOverlay="@style/RoundedBorders" />
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/iv_top2_img_2"
+                            android:layout_width="115dp"
+                            android:layout_height="115dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/iv_top2_img_3"
+                            app:layout_constraintStart_toEndOf="@+id/iv_top2_img_1"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:shapeAppearanceOverlay="@style/RoundedBorders" />
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/iv_top2_img_3"
+                            android:layout_width="115dp"
+                            android:layout_height="115dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:shapeAppearanceOverlay="@style/RoundedBorders" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_top_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="16dp"
+                android:paddingBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingStart="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="6dp"
+                        android:orientation="horizontal"
+                        android:paddingEnd="8dp">
+
+                        <TextView
+                            android:id="@+id/tv_top3_title"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="@string/loading"
+                            android:textAppearance="@style/title_medium"
+                            android:textColor="@color/secondary" />
+
+                        <ImageView
+                            android:id="@+id/iv_go_next_top3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_navigate_next_24" />
+                    </LinearLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:paddingEnd="16dp">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/iv_top3_img_1"
+                            android:layout_width="115dp"
+                            android:layout_height="115dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:shapeAppearanceOverlay="@style/RoundedBorders" />
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/iv_top3_img_2"
+                            android:layout_width="115dp"
+                            android:layout_height="115dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/iv_top3_img_3"
+                            app:layout_constraintStart_toEndOf="@+id/iv_top3_img_1"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:shapeAppearanceOverlay="@style/RoundedBorders" />
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/iv_top3_img_3"
+                            android:layout_width="115dp"
+                            android:layout_height="115dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:shapeAppearanceOverlay="@style/RoundedBorders" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

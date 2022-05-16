@@ -42,4 +42,8 @@
     <string name="Following">Following</string>
     <string name="image_description">Review Picture</string>
     <string name="saved_post">Saved Post</string>
+    <string name="search">Search</string>
+    <string name="give_away">Giveaway, jus create a post</string>
+    <string name="most_readed_books">Most readed books</string>
+    <string name="book_image">Book Image</string>
 </resources>
