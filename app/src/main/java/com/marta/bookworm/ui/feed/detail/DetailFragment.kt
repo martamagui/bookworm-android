@@ -189,4 +189,5 @@ class DetailFragment : Fragment() {
         val action = DetailFragmentDirections.actionDetailFragmentToAmazonFragment(link)
         findNavController().navigate(action)
     }
+
 }
