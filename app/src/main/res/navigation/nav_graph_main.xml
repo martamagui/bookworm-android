@@ -46,7 +46,11 @@
         android:id="@+id/topFragment2"
         android:name="com.marta.bookworm.ui.top.TopFragment"
         android:label="fragment_top"
-        tools:layout="@layout/fragment_top" />
+        tools:layout="@layout/fragment_top" >
+        <action
+            android:id="@+id/action_topFragment2_to_searchResultFragment"
+            app:destination="@id/searchResultFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment2"
         android:name="com.marta.bookworm.ui.profile.ProfileFragment"
@@ -115,6 +119,9 @@
             app:argType="string" />
         <argument android:name="searchType"
             app:argType="string" />
+        <action
+            android:id="@+id/action_searchResultFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/amazonFragment"

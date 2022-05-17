@@ -5,18 +5,34 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.marta.bookworm.R
+import com.marta.bookworm.databinding.FragmentSearchResultBinding
+import com.marta.bookworm.ui.common.ResultAdapter
 
 
 class SearchResultFragment : Fragment() {
+    private var _binding: FragmentSearchResultBinding? =  null
+    private val binding get() = _binding!!
+    private val adapter: ResultAdapter = ResultAdapter{ navigateToDetail(it) }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search_result, container, false)
+        _binding = FragmentSearchResultBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
+    private fun setUI(){
+
+    }
+
+    private fun navigateToDetail(postId: String) {
+        val action = SearchResultFragmentDirections.actionSearchResultFragmentToDetailFragment(postId)
+        findNavController().navigate(action)
+    }
 
 }
