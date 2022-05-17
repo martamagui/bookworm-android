@@ -18,11 +18,15 @@ class ApplicationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityApplicationBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setNavigation()
+        changeStatusBarColor()
+    }
+    private fun setNavigation(){
         val navigationMenu =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_main) as NavHostFragment
         val navigationController = navigationMenu.navController
         binding.bottomNavigationView.setupWithNavController(navigationController)
-        changeStatusBarColor()
+        binding.bottomNavigationView.setOnFocusChangeListener { view, b ->  }
     }
 
     private fun changeStatusBarColor() {
