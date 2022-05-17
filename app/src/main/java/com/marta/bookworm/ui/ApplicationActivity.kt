@@ -2,6 +2,7 @@ package com.marta.bookworm.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -26,7 +27,6 @@ class ApplicationActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_main) as NavHostFragment
         val navigationController = navigationMenu.navController
         binding.bottomNavigationView.setupWithNavController(navigationController)
-        binding.bottomNavigationView.setOnFocusChangeListener { view, b ->  }
     }
 
     private fun changeStatusBarColor() {
