@@ -109,12 +109,29 @@ interface NetworkService {
     @GET("review")
     suspend fun getAllPosts(@Header("Authorization") token: String): List<ReviewResponse>
 
-    //TODO Detail Call
     @GET("review/{id}")
     suspend fun getPostDetail(
         @Path("id") userId: String,
         @Header("Authorization") token: String
     ): ReviewResponse
+
+    @GET("review/title/{bookTitle}")
+    suspend fun getByTitle(
+        @Path("bookTitle") title: String,
+        @Header("Authorization") token: String
+    ): List<ReviewResponse>
+
+    @GET("review/hastag/{hastag}")
+    suspend fun getByTag(
+        @Path("hastag") tag: String,
+        @Header("Authorization") token: String
+    ): List<ReviewResponse>
+
+    @GET("review/author/{author}")
+    suspend fun getByAuthor(
+        @Path("author") author: String,
+        @Header("Authorization") token: String
+    ): List<ReviewResponse>
 
     @PUT("review/like/{postId}")
     suspend fun likeDislike(

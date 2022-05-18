@@ -86,12 +86,14 @@ class TopFragment : Fragment() {
 
         }
     }
+
     private fun showError(msg: String?) {
         Log.d("top", "$msg")
         //TODO hacer un dialog que muestre el error
     }
+
     private fun navigateToSearchByAuthor(title: String){
-        val action = TopFragmentDirections.actionTopFragment2ToSearchResultFragment(title,"author")
+        val action = TopFragmentDirections.actionTopFragment2ToSearchResultFragment(title,"title")
         findNavController().navigate(action)
     }
 }
