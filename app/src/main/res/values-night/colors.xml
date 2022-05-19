@@ -29,4 +29,5 @@
     <color name="shadow">#000000</color>
     <color name="primaryInverse">#9C4500</color>
     <color name="surface2">#201A18</color>
+    <color name="searchOptions">#D0201A18</color>
 </resources>

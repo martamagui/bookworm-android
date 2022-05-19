@@ -46,4 +46,5 @@
     <string name="give_away">Giveaway, jus create a post</string>
     <string name="most_readed_books">Most readed books</string>
     <string name="book_image">Book Image</string>
+    <string name="empty_val">"si"</string>
 </resources>

@@ -74,6 +74,19 @@ class SearchResultFragment : Fragment() {
             tvSearchValueSearch.text = args.searchValue
             rvResultReviews.adapter = adapter
             rvResultReviews.layoutManager = GridLayoutManager(context, 3)
+            setImageSearchType()
+        }
+    }
+
+    private fun setImageSearchType() {
+        with(binding) {
+            if (args.searchType == "title") {
+                ivSearchTypeSearch.setImageResource(R.drawable.ic_book_32)
+            } else if (args.searchType == "author") {
+                ivSearchTypeSearch.setImageResource(R.drawable.ic_feather_32)
+            } else if (args.searchType == "tag") {
+                ivSearchTypeSearch.setImageResource(R.drawable.ic_hashtag_32)
+            }
         }
     }
 
