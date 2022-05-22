@@ -3,8 +3,8 @@
     <color name="primary">#9C4500</color>
     <color name="onPrimary">#FFFFFF</color>
     <color name="primaryContainer">#FFDBC7</color>
-    <color name="onPrimaryContainer">#331100</color>
-    <color name="secondary">#765848</color>
+    <color name="onPrimaryContainer">#331200</color>
+    <color name="secondary">#765847</color>
     <color name="onSecondary">#FFFFFF</color>
     <color name="secondaryContainer">#FFDBC7</color>
     <color name="onSecondaryContainer">#2B160A</color>
@@ -20,7 +20,7 @@
     <color name="onBackground">#201A17</color>
     <color name="surface">#FCFCFC</color>
     <color name="onSurface">#201A17</color>
-    <color name="surfaceVariant">#F4DED4</color>
+    <color name="surfaceVariant">#FBEEEA</color>
     <color name="onSurfaceVariant">#52443D</color>
     <color name="outline">#85746C</color>
     <color name="inverseOnSurface">#FBEEEA</color>
@@ -30,4 +30,5 @@
     <color name="primaryInverse">#FFB68C</color>
     <color name="surface2">#FCFCFC</color>
     <color name="searchOptions">#E6FCFCFC</color>
+    <color name="strokeTextFields">#40201A17</color>
 </resources>
