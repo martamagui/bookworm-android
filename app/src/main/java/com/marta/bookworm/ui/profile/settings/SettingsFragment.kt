@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.marta.bookworm.R
 import com.marta.bookworm.databinding.FragmentSettingsBinding
 import com.marta.bookworm.ui.profile.settings.editProfile.EditProfileFragment
@@ -36,13 +37,29 @@ class SettingsFragment : Fragment() {
     }
 
     private fun setOnClickListeners() {
-        with(binding){
-            lyDelteAccount.setOnClickListener { viewModel.deleteAccount() }
+        with(binding) {
+            lyDelteAccount.setOnClickListener { askBeforeDelete() }
             lyEditProfile.setOnClickListener { navigateToEditProfile() }
             lyLogOut.setOnClickListener { viewModel.logOut() }
             lyUpdatePsw.setOnClickListener { navigateToUpdatePsw() }
             ibSettingsBack.setOnClickListener { findNavController().popBackStack() }
         }
+    }
+
+    private fun askBeforeDelete() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Delete account")
+            .setMessage(
+                "You are about to delete your account on BookWorm.\n" +
+                        "\nThis action can not be undone."
+            )
+            .setPositiveButton("Delete Account") { dialog, which ->
+                //viewModel.deleteAccount()
+            }
+            .setNegativeButton("Cancel") { dialog, which ->
+                //Cancel
+            }
+            .show()
     }
 
     private fun navigateToUpdatePsw() {
