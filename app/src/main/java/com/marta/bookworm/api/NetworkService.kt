@@ -98,10 +98,9 @@ interface NetworkService {
     ): StandarResponse
 
     //--- DELETE
-    @DELETE("user/{userId}")
+    @DELETE("user")
     suspend fun deleteUser(
         @Header("Authorization") token: String,
-        @Path("userId") userId: String
     ): StandarResponse
 
     //-------------------------------------- Review

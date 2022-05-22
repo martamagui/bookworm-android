@@ -15,7 +15,7 @@ interface DatabaseDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveToken(token: Token)
 
-    @Delete
-    suspend fun delteToken(token: Token)
+    @Query("DELETE FROM Token")
+    fun delteToken()
 
 }

@@ -68,7 +68,7 @@
             app:destination="@id/detailFragment" />
         <action
             android:id="@+id/action_profileFragment2_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            app:destination="@id/navigation_settings" />
         <action
             android:id="@+id/action_profileFragment2_to_savedPostsFragment"
             app:destination="@id/savedPostsFragment" />
@@ -131,11 +131,6 @@
         <argument android:name="link" />
     </fragment>
     <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.marta.bookworm.ui.profile.settings.SettingsFragment"
-        android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
-    <fragment
         android:id="@+id/savedPostsFragment"
         android:name="com.marta.bookworm.ui.profile.savedPost.SavedPostsFragment"
         android:label="fragment_saved_posts"
@@ -144,4 +139,29 @@
             android:id="@+id/action_savedPostsFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
     </fragment>
+    <navigation android:id="@+id/navigation_settings"
+        app:startDestination="@id/settingsFragment">
+        <fragment
+            android:id="@+id/settingsFragment"
+            android:name="com.marta.bookworm.ui.profile.settings.SettingsFragment"
+            android:label="fragment_settings"
+            tools:layout="@layout/fragment_settings">
+            <action
+                android:id="@+id/action_settingsFragment_to_editProfileFragment2"
+                app:destination="@id/editProfileFragment2" />
+            <action
+                android:id="@+id/action_settingsFragment_to_updatePasswordFragment2"
+                app:destination="@id/updatePasswordFragment2" />
+        </fragment>
+        <fragment
+            android:id="@+id/editProfileFragment2"
+            android:name="com.marta.bookworm.ui.profile.settings.editProfile.EditProfileFragment"
+            android:label="fragment_edit_profile"
+            tools:layout="@layout/fragment_edit_profile" />
+        <fragment
+            android:id="@+id/updatePasswordFragment2"
+            android:name="com.marta.bookworm.ui.profile.settings.updatePsw.UpdatePasswordFragment"
+            android:label="fragment_update_password"
+            tools:layout="@layout/fragment_update_password" />
+    </navigation>
 </navigation>
