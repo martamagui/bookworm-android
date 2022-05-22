@@ -28,10 +28,12 @@
             <ImageButton
                 android:id="@+id/ib_saved_post_back"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="24dp"
                 android:background="@android:color/transparent"
                 android:backgroundTint="@android:color/transparent"
                 android:contentDescription="@string/todo"
+                android:paddingTop="2dp"
+                android:paddingEnd="12dp"
                 android:translationZ="2dp"
                 app:layout_constraintBottom_toBottomOf="@+id/card"
                 app:layout_constraintEnd_toEndOf="@+id/card"
@@ -43,6 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:paddingBottom="2dp"
                 android:text="@string/saved_post"
                 android:textAppearance="@style/title_large"
                 android:textColor="@color/secondary" />
