@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/edit_profile"
-                android:textAppearance="@style/body_large"
+                android:textAppearance="@style/body_large_b"
                 android:textColor="@color/onPrimaryContainer" />
 
             <ImageView
@@ -114,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/update_psw"
-                android:textAppearance="@style/body_large"
+                android:textAppearance="@style/body_large_b"
                 android:textColor="@color/onPrimaryContainer" />
 
             <ImageView
@@ -147,7 +147,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/log_out"
-                android:textAppearance="@style/body_large"
+                android:textAppearance="@style/body_large_b"
                 android:textColor="@color/onPrimaryContainer" />
 
             <ImageView
@@ -200,7 +200,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/delete_account"
-                android:textAppearance="@style/body_large"
+                android:textAppearance="@style/body_large_b"
                 android:textColor="@color/error" />
 
             <ImageView
