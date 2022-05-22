@@ -17,10 +17,19 @@ class ProfileViewModel @Inject constructor(
     private val networkService: NetworkService,
     private val db: BookWorm_Database
 ) : ViewModel() {
-    private val _profileUIState: MutableStateFlow<ProfileUIState> = MutableStateFlow(ProfileUIState())
+    private val _profileUIState: MutableStateFlow<ProfileUIState> =
+        MutableStateFlow(ProfileUIState())
     val profileUIState: StateFlow<ProfileUIState> get() = _profileUIState
 
-    fun getProfileInfo(id:String){
+    fun getProfileInfo(id: String) {
+        if (id != "empty") {
+            getOthersProfile(id)
+        } else {
+            getMYProfileInfo()
+        }
+    }
+
+    fun getOthersProfile(id: String) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val myToken = getMyToken()
@@ -34,7 +43,27 @@ class ProfileViewModel @Inject constructor(
                         )
                     }
                 }
-            }catch (error: Error){
+            } catch (error: Error) {
+                updateError("Error retrieveing information")
+            }
+        }
+    }
+
+    fun getMYProfileInfo() {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val myToken = getMyToken()
+                if (myToken != null) {
+                    val userInfo = networkService.getMyProfile("Bearer $myToken")
+                    _profileUIState.update {
+                        ProfileUIState(
+                            isLoading = false,
+                            isSuccess = true,
+                            user = userInfo
+                        )
+                    }
+                }
+            } catch (error: Error) {
                 updateError("Error retrieveing information")
             }
         }
@@ -44,7 +73,7 @@ class ProfileViewModel @Inject constructor(
         _profileUIState.update { ProfileUIState(isLoading = false, isError = true, errorMsg = msg) }
     }
 
-    fun followUnfollow(userToFollow:String){
+    fun followUnfollow(userToFollow: String) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val myToken = getMyToken()

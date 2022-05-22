@@ -16,7 +16,7 @@ interface NetworkService {
         @Header("Authorization") token: String
     ): UserResponse
 
-    @GET("user/myProfile")
+    @GET("profile/my-profile")
     suspend fun getMyProfile(
         @Header("Authorization") token: String
     ): UserResponse
