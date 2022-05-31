@@ -17,6 +17,7 @@ class AmazonFragment : Fragment() {
     private val binding get() = _binding!!
     private val urlBase = "https://www.amazon.com/gp/mas/dl/android?s="
     private val args: AmazonFragmentArgs by navArgs()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,12 +29,13 @@ class AmazonFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var formattedSearch: String = Normalizer.normalize(args.link.lowercase(), Normalizer.Form.NFD)
-        formattedSearch = formattedSearch.replace("[^\\p{ASCII}]", "").replace(" ", "%20")
+        formattedSearch = formattedSearch.replace(" ", "%20")
+//        formattedSearch = formattedSearch.replace("[^\\p{ASCII}]", "").replace(" ", "%20")
         setUI(formattedSearch)
     }
 
     private fun setUI(search: String) {
-        binding.wbAmazon.loadUrl(urlBase + search +"&i=stripbooks")
+        binding.wbAmazon.loadUrl(urlBase + search)
         binding.ibAmazonGoBack.setOnClickListener { findNavController().popBackStack() }
     }
 

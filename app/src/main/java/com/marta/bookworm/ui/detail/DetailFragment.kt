@@ -1,4 +1,4 @@
-package com.marta.bookworm.ui.feed.detail
+package com.marta.bookworm.ui.detail
 
 import android.content.res.ColorStateList
 import android.os.Bundle

@@ -86,7 +86,7 @@
         tools:layout="@layout/fragment_chat_list" />
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.marta.bookworm.ui.feed.detail.DetailFragment"
+        android:name="com.marta.bookworm.ui.detail.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
         <action
