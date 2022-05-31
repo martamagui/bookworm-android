@@ -120,13 +120,13 @@ interface NetworkService {
         @Header("Authorization") token: String
     ): List<ReviewResponse>
 
-    @GET("review/hastag/{hastag}")
+    @GET("find/hastag/{hastag}")
     suspend fun getByTag(
         @Path("hastag") tag: String,
         @Header("Authorization") token: String
     ): List<ReviewResponse>
 
-    @GET("review/author/{author}")
+    @GET("find/author/{author}")
     suspend fun getByAuthor(
         @Path("author") author: String,
         @Header("Authorization") token: String

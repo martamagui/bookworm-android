@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.marta.bookworm.databinding.FragmentAmazonBinding
+import java.text.Normalizer
 
 
 class AmazonFragment : Fragment() {
@@ -26,13 +27,13 @@ class AmazonFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val search = args.link.lowercase().replace(" ", "%20")
-        Log.d("Link", "$urlBase$search")
-        setUI(search)
+        var formattedSearch: String = Normalizer.normalize(args.link.lowercase(), Normalizer.Form.NFD)
+        formattedSearch = formattedSearch.replace("[^\\p{ASCII}]", "").replace(" ", "%20")
+        setUI(formattedSearch)
     }
 
     private fun setUI(search: String) {
-        binding.wbAmazon.loadUrl(urlBase + search)
+        binding.wbAmazon.loadUrl(urlBase + search +"&i=stripbooks")
         binding.ibAmazonGoBack.setOnClickListener { findNavController().popBackStack() }
     }
 

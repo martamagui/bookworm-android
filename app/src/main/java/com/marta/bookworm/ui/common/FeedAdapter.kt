@@ -77,7 +77,7 @@ class FeedAdapter(
             tvDescriptionItem.setOnClickListener {
                 navigateToDetail(item.id)
             }
-            cvShopItem.setOnClickListener { goToAmazon("${item.bookTitle} ${item.bookAuthor}") }
+            cvShopItem.setOnClickListener { goToAmazon("${item.bookTitle}") }
             cvLikeItem.setOnClickListener {
                 likeDislikeCall(item.id)
                 if (item.liked == true) {

@@ -105,7 +105,7 @@ class DetailFragment : Fragment() {
             layoutUserDetail.setOnClickListener { navigateToUserProfile(review.userId.id) }
             cvLikeDetail.setOnClickListener { likePost(review) }
             cvSaveDetail.setOnClickListener { saveUnsavePost(review) }
-            cvShopDetail.setOnClickListener { openAmazon("$review.bookTitle $review.bookAuthor") }
+            cvShopDetail.setOnClickListener { openAmazon("$review.bookTitle") }
         }
     }
 

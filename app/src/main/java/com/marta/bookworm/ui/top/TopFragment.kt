@@ -66,17 +66,17 @@ class TopFragment : Fragment() {
             lySearchOptions.visibility = View.GONE
             tvTop1Title.text = response[0]._id
             ivTop1Img.loadImage(response[0].reviews[0].image)
-            ivTop1Img1.loadImage(response[0].reviews[0].image)
-            ivTop1Img2.loadImage(response[0].reviews[0].image)
+            ivTop1Img1.loadImage(response[0].reviews[1].image)
+            ivTop1Img2.loadImage(response[0].reviews[2].image)
             //TODO change images when ther's more reviews on the DB
             tvTop2Title.text = response[1]._id
             ivTop2Img1.loadImage(response[1].reviews[0].image)
-            ivTop2Img2.loadImage(response[1].reviews[0].image)
-            ivTop2Img3.loadImage(response[1].reviews[0].image)
+            ivTop2Img2.loadImage(response[1].reviews[1].image)
+            ivTop2Img3.loadImage(response[1].reviews[2].image)
 
             tvTop3Title.text = response[2]._id
             ivTop3Img1.loadImage(response[2].reviews[0].image)
-            ivTop3Img2.loadImage(response[2].reviews[0].image)
+            ivTop3Img2.loadImage(response[2].reviews[1].image)
             ivTop3Img3.loadImage(response[2].reviews[0].image)
         }
         setClicks(response[0]._id, response[1]._id, response[2]._id)

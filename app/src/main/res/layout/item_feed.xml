@@ -190,6 +190,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:contentDescription="@string/avatar_description"
+                                android:scaleType="centerCrop"
                                 app:srcCompat="@drawable/img_1" />
                         </androidx.cardview.widget.CardView>
 
