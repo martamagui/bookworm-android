@@ -8,16 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
-import com.google.firebase.FirebaseApp
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
+import androidx.navigation.fragment.findNavController
 import com.marta.bookworm.databinding.FragmentCreateReviewStep1Binding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import java.util.*
+
 
 @AndroidEntryPoint
 class CreateReviewStep1Fragment : Fragment() {
@@ -37,7 +31,7 @@ class CreateReviewStep1Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.cvGallery.setOnClickListener { getImage() }
+        setClicks()
     }
 
     private fun getImage() {
@@ -58,26 +52,37 @@ class CreateReviewStep1Fragment : Fragment() {
             if (requestCode == this.REQUEST_GALLERY) {
                 this.binding.ivImagePreview.setImageURI(data?.data)
                 if(data?.data != null){
-                    lifecycleScope.launch(Dispatchers.IO) {
-                        FirebaseApp.initializeApp(requireContext())
-                    Firebase.storage.reference.child("images/review/${UUID.randomUUID()}")
-                        .putFile(data?.data!!)
-                    }
+                   viewModel.uploadImage(data?.data!!)
                 }
                 hideGalleryIcon()
             }
         }
     }
 
-    private fun setBtns() {
-
-    }
-
-    private fun goBack(){
-
+    private fun setClicks() {
+        binding.cvGallery.setOnClickListener { getImage() }
+        binding.ivImagePreview.setOnClickListener { getImage() }
+        binding.ibCreateReviewClose.setOnClickListener { goBack() }
+        binding.cvContinueNew.setOnClickListener {
+            storageInfo()
+            navigateNext()
+        }
     }
 
     private fun hideGalleryIcon(){
         binding.ivGalleryIcon.visibility = View.GONE
     }
+
+    private fun storageInfo() {
+        TODO("Not yet implemented")
+    }
+
+    private fun goBack(){
+        findNavController().popBackStack()
+    }
+
+    private fun navigateNext() {
+        TODO("Not yet implemented")
+    }
+
 }

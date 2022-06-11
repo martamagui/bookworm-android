@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
                 renderUIState(loginUIState)
             }
         }
-
     }
 
     private fun renderUIState(loginUIState: LoginUIState) {
@@ -39,7 +38,5 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
     }
-
 }

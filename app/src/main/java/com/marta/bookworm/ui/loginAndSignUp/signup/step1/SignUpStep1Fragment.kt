@@ -92,7 +92,6 @@ class SignUpStep1Fragment : Fragment() {
     }
 
     private fun changeStatusBarColor() {
-        //TODO find a better way to do this
         getActivity()?.let {
             getActivity()?.getWindow()?.setStatusBarColor(it.getColor(R.color.inverseOnSurface))
         };

@@ -26,6 +26,7 @@ class CreateReviewStep1ViewModel @Inject constructor(
     )
     val createReviewUIState: StateFlow<CreateReviewStep1UIState> get() = _createReviewUIState
     private val imageRef = Firebase.storage.reference
+
     fun uploadImage(uri: Uri){
         viewModelScope.launch(Dispatchers.IO) {
             try {
