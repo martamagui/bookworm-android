@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.google.firebase.FirebaseApp
 import com.marta.bookworm.databinding.ActivityMainBinding
 import com.marta.bookworm.ui.ApplicationActivity
 import com.marta.bookworm.ui.loginAndSignUp.login.LoginFragmentViewModel

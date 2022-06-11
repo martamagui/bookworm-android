@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.google.firebase.FirebaseApp
 import com.marta.bookworm.R
 import com.marta.bookworm.databinding.ActivityApplicationBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,6 +22,7 @@ class ApplicationActivity : AppCompatActivity() {
         setContentView(binding.root)
         setNavigation()
         changeStatusBarColor()
+        FirebaseApp.initializeApp(this)
     }
     private fun setNavigation(){
         val navigationMenu =

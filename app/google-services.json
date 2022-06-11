@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "436264794335",
+    "project_id": "bookwormtfg",
+    "storage_bucket": "bookwormtfg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:436264794335:android:0ca29cd403a249c6a5916a",
+        "android_client_info": {
+          "package_name": "com.marta.bookworm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "436264794335-a82oom7dkfphdv4uv9qsn56n4qbsm659.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD07EiquyqJNzeZo4xewzRn1TqrQ7iLu0g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "436264794335-a82oom7dkfphdv4uv9qsn56n4qbsm659.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
