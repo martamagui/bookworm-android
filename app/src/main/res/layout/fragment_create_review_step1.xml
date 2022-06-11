@@ -113,6 +113,7 @@
         app:layout_constraintTop_toTopOf="@+id/iv_image_preview" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cv_gallery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="-18dp"
@@ -179,7 +180,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
-        android:text="@string/title"
+        android:text="@string/author"
         android:textAppearance="@style/title_medium"
         android:textColor="@color/primary"
         app:layout_constraintStart_toStartOf="parent"
@@ -255,7 +256,8 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="32dp"
-        android:progressTint="@color/inversePrimary"
+        android:progress="50"
+        android:progressTint="@color/primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title_score" />
@@ -287,7 +289,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:hint="@string/title"
+                android:hint="@string/author"
                 android:inputType="textAutoComplete"
                 android:minHeight="48dp"
                 android:singleLine="true"
