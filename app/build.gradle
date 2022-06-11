@@ -43,6 +43,7 @@ android {
 
 
 dependencies {
+    implementation 'com.android.support:cardview-v7:28.0.0'
     def navVersion = "2.4.1"
     def daggerHiltVersion = "2.40.5"
     def roomVersion = "2.4.2"

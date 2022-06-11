@@ -12,5 +12,7 @@ import javax.inject.Singleton
 object FirebaseManager {
     @Provides
     @Singleton
-    fun getFirebaseService(): FirebaseStorage
+    fun getFirebaseService(): FirebaseStorage {
+        return FirebaseStorage.getInstance()
+    }
 }

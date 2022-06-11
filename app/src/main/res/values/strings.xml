@@ -55,4 +55,9 @@
     <string name="current_psw">Current Password</string>
     <string name="new_password">New Password</string>
     <string name="save_password">Save password</string>
+    <string name="new_review">New Review</string>
+    <string name="gallery">Gallery</string>
+    <string name="score">Score</string>
+    <string name="title">Title</string>
+    <string name="author">Author</string>
 </resources>
