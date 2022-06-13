@@ -61,14 +61,6 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <ImageButton
-                android:id="@+id/ib_chat_feed"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/navigate_to_new_review"
-                android:src="@drawable/ic_baseline_mail_outline_24" />
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

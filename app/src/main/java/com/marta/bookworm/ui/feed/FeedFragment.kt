@@ -57,7 +57,6 @@ class FeedFragment : Fragment() {
     private fun setBtns() {
         with(binding) {
             ibNewReviewFeed.setOnClickListener { navigateToNewReview() }
-            ibChatFeed.setOnClickListener { navigateToChat() }
         }
     }
 
@@ -119,11 +118,6 @@ class FeedFragment : Fragment() {
     //Navigation
     private fun navigateToNewReview() {
         val action = FeedFragmentDirections.actionFeedFragment2ToCreateReviewStep1Fragment()
-        findNavController().navigate(action)
-    }
-
-    private fun navigateToChat() {
-        val action = FeedFragmentDirections.actionFeedFragment2ToChatListFragment()
         findNavController().navigate(action)
     }
 
