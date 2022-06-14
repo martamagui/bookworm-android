@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.marta.bookworm.api.NetworkService
 import com.marta.bookworm.api.model.body.review.ReviewBody
-import com.marta.bookworm.api.model.response.ReviewResponse
 import com.marta.bookworm.db.BookWorm_Database
+import com.marta.bookworm.ui.createReview.step2.CreateReviewStep2UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,6 +20,10 @@ class CreateReviewSharedViewModel @Inject constructor(
     private val networkService: NetworkService,
     private val db: BookWorm_Database
 ) : ViewModel() {
+    private val _step2UIState: MutableStateFlow<CreateReviewStep2UIState> = MutableStateFlow(
+        CreateReviewStep2UIState()
+    )
+    val step2UIState: StateFlow<CreateReviewStep2UIState> get() = _step2UIState
     private val _createReviewSharedState: MutableStateFlow<ReviewBody> =
         MutableStateFlow(ReviewBody())
     val createReviewSharedState: StateFlow<ReviewBody> get() = _createReviewSharedState
@@ -30,21 +34,31 @@ class CreateReviewSharedViewModel @Inject constructor(
                 bookAuthor = author,
                 bookTitle = title,
                 image = image,
-                score = score.toDouble()
+                score = score
             )
         }
     }
 
-    fun setStep2Info(description: String, tags: List<String>) {
-        _createReviewSharedState.update {
-            ReviewBody(
-                bookAuthor = createReviewSharedState.value.bookAuthor,
-                bookTitle = createReviewSharedState.value.bookTitle,
-                image = createReviewSharedState.value.image,
-                reviewDescription = description,
-                hastags = tags
-            )
+    fun setStep2Info(description: String) {
+        if(description.length>20){
+            _createReviewSharedState.update {
+                ReviewBody(
+                    bookAuthor = createReviewSharedState.value.bookAuthor,
+                    bookTitle = createReviewSharedState.value.bookTitle,
+                    image = createReviewSharedState.value.image,
+                    score = createReviewSharedState.value.score,
+                    reviewDescription = description,
+                    hastags = createReviewSharedState.value.hastags
+                )
+            }
+            sendReview()
+        }else{
+            setError("Please, fill description.")
         }
+    }
+
+    private fun setError(msg:String){
+        _step2UIState.update { CreateReviewStep2UIState(isError = true, errorMsg = msg) }
     }
 
     private suspend fun getMyToken(): String {
@@ -53,7 +67,7 @@ class CreateReviewSharedViewModel @Inject constructor(
         return token[0].token
     }
 
-    fun sendReview() {
+    private fun sendReview() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val myToken = getMyToken()
@@ -62,7 +76,24 @@ class CreateReviewSharedViewModel @Inject constructor(
                 }
             } catch (error: Error) {
                 Log.e("Review", "Error posting review: $error")
+                setError("Failed posting review")
             }
         }
     }
+
+    fun addTag(tag: String) {
+        var tags: MutableList<String> = mutableListOf()
+        tags.addAll(createReviewSharedState.value.hastags)
+        tags.add(tag)
+        ReviewBody(
+            bookAuthor = createReviewSharedState.value.bookAuthor,
+            bookTitle = createReviewSharedState.value.bookTitle,
+            image = createReviewSharedState.value.image,
+            score = createReviewSharedState.value.score,
+            reviewDescription = createReviewSharedState.value.reviewDescription,
+            hastags = tags
+        )
+    }
+
+
 }

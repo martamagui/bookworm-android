@@ -9,18 +9,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.marta.bookworm.R
 import com.marta.bookworm.databinding.FragmentCreateReviewStep2Binding
 import com.marta.bookworm.ui.createReview.CreateReviewSharedViewModel
+import com.marta.bookworm.ui.feed.FeedFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CreateReviewStep2Fragment : Fragment() {
     private var _binding: FragmentCreateReviewStep2Binding? = null
     private val binding get() = _binding!!
-    private val viewModel: CreateReviewStep2ViewModel by viewModels()
+
     private val sharedViewModel: CreateReviewSharedViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -33,7 +38,63 @@ class CreateReviewStep2Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            sharedViewModel.step2UIState.collect { state ->
+             renderUIState(state)
+            }
+        }
         setEvents()
+        setClicks()
+    }
+
+    private fun renderUIState(state: CreateReviewStep2UIState) {
+        if(state.isError){
+            showError(state.errorMsg)
+        }
+        if(state.isSuccess){
+            navigateToFeed()
+        }
+        if(state.isLoading){
+            //TODO Loading
+            //showLoading()
+        }
+    }
+
+    private fun showError(msg: String) {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Error")
+            .setMessage(msg)
+            .setPositiveButton("Okay") { dialog, which ->
+                binding.etDescription.isFocused
+            }
+            .show()
+    }
+
+
+    private fun setEvents() {
+        tagEvent()
+        publishEvent()
+    }
+
+    private fun setClicks() {
+        with(binding) {
+            btnPublish.setOnClickListener {
+                publishEvent()
+            }
+            ibBack.setOnClickListener { goBack() }
+        }
+    }
+
+    private fun tagEvent() {
+        binding.etTags.setOnKeyListener(View.OnKeyListener { _, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
+                sharedViewModel.addTag(binding.etTags.text.toString())
+                createChip(binding.etTags.text.toString())
+                binding.etTags.setText("")
+                return@OnKeyListener true
+            }
+            false
+        })
     }
 
     private fun createChip(tag: String) {
@@ -53,35 +114,34 @@ class CreateReviewStep2Fragment : Fragment() {
                     R.color.secondaryContainer
                 )
             )
-        chip.setOnCloseIconClickListener {
+        //TODO remove from shared the tag
+        /*chip.setOnCloseIconClickListener {
             binding.cgTags.removeView(chip as View)
-            //TODO remove from shared the tag
+
             //listTags.remove(text)
-        }
+        }*/
         binding.cgTags.addView(chip as View)
-    }
-
-    private fun setEvents() {
-        tagEvent()
-        publishEvent()
-    }
-
-    private fun tagEvent() {
-        binding.etTags.setOnKeyListener(View.OnKeyListener { _, keyCode, event ->
-            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
-                createChip(binding.etTags.text.toString())
-                binding.etTags.setText("")
-                return@OnKeyListener true
-            }
-            false
-        })
     }
 
     private fun publishEvent() {
         binding.btnPublish.setOnClickListener {
-            //TODO publicar reseña
+            sharedViewModel.setStep2Info(binding.etDescription.text.toString(), )
         }
     }
 
+    //------------ Navigation
 
+    private fun goBack() {
+        findNavController().popBackStack()
+    }
+
+    private fun navigateToFeed() {
+        parentFragmentManager.popBackStackImmediate()
+        val fg = FeedFragment()
+        parentFragmentManager.commit {
+            setReorderingAllowed(true)
+            addToBackStack(null)
+            replace(R.id.nav_host_fragment_main, fg, "feedFragment2")
+        }
+    }
 }

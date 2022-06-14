@@ -75,6 +75,7 @@ class CreateReviewStep1Fragment : Fragment() {
 
     private fun setSlider(){
         binding.seekbarScore.addOnChangeListener { slider, value, fromUser ->
+            binding.seekbarScore.value = "${"%.1f".format(binding.seekbarScore.value)}".toFloat()
             binding.tvScoreReview.text = "${"%.1f".format(binding.seekbarScore.value)}"
         }
     }
@@ -86,6 +87,9 @@ class CreateReviewStep1Fragment : Fragment() {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle("Error")
             .setMessage(msg)
+            .setPositiveButton("Okay") { dialog, which ->
+              binding.etTitle.isFocused
+            }
             .show()
     }
 

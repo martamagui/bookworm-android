@@ -44,7 +44,7 @@ interface NetworkService {
     @POST("user")
     suspend fun createNewUser(@Body user: UserBody): StandarResponse
 
-    @POST("/review")
+    @POST("review")
     suspend fun createReview(
         @Header("Authorization") token: String,
         @Body review: ReviewBody
