@@ -5,4 +5,5 @@ data class CreateReviewStep1UIState(
     val isError: Boolean = false,
     val isSuccess: Boolean = false,
     val errorMsg: String = "",
+    val imageLink: String? = null
 )
