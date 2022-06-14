@@ -1,5 +1,6 @@
 package com.marta.bookworm.api
 
+import com.marta.bookworm.api.model.body.review.ReviewBody
 import com.marta.bookworm.api.model.body.user.*
 import com.marta.bookworm.api.model.response.*
 import retrofit2.http.*
@@ -42,6 +43,12 @@ interface NetworkService {
     //--- POST
     @POST("user")
     suspend fun createNewUser(@Body user: UserBody): StandarResponse
+
+    @POST("/review")
+    suspend fun createReview(
+        @Header("Authorization") token: String,
+        @Body review: ReviewBody
+    ): StandarResponse
 
     @POST("user/login")
     suspend fun login(@Body credentials: Credentials): TokenResponse

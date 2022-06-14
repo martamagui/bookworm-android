@@ -34,6 +34,7 @@ class DetailViewModel @Inject constructor(
             }
         }
     }
+
     private suspend fun getMyToken(): String{
         val token = db.dao().findAllToken()
         Log.e("Detail", token.toString())

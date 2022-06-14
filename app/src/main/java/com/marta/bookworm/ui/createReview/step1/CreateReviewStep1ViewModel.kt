@@ -1,4 +1,4 @@
-package com.marta.bookworm.ui.createReview
+package com.marta.bookworm.ui.createReview.step1
 
 import android.net.Uri
 import android.util.Log
@@ -16,11 +16,7 @@ import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
 
-@HiltViewModel
-class CreateReviewStep1ViewModel @Inject constructor(
-    private val networkService: NetworkService,
-    private val db: BookWorm_Database
-) : ViewModel()  {
+class CreateReviewStep1ViewModel : ViewModel()  {
     private val _createReviewUIState: MutableStateFlow<CreateReviewStep1UIState> = MutableStateFlow(
         CreateReviewStep1UIState()
     )

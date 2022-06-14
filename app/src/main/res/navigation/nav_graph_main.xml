@@ -99,7 +99,7 @@
     </fragment>
     <fragment
         android:id="@+id/createReviewStep1Fragment"
-        android:name="com.marta.bookworm.ui.createReview.CreateReviewStep1Fragment"
+        android:name="com.marta.bookworm.ui.createReview.step1.CreateReviewStep1Fragment"
         android:label="fragment_create_review_step1"
         tools:layout="@layout/fragment_create_review_step1" />
     <fragment

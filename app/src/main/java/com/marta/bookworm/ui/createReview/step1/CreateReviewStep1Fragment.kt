@@ -1,4 +1,4 @@
-package com.marta.bookworm.ui.createReview
+package com.marta.bookworm.ui.createReview.step1
 
 import android.app.Activity
 import android.content.Intent
