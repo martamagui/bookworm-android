@@ -43,6 +43,7 @@ class CreateReviewStep1Fragment : Fragment() {
             }
         }
         setClicks()
+        setSlider()
     }
 
     private fun renderUIState(state: CreateReviewStep1UIState) {
@@ -54,8 +55,9 @@ class CreateReviewStep1Fragment : Fragment() {
             sharedViewModel.setStep1Info(
                 binding.etAuthor.text.toString(),
                 binding.etTitle.text.toString(),
-                state.imageLink!!
-            )
+                state.imageLink!!,
+                ("%.1f".format(binding.seekbarScore.value).toDouble()),
+                )
             navigateNext()
         }
     }
@@ -68,6 +70,12 @@ class CreateReviewStep1Fragment : Fragment() {
         binding.ibCreateReviewClose.setOnClickListener { goBack() }
         binding.cvContinueNew.setOnClickListener {
             storageInfo()
+        }
+    }
+
+    private fun setSlider(){
+        binding.seekbarScore.addOnChangeListener { slider, value, fromUser ->
+            binding.tvScoreReview.text = "${"%.1f".format(binding.seekbarScore.value)}"
         }
     }
 

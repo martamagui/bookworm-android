@@ -24,12 +24,13 @@ class CreateReviewSharedViewModel @Inject constructor(
         MutableStateFlow(ReviewBody())
     val createReviewSharedState: StateFlow<ReviewBody> get() = _createReviewSharedState
 
-    fun setStep1Info(title: String, author: String, image: String) {
+    fun setStep1Info(title: String, author: String, image: String, score: Double) {
         _createReviewSharedState.update {
             ReviewBody(
                 bookAuthor = author,
                 bookTitle = title,
-                image = image
+                image = image,
+                score = score.toDouble()
             )
         }
     }

@@ -36,7 +36,6 @@ class CreateReviewStep2Fragment : Fragment() {
         setEvents()
     }
 
-
     private fun createChip(tag: String) {
         val chip = Chip(requireContext())
         chip.text = "#$tag"
