@@ -8,4 +8,8 @@ class CreateReviewSharedViewModel {
         CreateReviewSharedUIState()
     )
     val createReviewSharedUIState: StateFlow<CreateReviewSharedUIState> get() = _createReviewSharedUIState
+
+    fun setStep1Info(title: String, author: String, image: String){
+
+    }
 }

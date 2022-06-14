@@ -96,6 +96,9 @@ class ProfileFragment : Fragment() {
         with(binding){
             rvProfile.adapter = adapter
             rvProfile.layoutManager = GridLayoutManager(context, 3)
+            rvProfile.isNestedScrollingEnabled = false
+            rvProfile.isScrollContainer = false
+
         }
     }
 
