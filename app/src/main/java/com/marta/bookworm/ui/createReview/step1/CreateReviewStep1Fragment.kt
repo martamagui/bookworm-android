@@ -2,13 +2,16 @@ package com.marta.bookworm.ui.createReview.step1
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.marta.bookworm.databinding.FragmentCreateReviewStep1Binding
@@ -34,7 +37,27 @@ class CreateReviewStep1Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            viewModel.createReviewUIState.collect { state ->
+                renderUIState(state)
+            }
+        }
         setClicks()
+    }
+
+    private fun renderUIState(state: CreateReviewStep1UIState) {
+        if (state.isError) {
+            showError(state.errorMsg)
+        }
+        if (state.isSuccess) {
+            Log.d("Firebase", "Image uploaded ${state.imageLink!!}")
+            sharedViewModel.setStep1Info(
+                binding.etAuthor.text.toString(),
+                binding.etTitle.text.toString(),
+                state.imageLink!!
+            )
+            navigateNext()
+        }
     }
 
     //--------- SetUI
@@ -45,7 +68,6 @@ class CreateReviewStep1Fragment : Fragment() {
         binding.ibCreateReviewClose.setOnClickListener { goBack() }
         binding.cvContinueNew.setOnClickListener {
             storageInfo()
-            navigateNext()
         }
     }
 
@@ -64,14 +86,14 @@ class CreateReviewStep1Fragment : Fragment() {
     }
 
     //------------ Actions
+
     private fun storageInfo() {
         with(binding) {
             val author: String = etAuthor.text.toString()
             val title: String = etTitle.text.toString()
-            val imageLink: String? = viewModel.createReviewUIState.value.imageLink
-            if (author.length > 2 && title.length > 1 && !imageLink.isNullOrEmpty()) {
-                sharedViewModel.setStep1Info(title, author, imageLink)
-                navigateNext()
+            val imageLink = viewModel.createReviewUIState.value.imageToUpload
+            if (author.length > 2 && title.length > 1 && imageLink != null) {
+                viewModel.uploadImage()
             } else {
                 showError("Please, fill all the fields.")
             }
@@ -94,13 +116,17 @@ class CreateReviewStep1Fragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == this.REQUEST_GALLERY) {
-                this.binding.ivImagePreview.setImageURI(data?.data)
                 if (data?.data != null) {
-                    viewModel.uploadImage(data?.data!!)
+                    setImageSelected(data?.data!!)
                 }
-                hideGalleryIcon()
             }
         }
+    }
+
+    private fun setImageSelected(data: Uri) {
+        viewModel.setSelectedImage(data)
+        this.binding.ivImagePreview.setImageURI(data)
+        hideGalleryIcon()
     }
 
     //------------ Navigation
