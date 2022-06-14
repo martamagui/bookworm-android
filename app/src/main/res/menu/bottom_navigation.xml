@@ -12,7 +12,7 @@
         android:icon="@drawable/ic_baseline_menu_book_24"
         tools:ignore="MenuTitle" />
     <item
-        android:id="@+id/profileFragment2"
+        android:id="@+id/profileFragment3"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_person_24"
         tools:ignore="MenuTitle" />
