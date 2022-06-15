@@ -2,6 +2,7 @@ package com.marta.bookworm.ui.loginAndSignUp.signup.step2
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.marta.bookworm.ui.common.validatePassword
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -17,24 +18,9 @@ class SignUpStep2ViewModel : ViewModel() {
         val validatePassword = validatePassword(pass, repPass)
         if (validatePassword) {
             _signUpStep2FUIState.update { SignUpStep2UIState(isSuccess = true) }
+        }else{
+            setErrorMsg("Password must contain a character (a-z),(A-Z) and (0-9)")
         }
-    }
-
-    private fun validatePassword(pass: String, repPass: String): Boolean {
-        if (pass.length > 4 && pass == repPass) {
-            val regexNum = Regex("[0123456789]")
-            val regexAbc = Regex("[a-z]")
-            val regexCaps = Regex("[A-B]")
-            val regexWSpaces = Regex("[ \\s\\n]")
-            if (!regexNum.containsMatchIn(pass) || !regexAbc.containsMatchIn(pass) ||
-                regexWSpaces.containsMatchIn(pass) || !regexCaps.containsMatchIn(pass)
-            ) {
-                setErrorMsg("Password must contain a character (a-z),(A-Z) and (0-9)")
-                return false
-            }
-        }
-        Log.d("pass", "Todo OK")
-        return true
     }
 
     private fun setErrorMsg(msg: String) {
