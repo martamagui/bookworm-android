@@ -65,6 +65,7 @@ class UpdatePasswordFragment : Fragment() {
 
     private fun showAlert(msg: String?) {
         MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Alert")
             .setMessage(msg)
             .setPositiveButton("Okay") { dialog, which -> }
             .show()

@@ -63,4 +63,6 @@
     <string name="review">Review</string>
     <string name="hashtags">Hashtags</string>
     <string name="publish">Publish</string>
+    <string name="profile_description">Profile description</string>
+    <string name="apply_changes">Apply Changes</string>
 </resources>
