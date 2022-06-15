@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.marta.bookworm.R
 import com.marta.bookworm.databinding.FragmentUpdatePasswordBinding
@@ -38,6 +39,7 @@ class UpdatePasswordFragment : Fragment() {
     }
 
     private fun setUI() {
+        binding.ibUpdatePswBack.setOnClickListener { goBack() }
         binding.btnSavePwd.setOnClickListener {
             viewModel.updatePassword(
                 binding.etNewPwd.text.toString(),
@@ -74,6 +76,10 @@ class UpdatePasswordFragment : Fragment() {
         } else {
             View.GONE
         }
+    }
+
+    private fun goBack() {
+        findNavController().popBackStack()
     }
 
 }
