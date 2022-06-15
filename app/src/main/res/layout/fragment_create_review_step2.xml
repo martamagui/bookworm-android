@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:rotation="180"
-                android:src="@drawable/ic_baseline_navigate_next_24"
+                android:src="@drawable/ic_baseline_close_24"
                 android:translationX="-6dp"
                 android:translationY="2dp"
                 android:translationZ="2dp" />
@@ -65,6 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
             android:gravity="center"
             android:orientation="vertical"
             tools:layout_conversion_absoluteHeight="0dp"
@@ -103,19 +104,17 @@
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp">
 
-                    <EditText
+                    <MultiAutoCompleteTextView
                         android:id="@+id/et_description"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="4dp"
                         android:background="@null"
+                        android:lines="20"
                         android:gravity="start|top"
-                        android:hint="@string/title"
-                        android:inputType="textAutoComplete"
-                        android:minHeight="48dp"
-                        android:singleLine="true"
-                        android:text="@string/review"
+                        android:hint="@string/review"
+                        android:inputType="textMultiLine"
                         android:textAppearance="@style/body_large"
                         android:textColor="@color/primary"
                         app:layout_constraintBottom_toBottomOf="parent"

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.ui.graphics.Color
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
@@ -40,7 +41,7 @@ class CreateReviewStep2Fragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             sharedViewModel.step2UIState.collect { state ->
-             renderUIState(state)
+                renderUIState(state)
             }
         }
         setEvents()
@@ -48,13 +49,13 @@ class CreateReviewStep2Fragment : Fragment() {
     }
 
     private fun renderUIState(state: CreateReviewStep2UIState) {
-        if(state.isError){
+        if (state.isError) {
             showError(state.errorMsg)
         }
-        if(state.isSuccess){
+        if (state.isSuccess) {
             navigateToFeed()
         }
-        if(state.isLoading){
+        if (state.isLoading) {
             //TODO Loading
             //showLoading()
         }
@@ -81,7 +82,7 @@ class CreateReviewStep2Fragment : Fragment() {
             btnPublish.setOnClickListener {
                 publishEvent()
             }
-            ibBack.setOnClickListener { goBack() }
+            ibBack.setOnClickListener { navigateToFeed() }
         }
     }
 
@@ -114,34 +115,28 @@ class CreateReviewStep2Fragment : Fragment() {
                     R.color.secondaryContainer
                 )
             )
+        chip.setTextColor(
+            ColorStateList.valueOf(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.primary
+                )
+            )
+        )
         //TODO remove from shared the tag
-        /*chip.setOnCloseIconClickListener {
-            binding.cgTags.removeView(chip as View)
-
-            //listTags.remove(text)
-        }*/
         binding.cgTags.addView(chip as View)
     }
 
     private fun publishEvent() {
         binding.btnPublish.setOnClickListener {
-            sharedViewModel.setStep2Info(binding.etDescription.text.toString(), )
+            sharedViewModel.setStep2Info(binding.etDescription.text.toString())
         }
     }
 
     //------------ Navigation
 
-    private fun goBack() {
-        findNavController().popBackStack()
-    }
-
     private fun navigateToFeed() {
-        parentFragmentManager.popBackStackImmediate()
-        val fg = FeedFragment()
-        parentFragmentManager.commit {
-            setReorderingAllowed(true)
-            addToBackStack(null)
-            replace(R.id.nav_host_fragment_main, fg, "feedFragment2")
-        }
+        val action = CreateReviewStep2FragmentDirections.actionCreateReviewStep2FragmentToFeedFragment2()
+        findNavController().navigate(action)
     }
 }

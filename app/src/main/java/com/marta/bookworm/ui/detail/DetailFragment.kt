@@ -53,9 +53,9 @@ class DetailFragment : Fragment() {
 
     private fun setUserInfo(review: ReviewResponse) {
         with(binding) {
-            tvUsernameDetail.text = review.userId.userName
+            tvUsernameDetail.text = review.userId?.userName
             ivReviewImageDetail.loadImage(review.image)
-            ibAvatarDetail.loadImage(review.userId.avatar)
+            ibAvatarDetail.loadImage(review.userId?.avatar)
             tvScoreDetail.text = (review.score).toString()
             tvAuthorDetail.text = review.bookAuthor
             tvTitleDetail.text = review.bookTitle
@@ -102,7 +102,7 @@ class DetailFragment : Fragment() {
         Log.d("detail", "TODObtns")
         with(binding) {
             ibDetailGoBack.setOnClickListener { findNavController().popBackStack() }
-            layoutUserDetail.setOnClickListener { navigateToUserProfile(review.userId.id) }
+            layoutUserDetail.setOnClickListener { navigateToUserProfile(review.userId!!.id) }
             cvLikeDetail.setOnClickListener { likePost(review) }
             cvSaveDetail.setOnClickListener { saveUnsavePost(review) }
             cvShopDetail.setOnClickListener { openAmazon("$review.bookTitle") }

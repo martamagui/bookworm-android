@@ -6,7 +6,7 @@ data class ReviewResponse(
     @SerializedName(value="id", alternate=["_id"])
     val id: String,
     @SerializedName("userId")
-    val userId: UserResponse,
+    val userId: UserResponse?,
     @SerializedName("bookTitle")
     val bookTitle: String,
     @SerializedName("bookAuthor")

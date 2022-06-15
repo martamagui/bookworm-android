@@ -38,8 +38,8 @@ class FeedAdapter(
             tvScoreItem.text = review.score.toString()
             tvAuthorItem.text = review.bookAuthor
             tvLikesAmountItem.text = review.likesAmount.toString()
-            tvUsernameItem.text = review.userId.userName
-            ibAvatarItem.loadImage(review.userId.avatar)
+            tvUsernameItem.text = review.userId?.userName
+            ibAvatarItem.loadImage(review.userId?.avatar)
         }
     }
 
@@ -67,7 +67,7 @@ class FeedAdapter(
             //TODO shop, like and save
             Log.e("ID", "${item.id}")
             layoutUser.setOnClickListener {
-                navigateToUserProfile(item.userId.id)
+                navigateToUserProfile(item.userId!!.id)
             }
             ibToDetail.setOnClickListener {
                 Log.d("Detail", item.id)

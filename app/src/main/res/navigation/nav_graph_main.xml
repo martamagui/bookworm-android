@@ -196,5 +196,10 @@
         android:id="@+id/createReviewStep2Fragment"
         android:name="com.marta.bookworm.ui.createReview.step2.CreateReviewStep2Fragment"
         android:label="fragment_create_review_step2"
-        tools:layout="@layout/fragment_create_review_step2" />
+        tools:layout="@layout/fragment_create_review_step2" >
+        <action
+            android:id="@+id/action_createReviewStep2Fragment_to_feedFragment2"
+            app:destination="@id/feedFragment2"
+            app:launchSingleTop="false" />
+    </fragment>
 </navigation>

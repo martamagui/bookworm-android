@@ -40,7 +40,8 @@ class CreateReviewSharedViewModel @Inject constructor(
     }
 
     fun setStep2Info(description: String) {
-        if(description.length>20){
+        setLoading()
+        if (description.length > 20) {
             _createReviewSharedState.update {
                 ReviewBody(
                     bookAuthor = createReviewSharedState.value.bookAuthor,
@@ -52,13 +53,17 @@ class CreateReviewSharedViewModel @Inject constructor(
                 )
             }
             sendReview()
-        }else{
+        } else {
             setError("Please, fill description.")
         }
     }
 
-    private fun setError(msg:String){
+    private fun setError(msg: String) {
         _step2UIState.update { CreateReviewStep2UIState(isError = true, errorMsg = msg) }
+    }
+
+    private fun setLoading() {
+        _step2UIState.update { CreateReviewStep2UIState(isLoading = true) }
     }
 
     private suspend fun getMyToken(): String {
@@ -72,13 +77,25 @@ class CreateReviewSharedViewModel @Inject constructor(
             try {
                 val myToken = getMyToken()
                 if (myToken != null) {
-                    networkService.createReview("Bearer ${myToken}", createReviewSharedState.value)
+                    val response = networkService.createReview(
+                        "Bearer ${myToken}",
+                        createReviewSharedState.value
+                    )
+                    if(response!= null){
+                        indicateSuccess()
+                    }
                 }
             } catch (error: Error) {
                 Log.e("Review", "Error posting review: $error")
                 setError("Failed posting review")
             }
         }
+    }
+
+
+    private fun indicateSuccess() {
+        _step2UIState.update { CreateReviewStep2UIState(isSuccess = true) }
+
     }
 
     fun addTag(tag: String) {
