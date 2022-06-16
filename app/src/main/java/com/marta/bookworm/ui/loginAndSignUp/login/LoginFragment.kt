@@ -43,11 +43,11 @@ class LoginFragment : Fragment() {
 
     private fun renderUIState(loginUIState: LoginUIState) {
         if (loginUIState.isError) {
-            showErrorMsg(loginUIState.errorMessage)
+            showErrorMsg()
         }
         if (loginUIState.isLoading) {
             showLoadingAnimation()
-        }else{
+        } else {
             hideLoadingAnimation()
         }
 
@@ -75,7 +75,6 @@ class LoginFragment : Fragment() {
     }
 
     private fun changeStatusBarColor() {
-        //TODO find a better way to do this
         getActivity()?.let {
             getActivity()?.getWindow()?.setStatusBarColor(it.getColor(R.color.primary))
         };
@@ -89,20 +88,20 @@ class LoginFragment : Fragment() {
             val credentials = Credentials(email, password)
             viewModel.loginAction(credentials)
         } else {
-            showErrorMsg("There is missing information")
+            showErrorMsg()
         }
     }
 
-    private fun showErrorMsg(message: String) {
-        binding.tvLoginError.setText(message)
+    private fun showErrorMsg() {
         binding.tvLoginError.visibility = View.VISIBLE
+        binding.tvLoginError.text = "Login failed"
     }
 
     private fun hideError() {
         binding.tvLoginError.visibility = View.GONE
     }
 
-    private fun setEditTExt(){
+    private fun setEditTExt() {
         binding.etEmailLogin.onFocusChangeListener = View.OnFocusChangeListener { view, b ->
             if (b) hideError()
         }

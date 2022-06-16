@@ -49,77 +49,81 @@ class EditProfileViewModel @Inject constructor(
         }
     }
 
-
     fun submitChanges(username: String, profileDescription: String) {
+        Log.d("Edit", "$username $profileDescription")
+        setLoading(true)
         viewModelScope.launch(Dispatchers.IO) {
             if (editProfileUIState.value.avatarUri != null) {
-                val avatar = async {
-                    uploadImage(editProfileUIState.value.avatarUri!!, true, "images/avatar/")
-                }
-                avatar.await()
-                changeAvatar()
+                uploadImage(editProfileUIState.value.avatarUri!!, true, "images/avatar/")
             }
             if (editProfileUIState.value.bannerUri != null) {
-                val banner = async {
-                    uploadImage(editProfileUIState.value.bannerUri!!, false, "images/banner/")
-                }
-                banner.await()
-                changeBanner()
+                uploadImage(editProfileUIState.value.bannerUri!!, false, "images/banner/")
             }
-            if(editProfileUIState.value.userName != username && validateUserName(username)){
-               changeUserName(username)
+            if (editProfileUIState.value.userName != username) {
+                validateAndSetUserName(username)
             }
-            if(editProfileUIState.value.description != profileDescription){
+            if (editProfileUIState.value.description != profileDescription) {
                 changeDescription(profileDescription)
             }
-
+            if (!editProfileUIState.value.isError) {
+                setSuccess()
+            }
         }
     }
 
-    private suspend fun changeBanner(): Boolean {
-        try {
-            val response = networkService.updateBanner( editProfileUIState.value.token,
-                UserBody(banner = editProfileUIState.value.bannerLink))
-            return response != null
-        } catch (error: Error) {
-            Log.e("Profile", "$error")
+    private fun changeBanner(link: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                networkService.updateBanner(
+                    editProfileUIState.value.token,
+                    UserBody(banner = link)
+                )
+            } catch (error: Error) {
+                Log.e("Profile", "$error")
+                setError("Error changing banner")
+            }
         }
-        return false
     }
 
-    private suspend fun changeAvatar(): Boolean {
-        try {
-            val response = networkService.updateAvatar( editProfileUIState.value.token,
-                UserBody(avatar = editProfileUIState.value.bannerLink))
-            return response != null
-        } catch (error: Error) {
-            Log.e("Profile", "$error")
+    private fun changeAvatar(link: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                networkService.updateAvatar(
+                    editProfileUIState.value.token,
+                    UserBody(avatar = link)
+                )
+            } catch (error: Error) {
+                Log.e("Profile", "$error")
+                setError("Error changing avatar")
+            }
         }
-        return false
     }
 
-    private fun changeDescription(profileDescription: String): Boolean {
-        try {
-            val response = networkService.updateDescription( editProfileUIState.value.token,
-                UserBody(description = profileDescription))
-            return response != null
-        } catch (error: Error) {
-            Log.e("Profile", "$error")
+    private fun changeDescription(profileDescription: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                networkService.updateDescription(
+                    editProfileUIState.value.token,
+                    UserBody(description = profileDescription)
+                )
+                setDescription(profileDescription)
+            } catch (error: Error) {
+                Log.e("Profile", "$error")
+                setError("Error changing description")
+            }
         }
-        return false
     }
 
-    private suspend fun changeUserName(etUsername: String): Boolean {
+    private suspend fun changeUserName(etUsername: String) {
         try {
-            val response = networkService.updateUserName(
+            networkService.updateUserName(
                 editProfileUIState.value.token,
                 UserBody(userName = etUsername)
             )
-            return response != null
         } catch (error: Error) {
             Log.e("Profile", "$error")
+            setError("Error changing User Name")
         }
-        return false
     }
 
     private fun uploadImage(imageUri: Uri, isAvatar: Boolean, route: String) {
@@ -138,15 +142,18 @@ class EditProfileViewModel @Inject constructor(
                         if (task.isSuccessful) {
                             if (isAvatar) {
                                 setNewAvatar("${task.result}")
+                                changeAvatar("${task.result}")
                             } else {
                                 setNewBanner("${task.result}")
+                                changeBanner("${task.result}")
                             }
-                            return@addOnCompleteListener
+                        } else {
+                            setError("Failed image upload")
                         }
-                        setError("Failed image upload")
                     }
+            } else {
+                setError("Please, select a picture")
             }
-            setError("Please, select a picture")
         } catch (error: Error) {
             Log.e("Profile", "$error")
             setError("Fail on submit")
@@ -154,23 +161,21 @@ class EditProfileViewModel @Inject constructor(
         setLoading(false)
     }
 
-    private fun validateUserName(userName: String): Boolean {
-        var availableUserName = false
+    private fun validateAndSetUserName(userName: String) {
         viewModelScope.launch(Dispatchers.IO) {
             val isTaken = networkService.isUserNameTaken(userName)
             if (isTaken.message == "available") {
-                availableUserName = true
-            }else {
+                changeUserName(userName)
+                setUserName(userName)
+            } else {
                 setError("Please introduce a valid userName")
             }
         }
-        return availableUserName
     }
     //-------------- DB
 
     private suspend fun getMyToken(): String {
         val token = db.dao().findAllToken()
-        Log.e("Profile", token.toString())
         setToken(token[0].token)
         return token[0].token
     }
@@ -188,8 +193,18 @@ class EditProfileViewModel @Inject constructor(
         _editprofileUIState.update { newState }
     }
 
-    fun setToken(token: String) {
-        val newState = _editprofileUIState.value.copy(token = token)
+    private fun setDescription(description: String) {
+        val newState = _editprofileUIState.value.copy(description = description)
+        _editprofileUIState.update { newState }
+    }
+
+    private fun setToken(token: String) {
+        val newState = _editprofileUIState.value.copy(token = "Bearer $token")
+        _editprofileUIState.update { newState }
+    }
+
+    private fun setUserName(name: String) {
+        val newState = _editprofileUIState.value.copy(isError = false, userName = name)
         _editprofileUIState.update { newState }
     }
 
@@ -204,12 +219,12 @@ class EditProfileViewModel @Inject constructor(
     }
 
     private fun setNewBanner(link: String) {
-        val newState = _editprofileUIState.value.copy(bannerLink = link)
+        val newState = _editprofileUIState.value.copy(isError = false, bannerLink = link)
         _editprofileUIState.update { newState }
     }
 
     private fun setNewAvatar(link: String) {
-        val newState = _editprofileUIState.value.copy(avatarLink = link)
+        val newState = _editprofileUIState.value.copy(isError = false, avatarLink = link)
         _editprofileUIState.update { newState }
     }
 

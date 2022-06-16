@@ -91,7 +91,7 @@ interface NetworkService {
     ): StandarResponse
 
     @PUT("user/update-description")
-    fun updateDescription(
+    suspend fun updateDescription(
         @Header("Authorization") token: String,
         @Body user: UserBody
     ): StandarResponse

@@ -48,7 +48,7 @@ class LoginFragmentViewModel @Inject constructor(
         }
     }
 
-    fun saveToken(email: String, token: String) {
+    private fun saveToken(email: String, token: String) {
         viewModelScope.launch(Dispatchers.IO) {
             db.dao().saveToken(Token(email, token))
             _loginUIState.update { LoginUIState(isLoading = false, isSuccess = true, savedToken = true) }

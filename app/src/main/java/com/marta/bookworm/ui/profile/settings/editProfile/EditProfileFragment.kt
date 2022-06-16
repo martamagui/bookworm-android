@@ -48,7 +48,7 @@ class EditProfileFragment : Fragment() {
         }
         viewModel.getProfileInfo()
         setClicks()
-       // setEvents()
+        // setEvents()
     }
 
     private fun renderUI(state: EditProfileUIState) {
@@ -62,6 +62,12 @@ class EditProfileFragment : Fragment() {
         }
         if (state.userName.isNotEmpty() || state.description.isNotEmpty()) {
             setUI(state.userName, state.description, state.avatarLink, state.bannerLink)
+        }
+        if (state.bannerUri != null) {
+            setNewBanner(state.bannerUri)
+        }
+        if (state.avatarUri != null) {
+            setNewAvatar(state.avatarUri)
         }
     }
 
@@ -143,12 +149,12 @@ class EditProfileFragment : Fragment() {
         }
     }
 
-    private fun setNewAvatar(data: Uri){
+    private fun setNewAvatar(data: Uri) {
         viewModel.setAvatarURI(data)
         binding.ivEdtiProfileAvatar.setImageURI(data)
     }
 
-    private fun setNewBanner(data: Uri){
+    private fun setNewBanner(data: Uri) {
         viewModel.setBannerURI(data)
         binding.ivEditBanner.setImageURI(data)
     }
