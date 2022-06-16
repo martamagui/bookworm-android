@@ -5,12 +5,15 @@ import android.content.ClipDescription
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.marta.bookworm.R
 import com.marta.bookworm.databinding.FragmentEditProfileBinding
@@ -45,6 +48,7 @@ class EditProfileFragment : Fragment() {
         }
         viewModel.getProfileInfo()
         setClicks()
+       // setEvents()
     }
 
     private fun renderUI(state: EditProfileUIState) {
@@ -76,7 +80,6 @@ class EditProfileFragment : Fragment() {
             ivEdtiProfileAvatar.loadImage(avatar)
             ivEditBanner.loadImage(banner)
         }
-
     }
 
 
@@ -96,6 +99,16 @@ class EditProfileFragment : Fragment() {
                     etmlProfileDescription.text.toString()
                 )
             }
+            ibEditProfileBack.setOnClickListener { findNavController().popBackStack() }
+        }
+    }
+
+    private fun setEvents() {
+        with(binding) {
+            etUsername.addTextChangedListener {
+                var value = etUsername.text.toString().filterNot { it.isWhitespace() }
+                etUsername.setText(value)
+            }
         }
     }
 
@@ -111,8 +124,7 @@ class EditProfileFragment : Fragment() {
         val intent = Intent(Intent.ACTION_GET_CONTENT)
             .setType("image/*")
             .addCategory(Intent.CATEGORY_OPENABLE)
-        val mimeTypes =
-            arrayOf("image/jpeg", "image/png")
+        val mimeTypes = arrayOf("image/jpeg", "image/png")
         intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes)
         startActivityForResult(
             Intent.createChooser(intent, "Select"), REQUEST_GALLERY
@@ -123,13 +135,21 @@ class EditProfileFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == this.REQUEST_GALLERY && data?.data != null) {
             if (avatarPressed) {
-                viewModel.setAvatarURI(data?.data!!)
+                setNewAvatar(data?.data!!)
             }
             if (bannerPressed) {
-                viewModel.setBannerURI(data?.data!!)
+                setNewBanner(data?.data!!)
             }
         }
     }
 
+    private fun setNewAvatar(data: Uri){
+        viewModel.setAvatarURI(data)
+        binding.ivEdtiProfileAvatar.setImageURI(data)
+    }
 
+    private fun setNewBanner(data: Uri){
+        viewModel.setBannerURI(data)
+        binding.ivEditBanner.setImageURI(data)
+    }
 }

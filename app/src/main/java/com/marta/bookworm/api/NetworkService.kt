@@ -81,14 +81,21 @@ interface NetworkService {
     @PUT("user/update-banner")
     suspend fun updateBanner(
         @Header("Authorization") token: String,
-        @Body user: ProfileBody
+        @Body user: UserBody
     ): StandarResponse
 
     @PUT("user/update-avatar")
     suspend fun updateAvatar(
         @Header("Authorization") token: String,
-        @Body user: ProfileBody
+        @Body user: UserBody
     ): StandarResponse
+
+    @PUT("user/update-description")
+    fun updateDescription(
+        @Header("Authorization") token: String,
+        @Body user: UserBody
+    ): StandarResponse
+
 
     @PUT("user/follow/{userId}")
     suspend fun followUnfollowUser(

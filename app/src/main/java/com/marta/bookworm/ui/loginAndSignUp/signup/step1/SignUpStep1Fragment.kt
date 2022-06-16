@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -64,6 +65,11 @@ class SignUpStep1Fragment : Fragment() {
     }
 
     private fun setEditText() {
+        binding.etEmailSu.addTextChangedListener {
+            var value  = binding.etEmailSu.text.toString().filterNot { it.isWhitespace() }
+            binding.etEmailSu.setText(value)
+        }
+
         binding.etEmailSu.onFocusChangeListener = View.OnFocusChangeListener { view, b ->
             if (!b) {
                 viewModel.validateEmail(binding.etEmailSu.text.toString())
@@ -71,6 +77,7 @@ class SignUpStep1Fragment : Fragment() {
                 viewModel.resetError()
             }
         }
+
         binding.etUsernameSu.onFocusChangeListener = View.OnFocusChangeListener { view, b ->
             if (!b) {
                 viewModel.validateUserName(binding.etUsernameSu.text.toString())
