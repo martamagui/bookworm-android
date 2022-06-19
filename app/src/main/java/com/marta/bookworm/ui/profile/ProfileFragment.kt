@@ -93,9 +93,9 @@ class ProfileFragment : Fragment() {
             ivBanner.loadImage(user.banner)
             displayReviews(user.reviews)
             seBtns(user)
-            if (user.isMe != null && user.followed != null) setProfileMode(
+            if (user.isMe != null) setProfileMode(
                 user.isMe!!,
-                user.followed!!
+                user.followed
             )
         }
     }
@@ -111,27 +111,28 @@ class ProfileFragment : Fragment() {
     private fun followAction(user: UserResponse) {
         viewModel.followUnfollow(user.id)
         isFollowed = !isFollowed
-        if (isFollowed){
+        if (isFollowed) {
             binding.ivFollow.setImageResource(R.drawable.ic_baseline_remove_24)
         } else {
             binding.ivFollow.setImageResource(R.drawable.ic_baseline_add_profile_24)
         }
     }
 
-    private fun setProfileMode(isMe: Boolean, followed: Boolean) {
+    private fun setProfileMode(isMe: Boolean, followed: Boolean?) {
         if (isMe) {
             binding.cvSavedPosts.visibility = View.VISIBLE
             binding.cvSettings.visibility = View.VISIBLE
         } else {
+            isFollowed = followed ?: false
             binding.cvFollowUnfollow.visibility = View.VISIBLE
             binding.ivFollow.setImageResource(
-                if (followed) {
+                if (isFollowed) {
                     R.drawable.ic_baseline_remove_24
                 } else {
                     R.drawable.ic_baseline_add_profile_24
                 }
             )
-            isFollowed = followed
+
         }
     }
 
