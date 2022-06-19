@@ -49,7 +49,9 @@ class SignUpStep2Fragment : Fragment() {
         setBtn()
         setEditText()
         changeStatusBarColor()
+
     }
+
 
     private fun setBtn() {
         binding.btnContinue2.setOnClickListener {
@@ -63,9 +65,7 @@ class SignUpStep2Fragment : Fragment() {
     }
 
     private fun setEditText() {
-        binding.etDobSu2.setOnClickListener {
-            openDatePicker()
-        }
+        binding.etDobSu2.setOnClickListener { openDatePicker() }
         binding.etPassword1.onFocusChangeListener = View.OnFocusChangeListener { view, b ->
             if (b) hideError()
         }
@@ -75,7 +75,6 @@ class SignUpStep2Fragment : Fragment() {
     }
 
     private fun changeStatusBarColor() {
-        //TODO find a better way to do this
         getActivity()?.let {
             getActivity()?.getWindow()?.setStatusBarColor(it.getColor(R.color.inverseOnSurface))
         };
@@ -86,6 +85,7 @@ class SignUpStep2Fragment : Fragment() {
         if (state.isSuccess) {
             setInfo()
             navigateToLastStep()
+            viewModel.resetSuccess()
         }
         if (state.dob != "") setDobText(state.dob)
     }

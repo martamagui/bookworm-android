@@ -1,6 +1,5 @@
 package com.marta.bookworm.ui.loginAndSignUp.signup.step2
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.marta.bookworm.ui.common.validatePassword
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -36,5 +35,9 @@ class SignUpStep2ViewModel : ViewModel() {
         val simpleDateFormat = SimpleDateFormat(pattern)
         val formattedDate = simpleDateFormat.format(Date(date))
         _signUpStep2FUIState.update { SignUpStep2UIState(dob = formattedDate) }
+    }
+
+    fun resetSuccess() {
+        _signUpStep2FUIState.update { SignUpStep2UIState(isSuccess = false) }
     }
 }

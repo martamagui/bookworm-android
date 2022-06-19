@@ -56,6 +56,10 @@ class SignUpStep1ViewModel @Inject constructor(private val networkService: Netwo
     fun resetError() {
         _signUpStep1FUIState.update { SignUpStep1UIState(isError = false) }
     }
+    fun resetSuccess(){
+        _signUpStep1FUIState.update { SignUpStep1UIState(isSuccess = false) }
+
+    }
 
     private fun validateTextFields(text: String): Boolean {
         if (text != null && text.length > 2) {

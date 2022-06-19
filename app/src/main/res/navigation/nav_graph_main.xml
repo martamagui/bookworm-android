@@ -18,13 +18,6 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:destination="@id/createReviewStep1Fragment" />
         <action
-            android:id="@+id/action_feedFragment2_to_chatListFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:destination="@id/chatListFragment" />
-        <action
             android:id="@+id/action_feedFragment2_to_detailFragment"
             app:destination="@id/detailFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
@@ -106,11 +99,6 @@
             android:id="@+id/action_createReviewStep1Fragment_to_createReviewStep2Fragment"
             app:destination="@id/createReviewStep2Fragment" />
     </fragment>
-    <fragment
-        android:id="@+id/chatListFragment"
-        android:name="com.marta.bookworm.ui.chat.ChatListFragment"
-        android:label="fragment_chat_list"
-        tools:layout="@layout/fragment_chat_list" />
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.marta.bookworm.ui.detail.DetailFragment"

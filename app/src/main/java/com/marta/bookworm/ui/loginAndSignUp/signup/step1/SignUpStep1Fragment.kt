@@ -42,6 +42,7 @@ class SignUpStep1Fragment : Fragment() {
         setUI()
     }
 
+
     private fun renderUIState(state: SignUpStep1UIState) {
         if (state.isError) {
             showError(state.errorMsg)
@@ -55,6 +56,7 @@ class SignUpStep1Fragment : Fragment() {
                 binding.etFullNameSu.text.toString()
             )
             navigateToNextStep()
+            viewModel.resetSuccess()
         }
     }
 
@@ -65,11 +67,6 @@ class SignUpStep1Fragment : Fragment() {
     }
 
     private fun setEditText() {
-        binding.etEmailSu.addTextChangedListener {
-            var value  = binding.etEmailSu.text.toString().filterNot { it.isWhitespace() }
-            binding.etEmailSu.setText(value)
-        }
-
         binding.etEmailSu.onFocusChangeListener = View.OnFocusChangeListener { view, b ->
             if (!b) {
                 viewModel.validateEmail(binding.etEmailSu.text.toString())

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.marta.bookworm.R
 import com.marta.bookworm.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,7 +39,6 @@ class LoginFragment : Fragment() {
         }
         checkToken()
         setUI()
-
     }
 
     private fun renderUIState(loginUIState: LoginUIState) {
@@ -72,6 +72,15 @@ class LoginFragment : Fragment() {
     private fun setBtnsListeners() {
         binding.btnLogin.setOnClickListener { loginAction() }
         binding.btnAccountLogin.setOnClickListener { navigateToSignUp() }
+        binding.btnForgot.setOnClickListener { showAlert("We have sent you and email to reset your password.") }
+    }
+
+    private fun showAlert(msg: String) {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Check your email")
+            .setMessage(msg)
+            .setPositiveButton("Okay") { dialog, which -> }
+            .show()
     }
 
     private fun changeStatusBarColor() {

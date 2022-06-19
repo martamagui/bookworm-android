@@ -35,51 +35,14 @@
                     android:orientation="vertical"
                     android:padding="6dp">
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
+                    <ImageButton
+                        android:id="@+id/ib_search_back"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        app:cardCornerRadius="32dp"
-                        tools:layout_conversion_absoluteHeight="48dp"
-                        tools:layout_conversion_absoluteWidth="464dp"
-                        tools:layout_editor_absoluteX="8dp"
-                        tools:layout_editor_absoluteY="8dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal"
-                            android:padding="6dp">
-
-                            <ImageView
-                                android:id="@+id/imageView15"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:contentDescription="@string/book_image"
-                                android:src="@drawable/ic_baseline_search_24"
-                                tools:ignore="ImageContrastCheck"
-                                tools:layout_conversion_absoluteHeight="24dp"
-                                tools:layout_conversion_absoluteWidth="24dp"
-                                tools:layout_editor_absoluteX="20dp"
-                                tools:layout_editor_absoluteY="20dp" />
-
-                            <TextView
-                                android:id="@+id/et_search_value_search"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="6dp"
-                                android:layout_weight="1"
-                                android:hint="@string/search"
-                                android:textAppearance="@style/search"
-                                android:translationZ="2dp"
-                                tools:ignore="TextContrastCheck"
-                                tools:layout_conversion_absoluteHeight="40dp"
-                                tools:layout_conversion_absoluteWidth="415dp"
-                                tools:layout_editor_absoluteX="44dp"
-                                tools:layout_editor_absoluteY="12dp" />
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-
+                        android:layout_gravity="center_vertical"
+                        android:background="@android:color/transparent"
+                        android:padding="16dp"
+                        android:src="@drawable/ic_baseline_arrow_back_ios_24" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

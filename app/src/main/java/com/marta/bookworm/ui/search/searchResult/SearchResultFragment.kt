@@ -75,6 +75,7 @@ class SearchResultFragment : Fragment() {
             rvResultReviews.adapter = adapter
             rvResultReviews.layoutManager = GridLayoutManager(context, 3)
             setImageSearchType()
+            ibSearchBack.setOnClickListener { findNavController().popBackStack() }
         }
     }
 
