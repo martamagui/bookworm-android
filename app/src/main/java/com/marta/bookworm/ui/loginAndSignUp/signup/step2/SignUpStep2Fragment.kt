@@ -65,6 +65,7 @@ class SignUpStep2Fragment : Fragment() {
     }
 
     private fun setEditText() {
+        binding.cardviewDaySu2.setOnClickListener { openDatePicker() }
         binding.etDobSu2.setOnClickListener { openDatePicker() }
         binding.etPassword1.onFocusChangeListener = View.OnFocusChangeListener { view, b ->
             if (b) hideError()
