@@ -21,6 +21,7 @@ class FeedViewModel @Inject constructor(
     val feedUIState: StateFlow<FeedUIState> get() = _feedUIState
 
     fun getAllFeedPosts() {
+        updateLoading()
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val myToken = getMyToken()
@@ -41,7 +42,11 @@ class FeedViewModel @Inject constructor(
         }
     }
 
-    fun updateError(msg: String) {
+    private fun updateLoading() {
+        _feedUIState.update { FeedUIState(isLoading = true) }
+    }
+
+    private fun updateError(msg: String) {
         _feedUIState.update { FeedUIState(isLoading = false, isError = true, errorMsg = msg) }
     }
 

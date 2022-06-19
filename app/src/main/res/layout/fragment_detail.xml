@@ -237,12 +237,12 @@
 
                                 <ImageView
                                     android:id="@+id/ib_avatar_detail"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
                                     android:layout_weight="1"
                                     android:contentDescription="@string/todo"
                                     android:scaleType="centerCrop"
-                                    app:srcCompat="@drawable/img_1" />
+                                    app:srcCompat="@drawable/grad_default_img" />
                             </androidx.cardview.widget.CardView>
 
                             <TextView
@@ -263,7 +263,7 @@
                         android:layout_height="250dp"
                         android:contentDescription="string/content_description_media"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/img" />
+                        android:src="@drawable/grad_default_img" />
 
                     <LinearLayout
                         android:layout_width="match_parent"

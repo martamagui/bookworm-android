@@ -44,7 +44,6 @@ class FeedFragment : Fragment() {
                 renderUIState(feedUIState)
             }
         }
-        //TODO Change for the custom feed when the call is created.
         viewModel.getAllFeedPosts()
         setUI()
     }
@@ -70,8 +69,10 @@ class FeedFragment : Fragment() {
         if (uiState.isError) {
             showError(uiState.errorMsg)
         }
-        if (uiState.isLoading) {
+        if (uiState.isLoading && uiState.feedList.isNullOrEmpty()) {
             showLoadingAnimation()
+        }else{
+            hideLoadingAnimation()
         }
         if (uiState.isSuccess) {
             if (uiState.feedList!!.isEmpty()) {
@@ -102,8 +103,10 @@ class FeedFragment : Fragment() {
     }
 
     private fun showLoadingAnimation() {
-        Log.d("Empty", "Animation")
-        //TODO
+        binding.shimmerFeed.visibility = View.VISIBLE
+    }
+    private fun hideLoadingAnimation() {
+        binding.shimmerFeed.visibility = View.GONE
     }
 
     //Network
