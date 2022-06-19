@@ -30,4 +30,7 @@
     <style name="Widget.App.CheckBox" parent="Widget.MaterialComponents.CompoundButton.CheckBox">
         <item name="buttonTint">@color/primaryContainer</item>
     </style>
+    <style name="SplashTheme" parent="Theme.BookWorm">
+        <item name="android:windowBackground">@drawable/splashscreen</item>
+    </style>
 </resources>

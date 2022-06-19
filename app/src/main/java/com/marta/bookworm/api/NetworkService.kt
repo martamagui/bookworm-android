@@ -8,8 +8,6 @@ import retrofit2.http.*
 interface NetworkService {
     //-------------------------------------- USER
     //--- GET
-    @GET("user")
-    suspend fun getUnfilteredUsers(): List<UserResponse>
 
     @GET("user/{userId}")
     suspend fun getUserById(
@@ -60,20 +58,8 @@ interface NetworkService {
         @Body user: UserBody
     ): StandarResponse
 
-    @PUT("user/update-email")
-    suspend fun updateEmail(
-        @Header("Authorization") token: String,
-        @Body user: UserBody
-    ): StandarResponse
-
     @PUT("user/update-username")
     suspend fun updateUserName(
-        @Header("Authorization") token: String,
-        @Body user: UserBody
-    ): StandarResponse
-
-    @PUT("user/update-newsletter")
-    suspend fun updateNewsletter(
         @Header("Authorization") token: String,
         @Body user: UserBody
     ): StandarResponse
@@ -102,13 +88,6 @@ interface NetworkService {
         @Header("Authorization") token: String,
         //User To follow
         @Path("userId") userId: String,
-    ): StandarResponse
-
-    @PUT("user/save-review/{userId}")
-    suspend fun savedReview(
-        @Header("Authorization") token: String,
-        @Path("userId") userId: String,
-        @Body savedReview: SavedReviewBody
     ): StandarResponse
 
     //--- DELETE
