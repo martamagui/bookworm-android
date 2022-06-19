@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.marta.bookworm.R
 import com.marta.bookworm.api.model.response.TopResponse
 import com.marta.bookworm.databinding.FragmentTopBinding
@@ -68,7 +69,7 @@ class TopFragment : Fragment() {
             ivTop1Img.loadImage(response[0].reviews[0].image)
             ivTop1Img1.loadImage(response[0].reviews[1].image)
             ivTop1Img2.loadImage(response[0].reviews[2].image)
-            //TODO change images when ther's more reviews on the DB
+
             tvTop2Title.text = response[1]._id
             ivTop2Img1.loadImage(response[1].reviews[0].image)
             ivTop2Img2.loadImage(response[1].reviews[1].image)
@@ -122,8 +123,11 @@ class TopFragment : Fragment() {
     }
 
     private fun showError(msg: String?) {
-        Log.d("top", "$msg")
-        //TODO hacer un dialog que muestre el error
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Welcome to Bookworm")
+            .setMessage(msg)
+            .setPositiveButton("Okay") { dialog, which -> }
+            .show()
     }
 
     private fun navigateToSearchResult(value: String, type: String) {

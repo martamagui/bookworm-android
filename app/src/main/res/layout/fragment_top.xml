@@ -299,261 +299,283 @@
                         android:textAppearance="@style/title_large"
                         android:textColor="@color/tertiary" />
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/cv_top_1"
-                        style="?attr/materialCardViewElevatedStyle"
+                    <com.facebook.shimmer.ShimmerFrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        app:cardBackgroundColor="@color/background"
-                        app:cardCornerRadius="12dp"
-                        app:cardElevation="4dp">
-
+                        android:orientation="vertical">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:paddingStart="16dp"
-                            android:paddingTop="8dp"
-                            android:paddingBottom="16dp">
+                            android:orientation="vertical">
+                            <include layout="@layout/item_top_shimmer"/>
+                            <include layout="@layout/item_top_shimmer"/>
+                            <include layout="@layout/item_top_shimmer"/>
+                        </LinearLayout>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cv_top_1"
+                            style="?attr/materialCardViewElevatedStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:cardBackgroundColor="@color/background"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="4dp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_marginBottom="6dp"
-                                android:orientation="horizontal">
+                                android:orientation="vertical"
+                                android:paddingStart="16dp"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="16dp">
 
-                                <TextView
-                                    android:id="@+id/tv_top1_title"
-                                    android:layout_width="0dp"
+                                <LinearLayout
+                                    android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:gravity="center_vertical"
-                                    android:text="@string/loading"
-                                    android:textAppearance="@style/title_medium"
-                                    android:textColor="@color/secondary" />
+                                    android:layout_marginBottom="6dp"
+                                    android:orientation="horizontal">
 
-                                <ImageView
-                                    android:id="@+id/iv_go_next_top1"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_baseline_navigate_next_24" />
+                                    <TextView
+                                        android:id="@+id/tv_top1_title"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="center_vertical"
+                                        android:text="@string/loading"
+                                        android:textAppearance="@style/title_medium"
+                                        android:textColor="@color/secondary" />
+
+                                    <ImageView
+                                        android:id="@+id/iv_go_next_top1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/ic_baseline_navigate_next_24" />
+                                </LinearLayout>
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:id="@+id/linearLayout7"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:paddingEnd="16dp">
+
+                                    <com.google.android.material.imageview.ShapeableImageView
+                                        android:id="@+id/iv_top1_img_1"
+                                        android:layout_width="115dp"
+                                        android:layout_height="115dp"
+                                        android:scaleType="centerCrop"
+                                        android:src="@drawable/grad_default_img"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:shapeAppearanceOverlay="@style/RoundedBorders" />
+
+                                    <com.google.android.material.imageview.ShapeableImageView
+                                        android:id="@+id/iv_top1_img"
+                                        android:layout_width="115dp"
+                                        android:layout_height="115dp"
+                                        android:scaleType="centerCrop"
+                                        android:src="@drawable/grad_default_img"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toStartOf="@+id/iv_top1_img_2"
+                                        app:layout_constraintStart_toEndOf="@+id/iv_top1_img_1"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:shapeAppearanceOverlay="@style/RoundedBorders" />
+
+                                    <com.google.android.material.imageview.ShapeableImageView
+                                        android:id="@+id/iv_top1_img_2"
+                                        android:layout_width="115dp"
+                                        android:layout_height="115dp"
+                                        android:scaleType="centerCrop"
+                                        android:src="@drawable/grad_default_img"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:shapeAppearanceOverlay="@style/RoundedBorders" />
+                                </androidx.constraintlayout.widget.ConstraintLayout>
                             </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
 
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:id="@+id/linearLayout7"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="horizontal"
-                                android:paddingEnd="16dp">
-
-                                <com.google.android.material.imageview.ShapeableImageView
-                                    android:id="@+id/iv_top1_img_1"
-                                    android:layout_width="115dp"
-                                    android:layout_height="115dp"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/grad_default_img"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:shapeAppearanceOverlay="@style/RoundedBorders" />
-
-                                <com.google.android.material.imageview.ShapeableImageView
-                                    android:id="@+id/iv_top1_img"
-                                    android:layout_width="115dp"
-                                    android:layout_height="115dp"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/grad_default_img"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toStartOf="@+id/iv_top1_img_2"
-                                    app:layout_constraintStart_toEndOf="@+id/iv_top1_img_1"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:shapeAppearanceOverlay="@style/RoundedBorders" />
-
-                                <com.google.android.material.imageview.ShapeableImageView
-                                    android:id="@+id/iv_top1_img_2"
-                                    android:layout_width="115dp"
-                                    android:layout_height="115dp"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/grad_default_img"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:shapeAppearanceOverlay="@style/RoundedBorders" />
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/cv_top_2"
-                        style="?attr/materialCardViewElevatedStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="16dp"
-                        app:cardBackgroundColor="@color/background"
-                        app:cardCornerRadius="12dp"
-                        app:cardElevation="4dp">
-
-                        <LinearLayout
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cv_top_2"
+                            style="?attr/materialCardViewElevatedStyle"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:paddingStart="16dp"
-                            android:paddingTop="8dp"
-                            android:paddingBottom="16dp">
+                            android:layout_marginTop="16dp"
+                            app:cardBackgroundColor="@color/background"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="4dp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_marginBottom="6dp"
-                                android:orientation="horizontal"
-                                android:paddingEnd="8dp">
+                                android:orientation="vertical"
+                                android:paddingStart="16dp"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="16dp">
 
-                                <TextView
-                                    android:id="@+id/tv_top2_title"
-                                    android:layout_width="0dp"
+                                <LinearLayout
+                                    android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:gravity="center_vertical"
-                                    android:text="@string/loading"
-                                    android:textAppearance="@style/title_medium"
-                                    android:textColor="@color/secondary" />
+                                    android:layout_marginBottom="6dp"
+                                    android:orientation="horizontal"
+                                    android:paddingEnd="8dp">
 
-                                <ImageView
-                                    android:id="@+id/iv_go_next_top2"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_baseline_navigate_next_24" />
+                                    <TextView
+                                        android:id="@+id/tv_top2_title"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="center_vertical"
+                                        android:text="@string/loading"
+                                        android:textAppearance="@style/title_medium"
+                                        android:textColor="@color/secondary" />
+
+                                    <ImageView
+                                        android:id="@+id/iv_go_next_top2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/ic_baseline_navigate_next_24" />
+                                </LinearLayout>
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:paddingEnd="16dp">
+
+                                    <com.google.android.material.imageview.ShapeableImageView
+                                        android:id="@+id/iv_top2_img_1"
+                                        android:layout_width="115dp"
+                                        android:layout_height="115dp"
+                                        android:scaleType="centerCrop"
+                                        android:src="@drawable/grad_default_img"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:shapeAppearanceOverlay="@style/RoundedBorders" />
+
+                                    <com.google.android.material.imageview.ShapeableImageView
+                                        android:id="@+id/iv_top2_img_2"
+                                        android:layout_width="115dp"
+                                        android:layout_height="115dp"
+                                        android:scaleType="centerCrop"
+                                        android:src="@drawable/grad_default_img"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toStartOf="@+id/iv_top2_img_3"
+                                        app:layout_constraintStart_toEndOf="@+id/iv_top2_img_1"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:shapeAppearanceOverlay="@style/RoundedBorders" />
+
+                                    <com.google.android.material.imageview.ShapeableImageView
+                                        android:id="@+id/iv_top2_img_3"
+                                        android:layout_width="115dp"
+                                        android:layout_height="115dp"
+                                        android:scaleType="centerCrop"
+                                        android:src="@drawable/grad_default_img"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:shapeAppearanceOverlay="@style/RoundedBorders" />
+                                </androidx.constraintlayout.widget.ConstraintLayout>
                             </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
 
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="horizontal"
-                                android:paddingEnd="16dp">
-
-                                <com.google.android.material.imageview.ShapeableImageView
-                                    android:id="@+id/iv_top2_img_1"
-                                    android:layout_width="115dp"
-                                    android:layout_height="115dp"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/grad_default_img"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:shapeAppearanceOverlay="@style/RoundedBorders" />
-
-                                <com.google.android.material.imageview.ShapeableImageView
-                                    android:id="@+id/iv_top2_img_2"
-                                    android:layout_width="115dp"
-                                    android:layout_height="115dp"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/grad_default_img"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toStartOf="@+id/iv_top2_img_3"
-                                    app:layout_constraintStart_toEndOf="@+id/iv_top2_img_1"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:shapeAppearanceOverlay="@style/RoundedBorders" />
-
-                                <com.google.android.material.imageview.ShapeableImageView
-                                    android:id="@+id/iv_top2_img_3"
-                                    android:layout_width="115dp"
-                                    android:layout_height="115dp"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/grad_default_img"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:shapeAppearanceOverlay="@style/RoundedBorders" />
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/cv_top_3"
-                        style="?attr/materialCardViewElevatedStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:paddingBottom="12dp"
-                        app:cardBackgroundColor="@color/background"
-                        app:cardCornerRadius="12dp"
-                        app:cardElevation="4dp">
-
-                        <LinearLayout
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cv_top_3"
+                            style="?attr/materialCardViewElevatedStyle"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:paddingStart="16dp"
-                            android:paddingTop="8dp"
-                            android:paddingBottom="16dp">
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:paddingBottom="12dp"
+                            app:cardBackgroundColor="@color/background"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="4dp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_marginBottom="6dp"
-                                android:orientation="horizontal"
-                                android:paddingEnd="8dp">
+                                android:orientation="vertical"
+                                android:paddingStart="16dp"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="16dp">
 
-                                <TextView
-                                    android:id="@+id/tv_top3_title"
-                                    android:layout_width="0dp"
+                                <LinearLayout
+                                    android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:gravity="center_vertical"
-                                    android:text="@string/loading"
-                                    android:textAppearance="@style/title_medium"
-                                    android:textColor="@color/secondary" />
+                                    android:layout_marginBottom="6dp"
+                                    android:orientation="horizontal"
+                                    android:paddingEnd="8dp">
 
-                                <ImageView
-                                    android:id="@+id/iv_go_next_top3"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_baseline_navigate_next_24" />
+                                    <TextView
+                                        android:id="@+id/tv_top3_title"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="center_vertical"
+                                        android:text="@string/loading"
+                                        android:textAppearance="@style/title_medium"
+                                        android:textColor="@color/secondary" />
+
+                                    <ImageView
+                                        android:id="@+id/iv_go_next_top3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/ic_baseline_navigate_next_24" />
+                                </LinearLayout>
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:paddingEnd="16dp">
+
+                                    <com.google.android.material.imageview.ShapeableImageView
+                                        android:id="@+id/iv_top3_img_1"
+                                        android:layout_width="115dp"
+                                        android:layout_height="115dp"
+                                        android:scaleType="centerCrop"
+                                        android:src="@drawable/grad_default_img"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:shapeAppearanceOverlay="@style/RoundedBorders" />
+
+                                    <com.google.android.material.imageview.ShapeableImageView
+                                        android:id="@+id/iv_top3_img_2"
+                                        android:layout_width="115dp"
+                                        android:layout_height="115dp"
+                                        android:scaleType="centerCrop"
+                                        android:src="@drawable/grad_default_img"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toStartOf="@+id/iv_top3_img_3"
+                                        app:layout_constraintStart_toEndOf="@+id/iv_top3_img_1"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:shapeAppearanceOverlay="@style/RoundedBorders" />
+
+                                    <com.google.android.material.imageview.ShapeableImageView
+                                        android:id="@+id/iv_top3_img_3"
+                                        android:layout_width="115dp"
+                                        android:layout_height="115dp"
+                                        android:scaleType="centerCrop"
+                                        android:src="@drawable/grad_default_img"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:shapeAppearanceOverlay="@style/RoundedBorders" />
+                                </androidx.constraintlayout.widget.ConstraintLayout>
                             </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
 
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="horizontal"
-                                android:paddingEnd="16dp">
+                    </LinearLayout>
 
-                                <com.google.android.material.imageview.ShapeableImageView
-                                    android:id="@+id/iv_top3_img_1"
-                                    android:layout_width="115dp"
-                                    android:layout_height="115dp"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/grad_default_img"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:shapeAppearanceOverlay="@style/RoundedBorders" />
-
-                                <com.google.android.material.imageview.ShapeableImageView
-                                    android:id="@+id/iv_top3_img_2"
-                                    android:layout_width="115dp"
-                                    android:layout_height="115dp"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/grad_default_img"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toStartOf="@+id/iv_top3_img_3"
-                                    app:layout_constraintStart_toEndOf="@+id/iv_top3_img_1"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:shapeAppearanceOverlay="@style/RoundedBorders" />
-
-                                <com.google.android.material.imageview.ShapeableImageView
-                                    android:id="@+id/iv_top3_img_3"
-                                    android:layout_width="115dp"
-                                    android:layout_height="115dp"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/grad_default_img"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:shapeAppearanceOverlay="@style/RoundedBorders" />
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>
 

@@ -29,4 +29,5 @@ data class ReviewResponse(
     var saved: Boolean?,
     @SerializedName("hastags")
     val hastags: List<String>,
+    val me: String
 )
