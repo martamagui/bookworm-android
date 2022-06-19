@@ -22,6 +22,7 @@ class ProfileViewModel @Inject constructor(
     val profileUIState: StateFlow<ProfileUIState> get() = _profileUIState
 
     fun getProfileInfo(id: String) {
+        setLoading()
         if (id != "empty") {
             getOthersProfile(id)
         } else {
@@ -29,7 +30,7 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
-    fun getOthersProfile(id: String) {
+    private fun getOthersProfile(id: String) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val myToken = getMyToken()
@@ -49,7 +50,7 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
-    fun getMYProfileInfo() {
+    private fun getMYProfileInfo() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val myToken = getMyToken()
@@ -69,7 +70,11 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
-    fun updateError(msg: String) {
+    private fun setLoading() {
+        _profileUIState.update { ProfileUIState(isLoading = true) }
+    }
+
+    private fun updateError(msg: String) {
         _profileUIState.update { ProfileUIState(isLoading = false, isError = true, errorMsg = msg) }
     }
 
@@ -78,7 +83,7 @@ class ProfileViewModel @Inject constructor(
             try {
                 val myToken = getMyToken()
                 if (myToken != null) {
-                    networkService.likeDislike("Bearer ${myToken}", userToFollow)
+                    networkService.followUnfollowUser("Bearer ${myToken}", userToFollow)
                 }
             } catch (error: Error) {
                 updateError("Couldn't update follow.")

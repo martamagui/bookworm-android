@@ -10,6 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.marta.bookworm.R
 import com.marta.bookworm.databinding.FragmentProfileBinding
 import com.marta.bookworm.api.model.response.ReviewResponse
 import com.marta.bookworm.api.model.response.UserResponse
@@ -23,7 +25,8 @@ class ProfileFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: ProfileViewModel by viewModels()
     private val args: ProfileFragmentArgs by navArgs()
-    private val adapter: ResultAdapter = ResultAdapter{ navigateToDetail(it) }
+    private val adapter: ResultAdapter = ResultAdapter { navigateToDetail(it) }
+    private var isFollowed: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +39,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.profileUIState.collect{ profileUIState ->
+            viewModel.profileUIState.collect { profileUIState ->
                 renderUIState(profileUIState)
             }
         }
@@ -45,53 +48,98 @@ class ProfileFragment : Fragment() {
     }
 
     private fun renderUIState(state: ProfileUIState) {
-       if(state.isSuccess && state.user!= null){
-           setUIData(state.user)
-       }
+        if (state.isSuccess && state.user != null) setUIData(state.user)
+        if (state.isLoading) {
+            showLoading(true)
+        } else {
+            showLoading(false)
+        }
+        if (state.isError) showError(state.errorMsg!!)
+    }
+
+    private fun showError(errorMsg: String) {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Error")
+            .setMessage(errorMsg)
+            .setPositiveButton("Okay") { dialog, which -> }
+            .show()
+    }
+
+    private fun showLoading(loading: Boolean) {
+        binding.shimmerProfile.visibility = if (loading) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
     }
 
     private fun setUIData(user: UserResponse) {
-        with(binding){
+        with(binding) {
             tvProfileUsername.text = "@${user.userName}"
             tvProfileDescription.text = user.description
-            tvProfileReviewsAmount.text = if(user.reviews==null) {"0"} else{user.reviews.size.toString()}
+            tvProfileReviewsAmount.text = if (user.reviews == null) {
+                "0"
+            } else {
+                user.reviews.size.toString()
+            }
             tvProfileFollowingAmount.text = user.followingAmount.toString()
             tvProfileFollowersAmount.text = (user.followers).toString()
             ivProfileAvatar.loadImage(user.avatar)
             ivBanner.loadImage(user.banner)
             displayReviews(user.reviews)
-            user.isMe?.let { setProfileMode(it) }
             seBtns(user)
+            if (user.isMe != null && user.followed != null) setProfileMode(
+                user.isMe!!,
+                user.followed!!
+            )
         }
     }
 
     private fun seBtns(user: UserResponse) {
-        with(binding){
+        with(binding) {
             cvSettings.setOnClickListener { navigateToSettings() }
             cvSavedPosts.setOnClickListener { navigateToSavedPost() }
-            cvFollowUnfollow.setOnClickListener { viewModel.followUnfollow(user.id) }
+            cvFollowUnfollow.setOnClickListener { followAction(user) }
         }
     }
 
-    private fun setProfileMode(isMe: Boolean) {
-        if(isMe){
+    private fun followAction(user: UserResponse) {
+        viewModel.followUnfollow(user.id)
+        isFollowed = !isFollowed
+        if (isFollowed){
+            binding.ivFollow.setImageResource(R.drawable.ic_baseline_remove_24)
+        } else {
+            binding.ivFollow.setImageResource(R.drawable.ic_baseline_add_profile_24)
+        }
+    }
+
+    private fun setProfileMode(isMe: Boolean, followed: Boolean) {
+        if (isMe) {
             binding.cvSavedPosts.visibility = View.VISIBLE
             binding.cvSettings.visibility = View.VISIBLE
-        }else{
+        } else {
             binding.cvFollowUnfollow.visibility = View.VISIBLE
+            binding.ivFollow.setImageResource(
+                if (followed) {
+                    R.drawable.ic_baseline_remove_24
+                } else {
+                    R.drawable.ic_baseline_add_profile_24
+                }
+            )
+            isFollowed = followed
         }
     }
 
-    private fun displayReviews(list: List<ReviewResponse>?){
-        if(list!=null && list.size>0){
+    private fun displayReviews(list: List<ReviewResponse>?) {
+        if (!list.isNullOrEmpty()) {
             adapter.submitList(list)
-        }else{
+        } else {
             //TODO show emptyLisBlock
         }
     }
 
     private fun setUI() {
-        with(binding){
+        with(binding) {
             rvProfile.adapter = adapter
             rvProfile.layoutManager = GridLayoutManager(context, 3)
             rvProfile.isNestedScrollingEnabled = false
@@ -110,8 +158,8 @@ class ProfileFragment : Fragment() {
         findNavController().navigate(action)
     }
 
-    private fun navigateToSavedPost(){
-        val action =  ProfileFragmentDirections.actionProfileFragment2ToSavedPostsFragment()
+    private fun navigateToSavedPost() {
+        val action = ProfileFragmentDirections.actionProfileFragment2ToSavedPostsFragment()
         findNavController().navigate(action)
     }
 

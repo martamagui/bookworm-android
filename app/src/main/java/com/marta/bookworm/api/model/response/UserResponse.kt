@@ -21,5 +21,6 @@ data class UserResponse(
     val reviews: List<ReviewResponse>?,
     val savedReviewsIds: List<String>?,
     val subscribedToNewsLetter: Boolean?,
-    val isMe: Boolean?
+    val isMe: Boolean?,
+    val followed: Boolean?
 )

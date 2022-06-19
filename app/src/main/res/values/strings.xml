@@ -65,4 +65,6 @@
     <string name="publish">Publish</string>
     <string name="profile_description">Profile description</string>
     <string name="apply_changes">Apply Changes</string>
+    <string name="not_found">It seemes like there\'s nothing here yet. 🧐</string>
+    <string name="zero_reviews">This user haven\'t reviewed any book 🧐</string>
 </resources>

@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.marta.bookworm.R
 import com.marta.bookworm.api.model.response.ReviewResponse
 import com.marta.bookworm.databinding.FragmentSearchResultBinding
@@ -48,25 +49,34 @@ class SearchResultFragment : Fragment() {
     }
 
     private fun renderUIState(state: SearchResultUIState) {
-        if (state.isError) {
-            showError(state.errorMsg)
-        }
+        if (state.isError) showError(state.errorMsg)
+
         if (state.isSuccess) {
             if (state.feedList != null && state.feedList?.size > 0) {
                 setAdapterInfo(state.feedList)
+                setEmptyTv(false)
+            } else {
+                setEmptyTv(true)
             }
         }
         if (state.isLoading) {
-            showLoadingAnimation()
+            showLoadingAnimation(true)
+        } else {
+            showLoadingAnimation(false)
+        }
+
+    }
+
+    private fun setEmptyTv(visible: Boolean) {
+        binding.tvEmptySearch.visibility = if (visible) {
+            View.VISIBLE
+        } else {
+            View.GONE
         }
     }
 
     private fun setAdapterInfo(reviews: List<ReviewResponse>) {
-        if (reviews != null && reviews.size > 0) {
-            adapter.submitList(reviews)
-        } else {
-            //TODO display empty block
-        }
+        adapter.submitList(reviews)
     }
 
     private fun setUI() {
@@ -91,14 +101,20 @@ class SearchResultFragment : Fragment() {
         }
     }
 
-    private fun showLoadingAnimation() {
-        //TODO Shimmer animations
-        Log.d("top", "loading")
+    private fun showLoadingAnimation(empty: Boolean) {
+        binding.shimmerSearch.visibility = if (empty) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
     }
 
     private fun showError(msg: String?) {
-        Log.d("top", "$msg")
-        //TODO hacer un dialog que muestre el error
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Error")
+            .setMessage(msg)
+            .setPositiveButton("Okay") { dialog, which -> }
+            .show()
     }
 
     private fun navigateToDetail(postId: String) {

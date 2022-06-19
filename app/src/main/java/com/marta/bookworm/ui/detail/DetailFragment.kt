@@ -60,6 +60,9 @@ class DetailFragment : Fragment() {
             tvAuthorDetail.text = review.bookAuthor
             tvTitleDetail.text = review.bookTitle
             tvDescriptionDetail.text = review.reviewDescription
+            if(review.userId!!.id == review.me){
+                fabDeleteReview.visibility = View.VISIBLE
+            }
         }
         setBtns(review)
         setTags(review.hastags)
