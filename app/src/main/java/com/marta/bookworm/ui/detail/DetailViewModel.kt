@@ -35,12 +35,6 @@ class DetailViewModel @Inject constructor(
         }
     }
 
-    private suspend fun getMyToken(): String{
-        val token = db.dao().findAllToken()
-        Log.e("Detail", token.toString())
-        return token[0].token
-    }
-
     fun likePost(postId: String) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -67,7 +61,30 @@ class DetailViewModel @Inject constructor(
         }
     }
 
-    fun updateError(msg: String) {
+    private fun updateError(msg: String) {
         _detailUIState.update { DetailUIState(isLoading = false, isError = true, errorMsg = msg) }
     }
+
+    fun deletePost(id: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val myToken =  getMyToken()
+                if(myToken!=null){
+                    networkService.deleteReview("Bearer  $myToken", id)
+                    updateError("This review was deleted.")
+                }
+            }catch (error: Exception){
+                updateError("Couldn't delete this post.")
+            }catch (error: Error){
+                updateError("Couldn't delete this post.")
+            }
+        }
+    }
+
+    //----------DB
+    private suspend fun getMyToken(): String{
+        val token = db.dao().findAllToken()
+        return token[0].token
+    }
+
 }

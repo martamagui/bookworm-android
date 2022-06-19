@@ -49,7 +49,7 @@ class ProfileFragment : Fragment() {
 
     private fun renderUIState(state: ProfileUIState) {
         if (state.isSuccess && state.user != null) setUIData(state.user)
-        if (state.isLoading) {
+        if (state.isLoading && state.user == null) {
             showLoading(true)
         } else {
             showLoading(false)
@@ -67,6 +67,11 @@ class ProfileFragment : Fragment() {
 
     private fun showLoading(loading: Boolean) {
         binding.shimmerProfile.visibility = if (loading) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
+        binding.rvProfile.visibility = if (!loading) {
             View.VISIBLE
         } else {
             View.GONE
@@ -134,7 +139,7 @@ class ProfileFragment : Fragment() {
         if (!list.isNullOrEmpty()) {
             adapter.submitList(list)
         } else {
-            //TODO show emptyLisBlock
+            binding.tvEmptyProfile.visibility = View.VISIBLE
         }
     }
 
@@ -144,7 +149,6 @@ class ProfileFragment : Fragment() {
             rvProfile.layoutManager = GridLayoutManager(context, 3)
             rvProfile.isNestedScrollingEnabled = false
             rvProfile.isScrollContainer = false
-
         }
     }
 

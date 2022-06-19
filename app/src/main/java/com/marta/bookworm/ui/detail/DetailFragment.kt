@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.chip.Chip
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.marta.bookworm.R
 import com.marta.bookworm.databinding.FragmentDetailBinding
 import com.marta.bookworm.api.model.response.ReviewResponse
@@ -62,6 +63,8 @@ class DetailFragment : Fragment() {
             tvDescriptionDetail.text = review.reviewDescription
             if(review.userId!!.id == review.me){
                 fabDeleteReview.visibility = View.VISIBLE
+            }else{
+                fabDeleteReview.visibility = View.GONE
             }
         }
         setBtns(review)
@@ -101,32 +104,36 @@ class DetailFragment : Fragment() {
     }
 
     private fun setBtns(review: ReviewResponse) {
-        //TODO make hidden delete button if is not our post
-        Log.d("detail", "TODObtns")
         with(binding) {
             ibDetailGoBack.setOnClickListener { findNavController().popBackStack() }
             layoutUserDetail.setOnClickListener { navigateToUserProfile(review.userId!!.id) }
             cvLikeDetail.setOnClickListener { likePost(review) }
             cvSaveDetail.setOnClickListener { saveUnsavePost(review) }
             cvShopDetail.setOnClickListener { openAmazon("$review.bookTitle") }
+            fabDeleteReview.setOnClickListener { deletePost(review.id) }
         }
+    }
+
+    private fun deletePost(id: String) {
+        viewModel.deletePost(id)
     }
 
     private fun renderUIState(uiState: DetailUIState) {
         if (uiState.isError) {
-            showError(uiState.errorMsg)
+            showAlert(uiState.errorMsg)
         }
-        if (uiState.isLoading) {
-            //TODO
-            Log.d("detail", "cargando")
-        }
+
         if (uiState.isSuccess && uiState.review != null) {
             setUserInfo(uiState.review)
         }
     }
 
-    private fun showError(msg: String) {
-        Log.e("Error", "Connection error")
+    private fun showAlert(msg: String) {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Alert")
+            .setMessage(msg)
+            .setPositiveButton("Okay") { dialog, which -> }
+            .show()
     }
 
     private fun updateLike(post: ReviewResponse) {

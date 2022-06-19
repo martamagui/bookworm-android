@@ -117,6 +117,12 @@ interface NetworkService {
         @Header("Authorization") token: String,
     ): StandarResponse
 
+    @DELETE("review/{reviewId}")
+    suspend fun deleteReview(
+        @Header("Authorization") token: String,
+        @Path("reviewId") reviewId: String
+    )
+
     //-------------------------------------- Review
     //--- GET
     @GET("review")
@@ -157,6 +163,5 @@ interface NetworkService {
         @Header("Authorization") token: String,
         @Path("postId") userId: String,
     ): StandarResponse
-
 
 }
