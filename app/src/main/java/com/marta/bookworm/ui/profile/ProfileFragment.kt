@@ -79,8 +79,6 @@ class ProfileFragment : Fragment() {
             binding.cvSettings.visibility = View.VISIBLE
         }else{
             binding.cvFollowUnfollow.visibility = View.VISIBLE
-            //TODO if there's time to create the chat view, uncomment.
-            //binding.cvSendMessage.visibility = View.VISIBLE
         }
     }
 
@@ -115,9 +113,6 @@ class ProfileFragment : Fragment() {
     private fun navigateToSavedPost(){
         val action =  ProfileFragmentDirections.actionProfileFragment2ToSavedPostsFragment()
         findNavController().navigate(action)
-    }
-    private fun navigateToChat(userId: String) {
-        //TODO
     }
 
 }

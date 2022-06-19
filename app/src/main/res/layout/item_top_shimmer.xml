@@ -64,31 +64,36 @@
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/iv_top3_img_1_shimmer"
-                    android:layout_width="115dp"
-                    android:layout_height="115dp"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/grad_default_img"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:shapeAppearanceOverlay="@style/RoundedBorders" />
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/iv_top3_img_2_shimmer"
-                    android:layout_width="115dp"
-                    android:layout_height="115dp"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/grad_default_img"
+                    app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintEnd_toStartOf="@+id/iv_top3_img_3_shimmer"
                     app:layout_constraintStart_toEndOf="@+id/iv_top3_img_1_shimmer"
                     app:shapeAppearanceOverlay="@style/RoundedBorders" />
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/iv_top3_img_3_shimmer"
-                    android:layout_width="115dp"
-                    android:layout_height="115dp"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/grad_default_img"
+                    app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:shapeAppearanceOverlay="@style/RoundedBorders" />
             </androidx.constraintlayout.widget.ConstraintLayout>

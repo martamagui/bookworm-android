@@ -300,20 +300,27 @@
                         android:textColor="@color/tertiary" />
 
                     <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmer_top_fr"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
-                            <include layout="@layout/item_top_shimmer"/>
-                            <include layout="@layout/item_top_shimmer"/>
-                            <include layout="@layout/item_top_shimmer"/>
+
+                            <include layout="@layout/item_top_shimmer" />
+
+                            <include layout="@layout/item_top_shimmer" />
+
+                            <include layout="@layout/item_top_shimmer" />
                         </LinearLayout>
                     </com.facebook.shimmer.ShimmerFrameLayout>
 
                     <LinearLayout
+                        android:id="@+id/vl_content_top"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
@@ -367,22 +374,26 @@
 
                                     <com.google.android.material.imageview.ShapeableImageView
                                         android:id="@+id/iv_top1_img_1"
-                                        android:layout_width="115dp"
-                                        android:layout_height="115dp"
+                                        android:layout_width="0dp"
+                                        android:layout_height="0dp"
                                         android:scaleType="centerCrop"
                                         android:src="@drawable/grad_default_img"
                                         app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintDimensionRatio="1:1"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent"
                                         app:shapeAppearanceOverlay="@style/RoundedBorders" />
 
                                     <com.google.android.material.imageview.ShapeableImageView
                                         android:id="@+id/iv_top1_img"
-                                        android:layout_width="115dp"
-                                        android:layout_height="115dp"
+                                        android:layout_width="0dp"
+                                        android:layout_height="0dp"
+                                        android:layout_marginStart="8dp"
+                                        android:layout_marginEnd="8dp"
                                         android:scaleType="centerCrop"
                                         android:src="@drawable/grad_default_img"
                                         app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintDimensionRatio="1:1"
                                         app:layout_constraintEnd_toStartOf="@+id/iv_top1_img_2"
                                         app:layout_constraintStart_toEndOf="@+id/iv_top1_img_1"
                                         app:layout_constraintTop_toTopOf="parent"
@@ -390,11 +401,12 @@
 
                                     <com.google.android.material.imageview.ShapeableImageView
                                         android:id="@+id/iv_top1_img_2"
-                                        android:layout_width="115dp"
-                                        android:layout_height="115dp"
+                                        android:layout_width="0dp"
+                                        android:layout_height="0dp"
                                         android:scaleType="centerCrop"
                                         android:src="@drawable/grad_default_img"
                                         app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintDimensionRatio="1:1"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintTop_toTopOf="parent"
                                         app:shapeAppearanceOverlay="@style/RoundedBorders" />
@@ -452,22 +464,26 @@
 
                                     <com.google.android.material.imageview.ShapeableImageView
                                         android:id="@+id/iv_top2_img_1"
-                                        android:layout_width="115dp"
-                                        android:layout_height="115dp"
+                                        android:layout_width="0dp"
+                                        android:layout_height="0dp"
                                         android:scaleType="centerCrop"
                                         android:src="@drawable/grad_default_img"
                                         app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintDimensionRatio="1:1"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent"
                                         app:shapeAppearanceOverlay="@style/RoundedBorders" />
 
                                     <com.google.android.material.imageview.ShapeableImageView
                                         android:id="@+id/iv_top2_img_2"
-                                        android:layout_width="115dp"
-                                        android:layout_height="115dp"
+                                        android:layout_width="0dp"
+                                        android:layout_height="0dp"
+                                        android:layout_marginStart="8dp"
+                                        android:layout_marginEnd="8dp"
                                         android:scaleType="centerCrop"
                                         android:src="@drawable/grad_default_img"
                                         app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintDimensionRatio="1:1"
                                         app:layout_constraintEnd_toStartOf="@+id/iv_top2_img_3"
                                         app:layout_constraintStart_toEndOf="@+id/iv_top2_img_1"
                                         app:layout_constraintTop_toTopOf="parent"
@@ -475,11 +491,12 @@
 
                                     <com.google.android.material.imageview.ShapeableImageView
                                         android:id="@+id/iv_top2_img_3"
-                                        android:layout_width="115dp"
-                                        android:layout_height="115dp"
+                                        android:layout_width="0dp"
+                                        android:layout_height="0dp"
                                         android:scaleType="centerCrop"
                                         android:src="@drawable/grad_default_img"
                                         app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintDimensionRatio="1:1"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintTop_toTopOf="parent"
                                         app:shapeAppearanceOverlay="@style/RoundedBorders" />
@@ -539,22 +556,26 @@
 
                                     <com.google.android.material.imageview.ShapeableImageView
                                         android:id="@+id/iv_top3_img_1"
-                                        android:layout_width="115dp"
-                                        android:layout_height="115dp"
+                                        android:layout_width="0dp"
+                                        android:layout_height="0dp"
                                         android:scaleType="centerCrop"
                                         android:src="@drawable/grad_default_img"
                                         app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintDimensionRatio="1:1"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent"
                                         app:shapeAppearanceOverlay="@style/RoundedBorders" />
 
                                     <com.google.android.material.imageview.ShapeableImageView
                                         android:id="@+id/iv_top3_img_2"
-                                        android:layout_width="115dp"
-                                        android:layout_height="115dp"
+                                        android:layout_width="0dp"
+                                        android:layout_height="0dp"
+                                        android:layout_marginStart="8dp"
+                                        android:layout_marginEnd="8dp"
                                         android:scaleType="centerCrop"
                                         android:src="@drawable/grad_default_img"
                                         app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintDimensionRatio="1:1"
                                         app:layout_constraintEnd_toStartOf="@+id/iv_top3_img_3"
                                         app:layout_constraintStart_toEndOf="@+id/iv_top3_img_1"
                                         app:layout_constraintTop_toTopOf="parent"
@@ -562,11 +583,12 @@
 
                                     <com.google.android.material.imageview.ShapeableImageView
                                         android:id="@+id/iv_top3_img_3"
-                                        android:layout_width="115dp"
-                                        android:layout_height="115dp"
+                                        android:layout_width="0dp"
+                                        android:layout_height="0dp"
                                         android:scaleType="centerCrop"
                                         android:src="@drawable/grad_default_img"
                                         app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintDimensionRatio="1:1"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintTop_toTopOf="parent"
                                         app:shapeAppearanceOverlay="@style/RoundedBorders" />

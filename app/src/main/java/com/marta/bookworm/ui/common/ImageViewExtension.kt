@@ -8,8 +8,8 @@ fun ImageView.loadImage(imageUrl: String?) {
     if(imageUrl!=null){
         Glide.with(context)
             .load(imageUrl)
-            .placeholder(R.drawable.grad_default_img)
-            .error(R.drawable.grad_default_img)
+            .placeholder(R.drawable.img)
+            .error(R.drawable.img)
             .into(this)
     }
 }

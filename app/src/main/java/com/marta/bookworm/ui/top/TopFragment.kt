@@ -44,22 +44,31 @@ class TopFragment : Fragment() {
     }
 
     private fun renderUIState(state: TopUIState) {
-        if (state.isError) {
-            showError(state.errorMsg)
-        }
+        if (state.isError) showError(state.errorMsg)
+
         if (state.isSuccess) {
             if (state.topResponse != null && state.topResponse?.size > 0) {
                 setUI(state.topResponse)
+                hideLoadingAnimation()
+
             }
         }
-        if (state.isLoading) {
-            showLoadingAnimation()
-        }
+        if (state.isLoading) showLoadingAnimation()
+
     }
 
     private fun showLoadingAnimation() {
-        //TODO Shimmer animations
-        Log.d("top", "loading")
+        with(binding) {
+            shimmerTopFr.visibility = View.VISIBLE
+            vlContentTop.visibility = View.GONE
+        }
+    }
+
+    private fun hideLoadingAnimation() {
+        with(binding) {
+            shimmerTopFr.visibility = View.GONE
+            vlContentTop.visibility = View.VISIBLE
+        }
     }
 
     private fun setUI(response: List<TopResponse>) {
@@ -92,9 +101,9 @@ class TopFragment : Fragment() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if(p0.toString().length == 0){
+                if (p0.toString().length == 0) {
                     binding.lySearchOptions.visibility = View.GONE
-                }else{
+                } else {
                     setCvTexts(p0.toString())
                     binding.lySearchOptions.visibility = View.VISIBLE
                 }
@@ -104,18 +113,33 @@ class TopFragment : Fragment() {
 
     private fun setClicks(title1: String, title2: String, title3: String) {
         with(binding) {
-            cvTop1.setOnClickListener {navigateToSearchResult(title1,"title") }
-            cvTop2.setOnClickListener {navigateToSearchResult(title2, "title") }
-            cvTop3.setOnClickListener { navigateToSearchResult(title3,"title") }
-            cvTopTitle.setOnClickListener { navigateToSearchResult(etSearch.text.toString(), "title")  }
-            cvTopAuthor.setOnClickListener { navigateToSearchResult(etSearch.text.toString(), "author")  }
-            cvTopHashtag.setOnClickListener { navigateToSearchResult(etSearch.text.toString(), "tag")  }
+            cvTop1.setOnClickListener { navigateToSearchResult(title1, "title") }
+            cvTop2.setOnClickListener { navigateToSearchResult(title2, "title") }
+            cvTop3.setOnClickListener { navigateToSearchResult(title3, "title") }
+            cvTopTitle.setOnClickListener {
+                navigateToSearchResult(
+                    etSearch.text.toString(),
+                    "title"
+                )
+            }
+            cvTopAuthor.setOnClickListener {
+                navigateToSearchResult(
+                    etSearch.text.toString(),
+                    "author"
+                )
+            }
+            cvTopHashtag.setOnClickListener {
+                navigateToSearchResult(
+                    etSearch.text.toString(),
+                    "tag"
+                )
+            }
             lyTopView.setOnClickListener { binding.lySearchOptions.visibility = View.GONE }
         }
     }
 
-    private fun setCvTexts(searchValue:String){
-        with(binding){
+    private fun setCvTexts(searchValue: String) {
+        with(binding) {
             tvSearchTopTitle.text = searchValue
             tvSearchTopAuthor.text = searchValue
             tvSearchTopHashtag.text = searchValue

@@ -212,7 +212,7 @@
         android:id="@+id/card_loading"
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:cardBackgroundColor="#EEFBE2E2"
         app:cardCornerRadius="24dp"
         app:cardElevation="6dp"
