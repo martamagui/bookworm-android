@@ -55,10 +55,6 @@ class CreateReviewStep2Fragment : Fragment() {
         if (state.isSuccess) {
             navigateToFeed()
         }
-        if (state.isLoading) {
-            //TODO Loading
-            //showLoading()
-        }
     }
 
     private fun showError(msg: String) {
@@ -123,7 +119,6 @@ class CreateReviewStep2Fragment : Fragment() {
                 )
             )
         )
-        //TODO remove from shared the tag
         binding.cgTags.addView(chip as View)
     }
 

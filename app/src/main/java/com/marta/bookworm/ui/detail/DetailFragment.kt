@@ -44,12 +44,6 @@ class DetailFragment : Fragment() {
             }
         }
         viewModel.getPost(args.postId)
-        setUI()
-    }
-
-    private fun setUI() {
-        //TODO complete with userInfo
-        Log.d("detail", "TODO")
     }
 
     private fun setUserInfo(review: ReviewResponse) {

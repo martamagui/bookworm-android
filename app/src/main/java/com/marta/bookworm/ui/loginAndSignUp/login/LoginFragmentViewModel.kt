@@ -59,8 +59,6 @@ class LoginFragmentViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             val token: List<Token> = db.dao().findAllToken()
             if (token.size > 0) {
-                Log.e("TOKEN", "$token")
-                //Todo validate the actual token. Need to update the API
                 _loginUIState.update { LoginUIState(savedToken = true, isLoading = false) }
             }else{
                 _loginUIState.update { LoginUIState(isLoading = false, savedToken = false) }

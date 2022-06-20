@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.marta.bookworm.R
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.marta.bookworm.api.model.response.ReviewResponse
 import com.marta.bookworm.databinding.FragmentSavedPostsBinding
 import com.marta.bookworm.ui.common.ResultAdapter
@@ -44,14 +44,9 @@ class SavedPostsFragment : Fragment() {
 
     private fun renderUIState(state: SavedPostUIState) {
         if(state.isError){
-            showError()
-        }
-        if(state.isLoading){
-            //Todo
-            //showLoadingAnimations()
+            showError(state.errorMsg)
         }
         if (state.isSuccess){
-            //stopLoadingAnimations()
             displaySavedPosts(state.reviews)
         }
     }
@@ -66,13 +61,15 @@ class SavedPostsFragment : Fragment() {
     private fun displaySavedPosts(reviews: List<ReviewResponse>?) {
         if(reviews!= null && reviews.size>0){
             adapter.submitList(reviews)
-        }else{
-            //TODO display empty block
         }
     }
 
-    private fun showError() {
-        TODO("Not yet implemented")
+    private fun showError(errorMsg: String?) {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Error Loading content")
+            .setMessage("Error: $errorMsg")
+            .setPositiveButton("Okay") { dialog, which -> }
+            .show()
     }
 
 

@@ -64,7 +64,6 @@ class FeedAdapter(
 
     private fun setActions(item: ReviewResponse, holder: ReviewViewHolder) {
         with(holder.binding) {
-            //TODO shop, like and save
             Log.e("ID", "${item.id}")
             layoutUser.setOnClickListener {
                 navigateToUserProfile(item.userId!!.id)

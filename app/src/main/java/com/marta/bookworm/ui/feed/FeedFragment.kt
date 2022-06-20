@@ -75,9 +75,7 @@ class FeedFragment : Fragment() {
             hideLoadingAnimation()
         }
         if (uiState.isSuccess) {
-            if (uiState.feedList!!.isEmpty()) {
-                showEmptyBlock()
-            } else {
+            if (uiState.feedList!!.isNotEmpty()) {
                 submitPostToAdapter(uiState.feedList)
             }
         }
@@ -88,10 +86,6 @@ class FeedFragment : Fragment() {
         adapter.submitList(list)
     }
 
-    private fun showEmptyBlock() {
-        Log.e("Empty", "Empty list")
-        //TODO create an image or quote for empty lists
-    }
 
     private fun showError(msg: String) {
         Log.d("Empty", "Error")
