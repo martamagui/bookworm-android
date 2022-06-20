@@ -104,9 +104,11 @@ class FeedFragment : Fragment() {
 
     private fun showLoadingAnimation() {
         binding.shimmerFeed.visibility = View.VISIBLE
+        binding.rvFeed.visibility = View.GONE
     }
     private fun hideLoadingAnimation() {
         binding.shimmerFeed.visibility = View.GONE
+        binding.rvFeed.visibility = View.VISIBLE
     }
 
     //Network
