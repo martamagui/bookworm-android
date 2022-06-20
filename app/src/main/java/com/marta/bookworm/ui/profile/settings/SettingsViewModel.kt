@@ -52,8 +52,9 @@ class SettingsViewModel @Inject constructor(
     }
 
     fun logOut(){
-        db.dao().delteToken()
-        //TODO hacer que te devuelva al login
+        viewModelScope.launch(Dispatchers.IO) {
+            db.dao().delteToken()
+        }
     }
 
     //--BD
