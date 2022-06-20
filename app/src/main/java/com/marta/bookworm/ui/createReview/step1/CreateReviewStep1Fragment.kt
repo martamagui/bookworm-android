@@ -53,8 +53,8 @@ class CreateReviewStep1Fragment : Fragment() {
         if (state.isSuccess) {
             Log.d("Firebase", "Image uploaded ${state.imageLink!!}")
             sharedViewModel.setStep1Info(
-                binding.etAuthor.text.toString(),
                 binding.etTitle.text.toString(),
+                binding.etAuthor.text.toString(),
                 state.imageLink!!,
                 ("%.1f".format(binding.seekbarScore.value).toDouble()),
                 )

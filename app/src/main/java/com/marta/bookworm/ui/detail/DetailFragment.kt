@@ -61,9 +61,9 @@ class DetailFragment : Fragment() {
             tvAuthorDetail.text = review.bookAuthor
             tvTitleDetail.text = review.bookTitle
             tvDescriptionDetail.text = review.reviewDescription
-            if(review.userId!!.id == review.me){
+            if (review.userId!!.id == review.me) {
                 fabDeleteReview.visibility = View.VISIBLE
-            }else{
+            } else {
                 fabDeleteReview.visibility = View.GONE
             }
         }
@@ -132,7 +132,9 @@ class DetailFragment : Fragment() {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle("Alert")
             .setMessage(msg)
-            .setPositiveButton("Okay") { dialog, which -> }
+            .setPositiveButton("Okay") { dialog, which ->
+                findNavController().popBackStack()
+            }
             .show()
     }
 
